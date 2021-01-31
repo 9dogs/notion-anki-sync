@@ -12,9 +12,9 @@ flashcards.
 ![TLDR](tldr.png)
 
 - Your provide a set of Notion page ids to export
-- Every "toggle list" block on Notion page will be converted to an Anki card
-- ... with a title being the front side and a content being the back side
-- ... and a line starting with a `#tags` will be parsed as tags
+- Every "toggle list" block from Notion will be converted to an Anki card
+- ... with a title becoming the front side and a content — the back side
+- ... and a line starting with `#tags` will be parsed as tags
 
 ## Requirements
 
@@ -25,8 +25,8 @@ To get **Notion API token** log in to Notion via a browser (assuming Chrome here
 then press `Ctrl+Shift+I` to open developer tools, go to "Application" tab
 and find `token_v2` under Cookie on the left.
 
-To get **Notion page id** open up a target page in a browser and look at an
-address bar. A 32 chars of gibberish after a page title is the page id:
+To get **Notion page id** open up the page in a browser and look at an
+address bar. 32 chars of gibberish after a page title is the page id:
 `https://www.notion.so/notion_user/My-Learning-Book-8a775ee482ab43732abc9319add819c5`
 ➡ `8a775ee482ab43732abc9319add819c5`
 
@@ -36,7 +36,7 @@ The easiest way is to use Docker. Fill in values in `.env.example` and run:
 ```shell
 docker run --name notion-anki-sync --restart unless-stopped -v /path/to/.env:/opt/notion-anki-sync/.env 9dogs/notion-anki-sync
 ```
-Watch logs for unexpected behavior:
+Watch logs for any unexpected behavior:
 ```shell
 docker logs -f notion-anki-sync
 ```
