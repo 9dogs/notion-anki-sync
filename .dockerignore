@@ -5,6 +5,7 @@
 !notion_anki_sync
 !.dockerignore
 !.gitignore
+!tldr.png
 !Dockerfile
 !LICENSE
 !Makefile
