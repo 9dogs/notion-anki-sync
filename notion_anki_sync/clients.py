@@ -222,8 +222,11 @@ class AnkiClient(BaseClient):
                         response.error = response.error.capitalize()
                     return response
             except ClientOSError as exc:
-                self.logger.warning('Connection error', error=exc.strerror)
-                await asyncio.sleep(1)
+                retry_in = self.config.ANKI_RETRY_INTERVAL
+                self.logger.warning(
+                    'Connection error', error=exc.strerror, retry_in=retry_in
+                )
+                await asyncio.sleep(retry_in)
 
     async def anki_available(self) -> bool:
         """Check the connection to AnkiConnect endpoint.
@@ -235,15 +238,25 @@ class AnkiClient(BaseClient):
             'version': self.API_VERSION,
         }
         try:
-            resp = await self._make_request(payload)
+            assert self.session  # mypy
+            async with self.session.post(
+                self.config.ANKICONNECT_ENDPOINT, json=payload
+            ) as resp:
+                data = await resp.read()
+                response = ResponseSchema(**json.loads(data))
         except ClientConnectorError:
+            self.logger.warning(
+                'Cannot connect to Anki. Is it running?',
+                retry_in=self.config.ANKI_RETRY_INTERVAL,
+                endpoint_url=self.config.ANKICONNECT_ENDPOINT,
+            )
             return False
         else:
-            if resp.result != self.API_VERSION:
+            if response.result != self.API_VERSION:
                 self.logger.warning(
                     'Anki API version mismatch',
                     expected=self.API_VERSION,
-                    got=resp.result,
+                    got=response.result,
                 )
         return True
 

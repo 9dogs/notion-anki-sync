@@ -85,13 +85,7 @@ async def sync():
         config = Config()
         async with AnkiClient(config) as anki_client:
             while not await anki_client.anki_available():
-                logger.warning(
-                    'Cannot connect to Anki',
-                    retry_in=config.RETRY_AFTER_FAIL_DELAY,
-                    endpoint_url=config.ANKICONNECT_ENDPOINT,
-                    retry_after=config.RETRY_AFTER_FAIL_DELAY,
-                )
-                await asyncio.sleep(config.RETRY_AFTER_FAIL_DELAY)
+                await asyncio.sleep(config.ANKI_RETRY_INTERVAL)
             # Create deck and models
             async with AnkiClient(config) as anki_client:
                 await anki_client.create_deck_and_model(

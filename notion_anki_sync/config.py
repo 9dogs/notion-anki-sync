@@ -23,8 +23,6 @@ class Config(BaseSettings):
     DEBUG = False
     #: Sync every, sec
     SYNC_EVERY: int = 3600  # 1 hour
-    #: Delay for retrying after a failed sync
-    RETRY_AFTER_FAIL_DELAY = 20
     #: Notion token
     NOTION_TOKEN: str
     #: Notion namespace (your Notion username)
@@ -45,6 +43,8 @@ class Config(BaseSettings):
     ANKICONNECT_ENDPOINT: str = 'http://localhost:8765'
     #: Deck to create notes into
     ANKI_TARGET_DECK: str = 'Notion Sync'
+    #: Anki connection retry interval, sec
+    ANKI_RETRY_INTERVAL = 1
 
     #: Logging configuration
     LOG_CONFIG = {
