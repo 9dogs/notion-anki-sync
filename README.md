@@ -11,9 +11,9 @@ flashcards.
 ## How it works
 ![TLDR](tldr.png)
 
-- Your provide a set of Notion page ids to export
+- You provide a set of Notion page ids to export
 - Every "toggle list" block from Notion will be converted to an Anki card
-- ... with a title becoming the front side and a content — the back side
+- ... with a title becoming the front side and content — the backside
 - ... and a line starting with `#tags` will be parsed as tags
 
 ## Requirements
@@ -22,7 +22,7 @@ flashcards.
 - Anki with [AnkiConnect](https://ankiweb.net/shared/info/2055492159) extension
 
 To get **Notion API token** log in to Notion via a browser (assuming Chrome here),
-then press `Ctrl+Shift+I` to open developer tools, go to "Application" tab
+then press `Ctrl+Shift+I` to open developer tools, go to the "Application" tab
 and find `token_v2` under Cookie on the left.
 
 To get **Notion page id** open up the page in a browser and look at an
@@ -48,5 +48,5 @@ docker logs -f notion-anki-sync
 ## Inspiration
 
 This project is inspired by a great [notion2anki](https://github.com/alemayhu/notion2anki).
-The main difference is that `notion2anki` creates an *.apkg Deck while `notion-anki-sync`
+The main difference is that `notion2anki` creates a *.apkg Deck while `notion-anki-sync`
 is more about continuously syncing in a background.
