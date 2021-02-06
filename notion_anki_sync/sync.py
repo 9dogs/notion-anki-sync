@@ -76,7 +76,7 @@ async def sync_page(
         # Create Anki notes
         if notes:
             async with AnkiClient(config) as anki_client:
-                await anki_client.create_notes(notes)
+                await anki_client.add_notes(notes)
 
 
 async def sync():

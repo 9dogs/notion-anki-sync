@@ -38,11 +38,13 @@ class Config(BaseSettings):
     #: Maximum attempts to get a task (increase for larger tasks)
     NOTION_GET_TASK_MAX_ATTEMPTS: int = 600
     #: Notion API retry time, sec
-    NOTION_GET_TASK_RETRY_TIME: int = 1
+    NOTION_RETRY_TIME: int = 1
     #: AnkiConnect endpoint
     ANKICONNECT_ENDPOINT: str = 'http://localhost:8765'
     #: Deck to create notes into
     ANKI_TARGET_DECK: str = 'Notion Sync'
+    #: Cloze note model
+    ANKI_CLOZE_MODEL: str = 'Cloze-Notion'
     #: Anki connection retry interval, sec
     ANKI_RETRY_INTERVAL = 1
 

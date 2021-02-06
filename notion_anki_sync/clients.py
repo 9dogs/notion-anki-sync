@@ -6,14 +6,19 @@ import base64
 import json
 from pathlib import Path
 from types import TracebackType
-from typing import Any, Dict, List, Optional, Type
+from typing import Any, Dict, List, Optional, Type, TypeVar
 
 import aiofiles
 import aiohttp
 import structlog
-from aiohttp import ClientConnectorError, ClientOSError
+from aiohttp import (
+    ClientConnectorError,
+    ClientOSError,
+    ServerDisconnectedError,
+)
 
 from notion_anki_sync.config import Config
+from notion_anki_sync.exceptions import AnkiError
 from notion_anki_sync.models.anki import Note, ResponseSchema
 from notion_anki_sync.models.notion import (
     EnqueueTaskSchema,
@@ -21,11 +26,13 @@ from notion_anki_sync.models.notion import (
     TaskResults,
 )
 
+BT = TypeVar('BT', bound='BaseClient')
+
 
 class BaseClient:
     """Basic aiohttp-based client."""
 
-    def __init__(self, config: Config):
+    def __init__(self, config: Config) -> None:
         """Init the client.
 
         :param config: configuration
@@ -35,11 +42,12 @@ class BaseClient:
         self.cookies: Optional[Dict[str, str]] = None
         self.session: Optional[aiohttp.ClientSession] = None
 
-    async def __aenter__(self) -> BaseClient:
+    async def __aenter__(self: BT) -> BT:
         """Create a session and return the client."""
         timeout = aiohttp.ClientTimeout(total=5)
+        conn = aiohttp.TCPConnector(limit=5)
         self.session = aiohttp.ClientSession(
-            cookies=self.cookies, timeout=timeout
+            cookies=self.cookies, connector=conn, timeout=timeout
         )
         return self
 
@@ -64,7 +72,7 @@ class BaseClient:
 class NotionClient(BaseClient):
     """Notion client."""
 
-    def __init__(self, config: Config):
+    def __init__(self, config: Config) -> None:
         """Init the client.
 
         :param config: configuration
@@ -96,13 +104,21 @@ class NotionClient(BaseClient):
             }
         }
         assert self.session  # mypy
-        async with self.session.post(
-            self.config.NOTION_ENQUEUE_TASK_ENDPOINT, json=payload
-        ) as response:
-            if response.status == 401:
-                self.logger.error('Invalid token')
-            response.raise_for_status()
-            data = await response.json()
+        while True:
+            async with self.session.post(
+                self.config.NOTION_ENQUEUE_TASK_ENDPOINT, json=payload
+            ) as response:
+                if response.status == 401:
+                    self.logger.error('Invalid token')
+                    response.raise_for_status()
+                elif response.status >= 500:
+                    self.logger.error(
+                        'Notion server error, retrying',
+                        retry_in=self.config.NOTION_RETRY_TIME,
+                    )
+                else:
+                    data = await response.json()
+                    break
         data = EnqueueTaskSchema(**data)
         self.logger.info(
             'Export task posted', page_id=page_id, recursive=recursive
@@ -139,10 +155,10 @@ class NotionClient(BaseClient):
                 self.logger.debug(
                     'Task not ready, retrying',
                     progress=pages_exported,
-                    retry_in=self.config.NOTION_GET_TASK_RETRY_TIME,
+                    retry_in=self.config.NOTION_RETRY_TIME,
                     attempts=f'{attempts_count} of {max_attempts_count}',
                 )
-                await asyncio.sleep(self.config.NOTION_GET_TASK_RETRY_TIME)
+                await asyncio.sleep(self.config.NOTION_RETRY_TIME)
                 attempts_count += 1
         self.logger.error('Cannot get task result')
         return None
@@ -161,11 +177,13 @@ class NotionClient(BaseClient):
         # Get task result
         task_result = await self.get_task_result(task_id)
         if task_result:
+            assert task_result.status  # mypy
             self.logger.info(
                 'Export complete, downloading file',
                 url=task_result.status.export_url,
             )
             assert self.session  # mypy
+            assert task_result.status.export_url  # mypy
             async with self.session.get(
                 task_result.status.export_url
             ) as response:
@@ -194,8 +212,24 @@ class AnkiClient(BaseClient):
         '<hr id="source">'
         '<div class="backlink">{{Source}}</div>'
     )
+    #: Cloze note front side template
+    CLOZE_FRONT_TMPL: str = '<div class="front">{{cloze:Front}}</div>'
+    #: Cloze note back side template
+    CLOZE_BACK_TMPL: str = (
+        '<div class="front">{{cloze:Front}}</div>'
+        '<hr id="source">'
+        '<div class="backlink">{{Source}}</div>'
+    )
+    #: Connection exceptions
+    API_EXCEPTIONS = (
+        ClientOSError,
+        ConnectionError,
+        ClientConnectorError,
+        ServerDisconnectedError,
+        asyncio.TimeoutError,
+    )
 
-    def __init__(self, config: Config):
+    def __init__(self, config: Config) -> None:
         """Init the client.
 
         :param config: configuration
@@ -219,12 +253,16 @@ class AnkiClient(BaseClient):
                     data = await resp.read()
                     response = ResponseSchema(**json.loads(data))
                     if response.error:
-                        response.error = response.error.capitalize()
+                        response.error_message = (
+                            response.error_message.capitalize()
+                        )
+                        response.error = AnkiError(response.error)
                     return response
-            except ClientOSError as exc:
+            except self.API_EXCEPTIONS as exc:
                 retry_in = self.config.ANKI_RETRY_INTERVAL
+                error_string = getattr(exc, 'strerror', '')
                 self.logger.warning(
-                    'Connection error', error=exc.strerror, retry_in=retry_in
+                    'Connection error', error=error_string, retry_in=retry_in
                 )
                 await asyncio.sleep(retry_in)
 
@@ -244,7 +282,7 @@ class AnkiClient(BaseClient):
             ) as resp:
                 data = await resp.read()
                 response = ResponseSchema(**json.loads(data))
-        except ClientConnectorError:
+        except self.API_EXCEPTIONS:
             self.logger.warning(
                 'Cannot connect to Anki. Is it running?',
                 retry_in=self.config.ANKI_RETRY_INTERVAL,
@@ -270,57 +308,64 @@ class AnkiClient(BaseClient):
             'version': self.API_VERSION,
             'params': {'deck': name},
         }
-        resp = await self._make_request(payload)
-        _logger = self.logger.bind(name=name)
-        if resp.error:
-            _logger.info(resp.error)
-        else:
-            _logger.info('Deck created')
+        await self._make_request(payload)
+        self.logger.info('Deck created', name=name)
 
-    async def update_note_model_template(self):
-        """Update note model template."""
+    async def update_note_model_template(
+        self, model_name: str, template_name: str, fields: Dict[str, str]
+    ) -> None:
+        """Update note model template.
+
+        :param model_name: model name to update
+        :param template_name: template name to update
+        :param fields: templates for fields
+        """
         payload = {
             'action': 'updateModelTemplates',
             'version': self.API_VERSION,
             'params': {
                 'model': {
-                    'name': self.MODEL_NAME,
-                    'templates': {
-                        self.CARD_TEMPLATE_NAME: {
-                            "Front": self.FRONT_TMPL,
-                            "Back": self.BACK_TMPL,
-                        }
-                    },
+                    'name': model_name,
+                    'templates': {template_name: fields},
                 }
             },
         }
         resp = await self._make_request(payload)
-        _logger = self.logger.bind(model_name=self.MODEL_NAME)
-        if resp.error:
-            _logger.warning(resp.error)
+        _logger = self.logger.bind(
+            model_name=model_name, template=template_name, fields=fields
+        )
+        if resp.error_message:
+            _logger.warning(resp.error_message)
         else:
             _logger.info('Model template updated')
 
-    async def update_note_model_styling(self):
-        """Update note model styling."""
+    async def update_note_model_styling(self, model_name: str):
+        """Update note model styling.
+
+        :param model_name: name of a model
+        """
         payload = {
             'action': 'updateModelStyling',
             'version': self.API_VERSION,
             'params': {
                 'model': {
-                    'name': self.MODEL_NAME,
+                    'name': model_name,
                     'css': self.MODEL_CSS,
                 }
             },
         }
         resp = await self._make_request(payload)
-        if resp.error:
-            self.logger.warning(resp.error)
+        _logger = self.logger.bind(model_name=model_name)
+        if resp.error_message:
+            _logger.warning(resp.error_message)
         else:
-            self.logger.info('Model styling updated')
+            _logger.info('Model styling updated')
 
-    async def ensure_note_model(self):
-        """Ensure note model exists."""
+    async def ensure_note_models(self):
+        """Ensure question-answer and cloze note models exists and have
+        appropriate styling and templates.
+        """
+        # Try to create a question-answer model
         payload = {
             'action': 'createModel',
             'params': {
@@ -337,22 +382,44 @@ class AnkiClient(BaseClient):
             },
         }
         resp = await self._make_request(payload)
-        _logger = self.logger.bind(model_name=self.MODEL_NAME)
-        if resp.error:
-            _logger.info(resp.error)
-            await self.update_note_model_styling()
-            await self.update_note_model_template()
+        # If model exists - update styling and templates
+        if resp.error == AnkiError.MODEL_EXISTS:
+            await self.update_note_model_styling(self.MODEL_NAME)
+            template_fields = {
+                'Front': self.FRONT_TMPL,
+                'Back': self.BACK_TMPL,
+            }
+            await self.update_note_model_template(
+                self.MODEL_NAME, self.CARD_TEMPLATE_NAME, template_fields
+            )
+        elif resp.error == AnkiError.UNKNOWN:
+            self.logger.error(
+                'Error creating model',
+                model_name=self.MODEL_NAME,
+                error=resp.error_message,
+            )
         else:
-            _logger.info('Model created')
+            self.logger.info('Model created', model_name=self.MODEL_NAME)
+        # Update styling of cloze model
+        cloze_model_name = self.config.ANKI_CLOZE_MODEL
+        await self.update_note_model_styling(cloze_model_name)
+        # Update templates of cloze model
+        template_fields = {
+            'Front': self.CLOZE_FRONT_TMPL,
+            'Back': self.CLOZE_BACK_TMPL,
+        }
+        await self.update_note_model_template(
+            cloze_model_name, 'Cloze', template_fields
+        )
 
     async def create_deck_and_model(self, name: str) -> None:
         """Create a deck with a given name and a note model.
 
         :param name: deck name
         """
-        await asyncio.gather(self.ensure_deck(name), self.ensure_note_model())
+        await asyncio.gather(self.ensure_deck(name), self.ensure_note_models())
 
-    async def store_file(self, filename: str, path: Path):
+    async def store_file(self, filename: str, path: Path) -> None:
         """Store file with given name.
 
         :param filename: a filename file will be stored under
@@ -367,36 +434,64 @@ class AnkiClient(BaseClient):
                 'filename': filename,
             },
         }
-        resp = await self._make_request(payload)
+        await self._make_request(payload)
         _logger = self.logger.bind(filename=filename)
-        if resp.error:
-            _logger.warning(resp.error)
-        else:
-            _logger.info('File stored')
+        _logger.info('File stored')
 
-    async def create_note(self, note: Note):
-        """Create a note.
+    async def get_note_id_by_front_text(self, front: str) -> Optional[int]:
+        """Get note id by its front content.
+
+        :param front: front content
+        :returns: note id
+        """
+        query = f'deck:"{self.config.ANKI_TARGET_DECK}" front:"{front}"'
+        payload = {
+            'action': 'findNotes',
+            'version': self.API_VERSION,
+            'params': {
+                'query': query,
+            },
+        }
+        resp = await self._make_request(payload)
+        if not resp.result:
+            self.logger.error('No cards found', query=query)
+            return None
+        else:
+            if isinstance(resp.result, list):
+                if len(resp.result) > 1:
+                    self.logger.error('More than 1 note found', query=query)
+                    return None
+                return resp.result[0]
+            return None
+
+    async def upsert_note(self, note: Note) -> None:
+        """Create or update a note.
 
         :param note: a note
         """
         if note.images:
             for image in note.images:
-                prefix = ''.join(c for c in image.src if c.isalnum())
-                filename = f'{prefix}_{image.abs_path.name}'
-                await self.store_file(filename=filename, path=image.abs_path)
-                note.back = note.back.replace(image.src, filename)
+                await self.store_file(
+                    filename=image.filename, path=image.abs_path
+                )
+        if not note.back:
+            model_name = self.config.ANKI_CLOZE_MODEL
+            fields = {'Front': note.front, 'Source': note.source}
+        else:
+            model_name = self.MODEL_NAME
+            fields = {
+                'Front': note.front,
+                'Back': note.back,
+                'Source': f'<a href="{note.source}">{note.source}</a>',
+            }
         payload = {
             'action': 'addNote',
             'version': self.API_VERSION,
             'params': {
                 'note': {
                     'deckName': self.config.ANKI_TARGET_DECK,
-                    'modelName': self.MODEL_NAME,
-                    'fields': {
-                        'Front': note.front,
-                        'Back': note.back,
-                        'Source': f'<a href="{note.source}">{note.source}</a>',
-                    },
+                    'modelName': model_name,
+                    'fields': fields,
                     'tags': note.tags,
                     'options': {
                         'allowDuplicate': False,
@@ -407,24 +502,45 @@ class AnkiClient(BaseClient):
         }
         resp = await self._make_request(payload)
         _logger = self.logger.bind(front=repr(note.front))
-        if resp.error:
-            _logger.info(resp.error)
-        else:
+        # Update note if duplicate
+        if resp.error == AnkiError.DUPLICATE_NOTE:
+            note_id = await self.get_note_id_by_front_text(note.front)
+            if note_id:
+                payload = {
+                    'action': 'updateNoteFields',
+                    'version': self.API_VERSION,
+                    'params': {
+                        'note': {
+                            'id': note_id,
+                            'fields': {'Back': note.back},
+                        }
+                    },
+                }
+                resp = await self._make_request(payload)
+                if resp.error_message:
+                    _logger.error(
+                        'Cannot update note', error=resp.error_message
+                    )
+                else:
+                    _logger.info('Note updated')
+        elif not resp.error:
             _logger.info('Note created')
+        else:
+            _logger.error('Cannot upsert note', error=resp.error_message)
+
+    async def add_notes(self, notes: List[Note]) -> None:
+        """Create multiple notes.
+
+        :param notes: notes
+        """
+        tasks = [asyncio.create_task(self.upsert_note(note)) for note in notes]
+        await asyncio.gather(*tasks)
 
     async def trigger_sync(self) -> None:
         """Trigger Anki sync."""
         payload = {'action': 'sync', 'version': self.API_VERSION}
         resp = await self._make_request(payload)
-        if resp.error:
-            self.logger.warning(resp.error)
+        if resp.error_message:
+            self.logger.warning(resp.error_message)
         else:
             self.logger.info('Deck sync triggered')
-
-    async def create_notes(self, notes: List[Note]) -> None:
-        """Create multiple notes.
-
-        :param notes: notes
-        """
-        tasks = [asyncio.create_task(self.create_note(note)) for note in notes]
-        await asyncio.gather(*tasks)
