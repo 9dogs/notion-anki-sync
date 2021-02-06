@@ -8,7 +8,7 @@ import lxml.html
 import structlog
 from structlog.stdlib import BoundLogger
 
-from notion_anki_sync.models.anki import Image, Note
+from notion_anki_sync.models.anki import AnkiImage, AnkiNote
 
 # Logger
 logger = structlog.getLogger('note_parser')
@@ -173,7 +173,7 @@ class NoteDataExtractor(HTMLParser):
                 assert src  # mypy
                 prefix = ''.join(c for c in src if c.isalnum())
                 abs_path = self.base_dir / unquote(src)
-                image = Image(
+                image = AnkiImage(
                     src=src,
                     filename=f'{prefix}_{abs_path.name}',
                     abs_path=abs_path,
@@ -239,7 +239,7 @@ class NoteDataExtractor(HTMLParser):
         else:
             self._buffer.append(f'</{tag}>')
 
-    def get_data(self) -> Optional[Note]:
+    def get_data(self) -> Optional[AnkiNote]:
         """Collect the rest of the data.
 
         :returns: Note model
@@ -262,7 +262,7 @@ class NoteDataExtractor(HTMLParser):
                 back = back.replace(image.src, image.filename)
         self.note_data['back'] = back
         try:
-            note = Note(**self.note_data)
+            note = AnkiNote(**self.note_data)
         except TypeError as exc:
             self.logger.error('Parsing error', exc_info=exc)
         else:
@@ -270,7 +270,7 @@ class NoteDataExtractor(HTMLParser):
         return None
 
     @classmethod
-    def extract_note(cls, html: str, base_dir: Path) -> Optional[Note]:
+    def extract_note(cls, html: str, base_dir: Path) -> Optional[AnkiNote]:
         """Extract Note from HTML fragment.
 
         :param html: HTML
@@ -285,7 +285,7 @@ class NoteDataExtractor(HTMLParser):
         return note
 
 
-def extract_notes_data(source: Path, notion_namespace: str) -> List[Note]:
+def extract_notes_data(source: Path, notion_namespace: str) -> List[AnkiNote]:
     """Extract notes data from HTML source.
 
     :param source: HTML path

@@ -8,19 +8,19 @@ from pydantic import BaseModel, Field
 from notion_anki_sync.exceptions import AnkiError
 
 
-class ResponseSchema(BaseModel):
+class AnkiResponseSchema(BaseModel):
     """Anki response schema."""
 
     #: Result
     result: Optional[Union[int, list, Dict[str, Any]]]
     #: Error message
-    error_message: str = Field(..., alias='error')
+    error_message: Optional[str] = Field(..., alias='error')
     #: Error
-    error: Optional[AnkiError]
+    error: Optional[AnkiError] = None
 
 
 @dataclass
-class Image:
+class AnkiImage:
     """An image from HTML document."""
 
     #: `src` attribute as is in HTML document
@@ -32,7 +32,7 @@ class Image:
 
 
 @dataclass
-class Note:
+class AnkiNote:
     """Anki note model."""
 
     #: Front side
@@ -44,4 +44,4 @@ class Note:
     #: Link to Notion page
     source: Optional[str] = None
     #: Note images
-    images: Optional[List[Image]] = None
+    images: Optional[List[AnkiImage]] = None

@@ -19,7 +19,7 @@ from aiohttp import (
 
 from notion_anki_sync.config import Config
 from notion_anki_sync.exceptions import AnkiError
-from notion_anki_sync.models.anki import Note, ResponseSchema
+from notion_anki_sync.models.anki import AnkiNote, AnkiResponseSchema
 from notion_anki_sync.models.notion import (
     EnqueueTaskSchema,
     TaskResult,
@@ -236,7 +236,9 @@ class AnkiClient(BaseClient):
         """
         super().__init__(config)
 
-    async def _make_request(self, payload: Dict[str, Any]) -> ResponseSchema:
+    async def _make_request(
+        self, payload: Dict[str, Any]
+    ) -> AnkiResponseSchema:
         """Make POST request with given payload.
 
         :param payload: a payload
@@ -251,8 +253,8 @@ class AnkiClient(BaseClient):
                 ) as resp:
                     resp.raise_for_status()
                     data = await resp.read()
-                    response = ResponseSchema(**json.loads(data))
-                    if response.error:
+                    response = AnkiResponseSchema(**json.loads(data))
+                    if response.error_message:
                         response.error_message = (
                             response.error_message.capitalize()
                         )
@@ -281,7 +283,7 @@ class AnkiClient(BaseClient):
                 self.config.ANKICONNECT_ENDPOINT, json=payload
             ) as resp:
                 data = await resp.read()
-                response = ResponseSchema(**json.loads(data))
+                response = AnkiResponseSchema(**json.loads(data))
         except self.API_EXCEPTIONS:
             self.logger.warning(
                 'Cannot connect to Anki. Is it running?',
@@ -464,7 +466,7 @@ class AnkiClient(BaseClient):
                 return resp.result[0]
             return None
 
-    async def upsert_note(self, note: Note) -> None:
+    async def upsert_note(self, note: AnkiNote) -> None:
         """Create or update a note.
 
         :param note: a note
@@ -528,7 +530,7 @@ class AnkiClient(BaseClient):
         else:
             _logger.error('Cannot upsert note', error=resp.error_message)
 
-    async def add_notes(self, notes: List[Note]) -> None:
+    async def add_notes(self, notes: List[AnkiNote]) -> None:
         """Create multiple notes.
 
         :param notes: notes
