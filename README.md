@@ -16,6 +16,16 @@ flashcards.
 - ... with a title becoming the front side and content — the backside
 - ... and a line starting with `#tags` will be parsed as tags
 
+Clozes can be added via `code` blocks in toggle titles. Back side will be
+ignored (apart from tags).
+
+## On cloze
+
+The cloze note type is treated specially by Anki, and cannot be created
+automatically. If you need cloze notes, please clone it manually via Anki
+interface (`Tools -> Manage note types -> Add -> Clone: Cloze`) and specify
+cloned model name under `ANKI_CLOZE_MODEL` config parameter.
+
 ## Requirements
 
 - Notion API token
@@ -40,10 +50,6 @@ Watch logs for any unexpected behavior:
 ```shell
 docker logs -f notion-anki-sync
 ```
-
-## Limitations
-
-- No clozes yet
 
 ## Inspiration
 
