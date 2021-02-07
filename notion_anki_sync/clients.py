@@ -6,7 +6,7 @@ import base64
 import json
 from pathlib import Path
 from types import TracebackType
-from typing import Any, Dict, List, Optional, Type, TypeVar
+from typing import Any, Dict, List, Optional, Set, Type, TypeVar
 
 import aiofiles
 import aiohttp
@@ -44,7 +44,7 @@ class BaseClient:
 
     async def __aenter__(self: BT) -> BT:
         """Create a session and return the client."""
-        timeout = aiohttp.ClientTimeout(total=5)
+        timeout = aiohttp.ClientTimeout(total=30)
         conn = aiohttp.TCPConnector(limit=5)
         self.session = aiohttp.ClientSession(
             cookies=self.cookies, connector=conn, timeout=timeout
@@ -440,13 +440,12 @@ class AnkiClient(BaseClient):
         _logger = self.logger.bind(filename=filename)
         _logger.info('File stored')
 
-    async def get_note_id_by_front_text(self, front: str) -> Optional[int]:
-        """Get note id by its front content.
+    async def find_notes(self, query: str) -> List[int]:
+        """Find notes using query.
 
-        :param front: front content
-        :returns: note id
+        :param query: query
+        :returns: note ids
         """
-        query = f'deck:"{self.config.ANKI_TARGET_DECK}" front:"{front}"'
         payload = {
             'action': 'findNotes',
             'version': self.API_VERSION,
@@ -455,21 +454,54 @@ class AnkiClient(BaseClient):
             },
         }
         resp = await self._make_request(payload)
-        if not resp.result:
-            self.logger.error('No cards found', query=query)
+        assert isinstance(resp.result, list)  # mypy
+        return resp.result
+
+    async def get_note_id_by_front_text(self, front: str) -> Optional[int]:
+        """Get note id by its front content.
+
+        :param front: front content
+        :returns: note id
+        """
+        query = f'deck:"{self.config.ANKI_TARGET_DECK}" front:"{front}"'
+        note_ids = await self.find_notes(query)
+        if not note_ids:
+            self.logger.error('No notes found', query=query)
             return None
         else:
-            if isinstance(resp.result, list):
-                if len(resp.result) > 1:
-                    self.logger.error('More than 1 note found', query=query)
-                    return None
-                return resp.result[0]
-            return None
+            if len(note_ids) > 1:
+                self.logger.error('More than 1 note found', query=query)
+                return None
+            return note_ids[0]
 
-    async def upsert_note(self, note: AnkiNote) -> None:
+    async def delete_notes(self, note_ids: Set[int]) -> None:
+        """Delete selected notes.
+
+        :param note_ids: note ids
+        """
+        payload = {
+            'action': 'deleteNotes',
+            'version': 6,
+            'params': {'notes': list(note_ids)},
+        }
+        await self._make_request(payload)
+        self.logger.info('Notes deleted', note_ids=note_ids)
+
+    async def get_notes_in_deck(self, deck_name: str) -> Set[int]:
+        """Get all note ids in deck.
+
+        :param deck_name: deck name
+        :returns: existing note ids
+        """
+        query = f'deck:"{deck_name}"'
+        note_ids = await self.find_notes(query)
+        return set(note_ids)
+
+    async def upsert_note(self, note: AnkiNote) -> Optional[int]:
         """Create or update a note.
 
         :param note: a note
+        :returns: id of created or updated note
         """
         if note.images:
             for image in note.images:
@@ -526,17 +558,23 @@ class AnkiClient(BaseClient):
                 else:
                     _logger.info('Note updated')
         elif not resp.error:
+            assert isinstance(resp.result, int)  # mypy
+            note_id = resp.result
             _logger.info('Note created')
         else:
+            note_id = None
             _logger.error('Cannot upsert note', error=resp.error_message)
+        return note_id
 
-    async def add_notes(self, notes: List[AnkiNote]) -> None:
+    async def add_notes(self, notes: List[AnkiNote]) -> Set[int]:
         """Create multiple notes.
 
         :param notes: notes
         """
         tasks = [asyncio.create_task(self.upsert_note(note)) for note in notes]
-        await asyncio.gather(*tasks)
+        results = await asyncio.gather(*tasks)
+        note_ids = {id_ for id_ in results if isinstance(id_, int)}
+        return note_ids
 
     async def trigger_sync(self) -> None:
         """Trigger Anki sync."""

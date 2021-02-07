@@ -3,8 +3,11 @@ import asyncio
 import re
 import zipfile
 from datetime import datetime, timedelta
+from functools import reduce
+from operator import or_
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from typing import Set
 
 import dateutil.tz
 import structlog
@@ -46,13 +49,14 @@ async def sync_page(
     recursive: bool,
     config: Config,
     logger: structlog.stdlib.BoundLogger,
-) -> None:
+) -> Set[int]:
     """Sync a single Notion page.
 
     :param page_id: page id
     :param recursive: recursive export
     :param config: configuration
     :param logger: logger
+    :returns: created or updated note ids
     """
     logger.info('Sync started')
     with TemporaryDirectory() as tmp_dir:
@@ -66,7 +70,7 @@ async def sync_page(
                 recursive=recursive,
             )
         logger.info('Exported file downloaded', path=str(export_path))
-        # Extract notes data from the HTML
+        # Extract notes data from the HTML files
         with zipfile.ZipFile(export_path) as zip_file:
             zip_file.extractall(tmp_path)
         notes = []
@@ -74,9 +78,9 @@ async def sync_page(
             notes += extract_notes_data(html_path, config.NOTION_NAMESPACE)
         logger.info('Notes extracted', count=len(notes))
         # Create Anki notes
-        if notes:
-            async with AnkiClient(config) as anki_client:
-                await anki_client.add_notes(notes)
+        async with AnkiClient(config) as anki_client:
+            note_ids = await anki_client.add_notes(notes)
+        return note_ids
 
 
 async def sync():
@@ -87,18 +91,24 @@ async def sync():
             while not await anki_client.anki_available():
                 await asyncio.sleep(config.ANKI_RETRY_INTERVAL)
             # Create deck and models
+            deck = config.ANKI_TARGET_DECK
             async with AnkiClient(config) as anki_client:
-                await anki_client.create_deck_and_model(
-                    config.ANKI_TARGET_DECK
-                )
+                await anki_client.create_deck_and_model(deck)
+                # Get existing note ids
+                existing_note_ids = await anki_client.get_notes_in_deck(deck)
         tasks = []
         for page_spec in config.NOTION_TARGET_PAGES:
             page_id, recursive = page_spec.page_id, page_spec.recursive
             page_id = normalize_block_id(page_id)
             _logger = logger.bind(page_id=page_id, recursive=recursive)
             tasks.append(sync_page(page_id, recursive, config, _logger))
-        await asyncio.gather(*tasks)
+        results = await asyncio.gather(*tasks)
+        note_ids = reduce(or_, results)
+        # Remove notes that not present in Notion and trigger sync
         async with AnkiClient(config) as anki_client:
+            note_ids_to_delete = existing_note_ids - set(note_ids)
+            if note_ids_to_delete:
+                await anki_client.delete_notes(note_ids_to_delete)
             await anki_client.trigger_sync()
         next_due = datetime.now(tz=dateutil.tz.UTC) + timedelta(
             seconds=config.SYNC_EVERY
