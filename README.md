@@ -33,7 +33,7 @@ address bar. 32 chars of gibberish after a page title is the page id:
 `https://www.notion.so/notion_user/My-Learning-Book-8a775ee482ab43732abc9319add819c5`
 ➡ `8a775ee482ab43732abc9319add819c5`
 
-Edit plugin config file from Anki: `Tools ➡ Addons ➡ NotionAnki ➡ Config`
+Edit plugin config file from Anki: `Tools ➡ Add-ons ➡ NotionAnki ➡ Config`
 ```json
 {
   "debug": false,
