@@ -22,7 +22,7 @@ lint:
 TEST_OUTPUT ?= .
 test:
 	poetry run py.test \
-        --cov notion_anki_sync \
+        --cov notion_sync_addon \
         --cov-report term-missing \
         --cov-report html:$(TEST_OUTPUT)/htmlcov \
         --cov-report xml:$(TEST_OUTPUT)/coverage.xml \
