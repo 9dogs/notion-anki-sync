@@ -6,13 +6,13 @@ from typing import List, Set
 
 from aqt import mw
 from aqt.hooks_gen import main_window_did_init
-from aqt.utils import showWarning
+from aqt.utils import showCritical, showInfo, showWarning
 from PyQt5.QtCore import QObject, QRunnable, QThreadPool, QTimer, pyqtSignal
 from PyQt5.QtWidgets import QAction
 
-from .helpers import get_logger, normalize_block_id
+from .helpers import enable_logging_to_file, get_logger, normalize_block_id
 from .notes_manager import NotesManager
-from .notion_client import NotionClient
+from .notion_client import NotionClient, NotionClientException
 from .parser import AnkiNote, extract_notes_data
 
 
@@ -31,10 +31,15 @@ class NotionSyncPlugin(QObject):
     def __init__(self):
         """Init plugin."""
         super().__init__()
+        # Testing environment
+        if not mw:
+            return
         # Load config
         self.config = mw.addonManager.getConfig(__name__)
         # Create a logger
         self.debug = 'debug' in self.config and self.config['debug']
+        if self.debug:
+            enable_logging_to_file()
         self.logger = get_logger(self.__class__.__name__, self.debug)
         self.logger.info('Config loaded: %s', self.config)
         # Anki collection and note manager
@@ -50,6 +55,7 @@ class NotionSyncPlugin(QObject):
         # Add callback to seed the collection then it's ready
         main_window_did_init.append(self.seed_collection)
         # Create and run timer
+        self._is_auto_sync = True
         self.timer = QTimer()
         timeout_milliseconds = (
             self.config.get('sync_every_minutes', self.DEFAULT_SYNC_INTERVAL)
@@ -57,7 +63,7 @@ class NotionSyncPlugin(QObject):
             * 1000  # milliseconds
         )
         self.timer.setInterval(timeout_milliseconds)
-        self.timer.timeout.connect(self.sync)
+        self.timer.timeout.connect(self.auto_sync)
         self.timer.start()
 
     def add_action(self):
@@ -80,7 +86,7 @@ class NotionSyncPlugin(QObject):
             debug=self.debug,
         )
         self.logger.info('Collection initialized')
-        self.sync()
+        self.auto_sync()
 
     def add_notes(self, notes: List[AnkiNote]) -> None:
         """Add notes to collection.
@@ -103,13 +109,40 @@ class NotionSyncPlugin(QObject):
         mw.maybeReset()  # type: ignore[union-attr]
         mw.deckBrowser.refresh()  # type: ignore[union-attr]
         self.logger.info('Sync finished')
+        if not self._is_auto_sync:
+            showInfo('Successfully loaded', title='Loading from Notion')
 
-    def handle_worker_error(self) -> None:
-        """Handle worker error."""
-        self._alive_workers -= 1
+    def handle_worker_error(self, error_message) -> None:
+        """Handle worker error.
+
+        :param error_message: error message
+        """
         self._worker_error = True
+        # Show error if not auto sync
+        if not self._is_auto_sync:
+            showCritical(error_message, title='Error loading from Notion')
+
+    def auto_sync(self):
+        """Perform synchronization in background."""
+        # Reload config
+        self.config = mw.addonManager.getConfig(__name__)
+        self._is_auto_sync = True
+        self._sync()
 
     def sync(self):
+        """Perform synchronization and report result."""
+        # Reload config
+        self.config = mw.addonManager.getConfig(__name__)
+        if not self._alive_workers:
+            self._is_auto_sync = False
+            self._sync()
+        else:
+            showInfo(
+                'Sync is already in progress, please wait',
+                title='Load from Notion',
+            )
+
+    def _sync(self):
         """Start sync."""
         self.logger.info('Sync triggered')
         self._worker_error = False
@@ -129,10 +162,11 @@ class NotionSyncPlugin(QObject):
                 page_id=page_id,
                 recursive=recursive,
                 notion_namespace=self.config.get('notion_namespace', ''),
+                debug=self.debug,
             )
             worker.signals.result.connect(self.add_notes)
-            worker.signals.finished.connect(self.remove_obsolete_notes)
             worker.signals.error.connect(self.handle_worker_error)
+            worker.signals.finished.connect(self.remove_obsolete_notes)
             # Start worker
             self.thread_pool.start(worker)
             self._alive_workers += 1
@@ -146,7 +180,7 @@ class NoteExtractorSignals(QObject):
     #: Notes data
     result = pyqtSignal(object)
     #: Error
-    error = pyqtSignal()
+    error = pyqtSignal(str)
 
 
 class NotesExtractorWorker(QRunnable):
@@ -184,7 +218,6 @@ class NotesExtractorWorker(QRunnable):
         results.
         """
         self.logger.info('Sync started')
-        # Export Notion page with givenDownload e
         try:
             with TemporaryDirectory() as tmp_dir:
                 # Export given Notion page as HTML
@@ -210,9 +243,10 @@ class NotesExtractorWorker(QRunnable):
                         debug=self.debug,
                     )
                 self.logger.info('Notes extracted: count=%s', len(notes))
-        except Exception as exc:
+        except NotionClientException as exc:
             self.logger.error('Error extracting notes', exc_info=exc)
-            self.signals.error.emit()
+            error_msg = f'Cannot export {self.page_id}:\n{exc}'
+            self.signals.error.emit(error_msg)
         else:
             self.signals.result.emit(notes)
         finally:

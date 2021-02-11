@@ -32,18 +32,19 @@ class NotionClient:
         """Init the client.
 
         :param token: Notion v2 token
+        :param debug: debug mode
         """
         self.logger = get_logger(self.__class__.__name__, debug)
         self.cookies: Dict[str, str] = {'token_v2': token}
 
     def enqueue_export_task(
         self, page_id: str, recursive: bool = False
-    ) -> Optional[str]:
+    ) -> str:
         """Enqueue an export task for a given page.
 
         :param page_id: page id
         :param recursive: use recursive export
-        :returns: task id or None
+        :returns: task id
         """
         payload = {
             'task': {
@@ -83,7 +84,7 @@ class NotionClient:
                 break
         if not data:
             self.logger.error('Cannot submit export task')
-            return None
+            raise NotionClientException('Cannot submit export task')
         task_id = data['taskId']
         self.logger.info(
             'Export task posted: page_id=%s, recursive=%s, task_id=%s',
@@ -107,9 +108,11 @@ class NotionClient:
                 cookies=self.cookies,
             )
             data = resp.json()
-            self.logger.debug('Got task response: %s', data)
+            self.logger.debug('Got response for task %s: %s', task_id, data)
             if 'results' in data:
                 results = data['results'][0]
+                if 'error' in results:
+                    raise NotionClientException(results['error'])
                 if 'status' in results:
                     status = results['status']
                     type_ = status['type']
@@ -123,7 +126,7 @@ class NotionClient:
             )
             time.sleep(self.NOTION_RETRY_TIME)
         self.logger.error('Cannot get task result')
-        return None
+        raise NotionClientException('Cannot get task result')
 
     def export_page(
         self, page_id: str, destination: Path, recursive: bool = False

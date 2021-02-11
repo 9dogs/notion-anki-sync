@@ -11,6 +11,20 @@ BLOCK_ID_RE = re.compile(
 )
 
 
+def enable_logging_to_file() -> None:
+    """Enable logging to file."""
+    root_logger = logging.getLogger('notion_sync')
+    handler = logging.FileHandler(BASE_DIR / 'log.txt', mode='w')
+    formatter = logging.Formatter(
+        fmt=(
+            '%(asctime)s - %(name)s - %(filename)s:%(lineno)d - '
+            '%(levelname)s - %(message)s'
+        )
+    )
+    handler.setFormatter(formatter)
+    root_logger.addHandler(handler)
+
+
 def get_logger(name: str, debug: bool = False) -> logging.Logger:
     """Create logger with proper handler and formatter.
 
@@ -18,17 +32,6 @@ def get_logger(name: str, debug: bool = False) -> logging.Logger:
     :param debug: DEBUG logging level
     :returns: logger
     """
-    if debug:
-        root_logger = logging.getLogger('notion_sync')
-        handler = logging.FileHandler(BASE_DIR / 'log.txt', mode='w')
-        formatter = logging.Formatter(
-            fmt=(
-                '%(asctime)s - %(name)s - %(filename)s:%(lineno)d - '
-                '%(levelname)s - %(message)s'
-            )
-        )
-        handler.setFormatter(formatter)
-        root_logger.addHandler(handler)
     logger = logging.getLogger(f'notion_sync.{name}')
     null_handler = logging.NullHandler()
     logger.addHandler(null_handler)
