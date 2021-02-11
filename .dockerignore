@@ -2,7 +2,8 @@
 **
 
 # Allowed
-!notion_anki_sync
+!notion_sync_addon
+!tests
 !.dockerignore
 !.gitignore
 !tldr.png
