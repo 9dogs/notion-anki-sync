@@ -6,7 +6,7 @@ all:
 	@echo "fmt                 Format code."
 	@echo "lint                Lint code."
 
-FILES = notion_anki_sync tests
+FILES = notion_sync_addon tests
 
 fmt:
 	poetry run black $(FILES)
@@ -17,7 +17,7 @@ lint:
 	poetry run isort --check-only $(FILES)
 	poetry run flake8 $(FILES)
 	poetry run pydocstyle $(FILES)
-	poetry run mypy --sqlite-cache $(FILES)
+	poetry run mypy --show-error-codes --sqlite-cache $(FILES)
 
 TEST_OUTPUT ?= .
 test:

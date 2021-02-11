@@ -1,0 +1,54 @@
+"""Helper functions."""
+import logging
+import re
+from pathlib import Path
+
+#: Plugin base dir
+BASE_DIR = Path(__file__).parent
+#: Block id regex
+BLOCK_ID_RE = re.compile(
+    r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+)
+
+
+def get_logger(name: str, debug: bool = False) -> logging.Logger:
+    """Create logger with proper handler and formatter.
+
+    :param name: logger name
+    :param debug: DEBUG logging level
+    :returns: logger
+    """
+    if debug:
+        root_logger = logging.getLogger('notion_sync')
+        handler = logging.FileHandler(BASE_DIR / 'log.txt', mode='w')
+        formatter = logging.Formatter(
+            fmt=(
+                '%(asctime)s - %(name)s - %(filename)s:%(lineno)d - '
+                '%(levelname)s - %(message)s'
+            )
+        )
+        handler.setFormatter(formatter)
+        root_logger.addHandler(handler)
+    logger = logging.getLogger(f'notion_sync.{name}')
+    null_handler = logging.NullHandler()
+    logger.addHandler(null_handler)
+    level = logging.DEBUG if debug else logging.INFO
+    logger.setLevel(level)
+    return logger
+
+
+def normalize_block_id(block_id: str) -> str:
+    """Normalize Notion block id.
+
+    I.e. 'd151217ae85f4e79a05406f7db2bb0da'
+    -> 'd151217a-e85f-4e79-a054-06f7db2bb0da'
+
+    :param block_id: Notion block id
+    :returns: normalized block id
+    """
+    if not BLOCK_ID_RE.match(block_id):
+        return (
+            f'{block_id[:8]}-{block_id[8:12]}-{block_id[12:16]}-'
+            f'{block_id[16:20]}-{block_id[20:]}'
+        )
+    return block_id

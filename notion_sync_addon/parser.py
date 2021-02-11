@@ -1,17 +1,44 @@
 """Parser to extract Anki note data from HTML."""
+import re
+from dataclasses import dataclass
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 from urllib.parse import unquote
 
-import lxml.html
-import structlog
-from structlog.stdlib import BoundLogger
+from bs4 import BeautifulSoup
 
-from notion_anki_sync.models.anki import AnkiImage, AnkiNote
+from .helpers import get_logger
 
-# Logger
-logger = structlog.getLogger('note_parser')
+
+@dataclass
+class AnkiImage:
+    """An image from HTML document."""
+
+    #: `src` attribute as is in HTML document
+    src: str
+    #: Filename to be stored as
+    filename: str
+    #: Absolute path to the image
+    abs_path: Path
+    #: Image data
+    data: bytes
+
+
+@dataclass
+class AnkiNote:
+    """Anki note model."""
+
+    #: Front side
+    front: str
+    #: Back side (can be empty for cloze note)
+    back: Optional[str] = None
+    #: Tags
+    tags: Optional[List[str]] = None
+    #: Link to Notion page
+    source: Optional[str] = None
+    #: Note images
+    images: Optional[List[AnkiImage]] = None
 
 
 class NoteDataExtractor(HTMLParser):
@@ -68,14 +95,16 @@ class NoteDataExtractor(HTMLParser):
     ANKI_BLOCK_LATEX_TAGS = ('\\[', '\\]')
     #: Anki LaTeX tags
     ANKI_INLINE_LATEX_TAGS = ('\\(', '\\)')
+    #: Empty paragraphs regex
+    EMPTY_P_RE = re.compile(r'<p [^>]*></p>')
 
-    def __init__(self, base_dir: Path, logger: BoundLogger) -> None:
+    def __init__(self, base_dir: Path, debug: bool = False) -> None:
         """Init extractor.
 
         :param base_dir: base dir of a file being parsed
         """
         super().__init__(convert_charrefs=True)
-        self.logger = logger
+        self.logger = get_logger(self.__class__.__name__, debug)
         self.base_dir = base_dir
         self.note_data: Dict[str, Any] = {}
         self._buffer: List[str] = []
@@ -177,6 +206,7 @@ class NoteDataExtractor(HTMLParser):
                     src=src,
                     filename=f'{prefix}_{abs_path.name}',
                     abs_path=abs_path,
+                    data=abs_path.read_bytes(),
                 )
                 self.note_data.setdefault('images', []).append(image)
 
@@ -260,6 +290,10 @@ class NoteDataExtractor(HTMLParser):
                 prefix = ''.join(c for c in image.src if c.isalnum())
                 image.filename = f'{prefix}_{image.abs_path.name}'
                 back = back.replace(image.src, image.filename)
+            # Remove empty paragraphs
+            back = self.EMPTY_P_RE.sub('', back)
+            # Remove empty classes
+            back = back.replace('class=""', '').replace('<p >', '<p>')
         self.note_data['back'] = back
         try:
             note = AnkiNote(**self.note_data)
@@ -270,37 +304,52 @@ class NoteDataExtractor(HTMLParser):
         return None
 
     @classmethod
-    def extract_note(cls, html: str, base_dir: Path) -> Optional[AnkiNote]:
+    def extract_note(
+        cls, html: str, base_dir: Path, debug: bool = False
+    ) -> Optional[AnkiNote]:
         """Extract Note from HTML fragment.
 
         :param html: HTML
         :param base_dir: directory of HTML file (for construct absolute path
             of images)
-        :returns: Note object
+        :param debug: debug mode
+        :returns: note object
         """
-        _logger = logger.bind(html=html)
-        parser = cls(base_dir, _logger)
+        parser = cls(base_dir, debug)
         parser.feed(html)
         note = parser.get_data()
         return note
 
 
-def extract_notes_data(source: Path, notion_namespace: str) -> List[AnkiNote]:
+def extract_notes_data(
+    source: Path, notion_namespace: str, debug: bool = False
+) -> List[AnkiNote]:
     """Extract notes data from HTML source.
 
     :param source: HTML path
     :param notion_namespace: Notion namespace (to form `source` fields)
+    :param debug: debug mode
     :return: notes
     """
     notes = []
-    doc = lxml.html.parse(str(source))
-    article = doc.xpath('//article')[0]
-    article_id = article.attrib['id'].replace('-', '')
-    note_nodes = doc.xpath('//ul[contains(@class, "toggle")]')
-    for note_node in note_nodes:
-        html = lxml.html.tostring(note_node, encoding='utf8').decode()
-        note = NoteDataExtractor.extract_note(html, base_dir=source.parent)
+    html_doc = source.read_text(encoding='utf8')
+    soup = BeautifulSoup(html_doc, 'html.parser')
+    article = soup.find_all('article')[0]
+    article_id = article['id'].replace('-', '')
+    for note_node in soup.find_all('ul', 'toggle'):
+        note = NoteDataExtractor.extract_note(
+            html=str(note_node), base_dir=source.parent, debug=debug
+        )
         if note:
             note.source = f'https://notion.so/{notion_namespace}/{article_id}'
             notes.append(note)
     return notes
+
+
+if __name__ == '__main__':
+    import sys
+    from pprint import pprint
+
+    source = sys.argv[1]
+    notes = extract_notes_data(Path(source), 'test')
+    pprint(notes)
