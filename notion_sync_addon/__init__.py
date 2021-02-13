@@ -3,6 +3,7 @@ import json
 import zipfile
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from traceback import format_exc
 from typing import Any, Dict, List, Set, cast
 
 from aqt import mw
@@ -59,7 +60,7 @@ class NotionSyncPlugin(QObject):
         self.thread_pool = QThreadPool()
         self._note_ids: Set[int] = set()
         self._alive_workers: int = 0
-        self._worker_errors: List[str] = []
+        self._sync_errors: List[str] = []
         # Add action to Anki menu
         self.add_action()
         # Add callback to seed the collection then it's ready
@@ -146,9 +147,13 @@ class NotionSyncPlugin(QObject):
 
         :param notes: notes
         """
-        for note in notes:
-            id_ = self.notes_manager.upsert_note(note)
-            self._note_ids.add(id_)
+        try:
+            for note in notes:
+                id_ = self.notes_manager.upsert_note(note)
+                self._note_ids.add(id_)
+        except Exception:
+            error_msg = format_exc()
+            self._sync_errors.append(error_msg)
 
     def handle_sync_finished(self) -> None:
         """Remove obsolete notes after all workers are finished."""
@@ -156,9 +161,9 @@ class NotionSyncPlugin(QObject):
         if self._alive_workers:
             return
         # Show errors if manual sync
-        if self._worker_errors:
+        if self._sync_errors:
             if not self._is_auto_sync:
-                error_msg = '\n'.join(self._worker_errors)
+                error_msg = '\n'.join(self._sync_errors)
                 showCritical(error_msg, title='Loading from Notion failed')
         # If no errors - clear obsolete notes and refresh Anki window
         else:
@@ -176,7 +181,7 @@ class NotionSyncPlugin(QObject):
 
         :param error_message: error message
         """
-        self._worker_errors.append(error_message)
+        self._sync_errors.append(error_message)
 
     def auto_sync(self):
         """Perform synchronization in background."""
@@ -201,7 +206,7 @@ class NotionSyncPlugin(QObject):
     def _sync(self):
         """Start sync."""
         self.logger.info('Sync triggered')
-        self._worker_errors = []
+        self._sync_errors = []
         if not self.collection or not self.notes_manager:
             self.logger.warning('Collection is not initialized yet')
             return
