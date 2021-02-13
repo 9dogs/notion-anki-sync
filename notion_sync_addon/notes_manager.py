@@ -126,13 +126,28 @@ class NotesManager:
             model = self.collection.models.byName(self.MODEL_NAME)
         # Get an existing note
         if note_ids:
+            do_create_note = False
             note_id = note_ids[0]
             anki_note = self.collection.getNote(note_id)
             self.logger.info(
                 'Note exists: note_id=%s, front=%s', note_id, note.front
             )
+            # Ensure note is of right model
+            if anki_note.mid != model['id']:
+                self.logger.warning(
+                    'Note type changed: note_id=%s, old=%s, new=%s',
+                    note_id,
+                    anki_note.mid,
+                    model['id'],
+                )
+                # It's easier to remove the note and create a new one...
+                self.collection.remove_notes([note_id])
+                do_create_note = True
         # Create a new note
         else:
+            do_create_note = True
+        # Create new note and add it to a deck
+        if do_create_note:
             anki_note = Note(self.collection, model)
             deck_id = self.get_deck()
             self.collection.add_note(anki_note, deck_id)
@@ -141,6 +156,7 @@ class NotesManager:
                 'Note created: id=%s, front=%s', note_id, note.front
             )
         anki_note.tags = note.tags
+        # Update field values
         for field in model['flds']:
             field_name = field['name']
             value = getattr(note, field_name.lower())
