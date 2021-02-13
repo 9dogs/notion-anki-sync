@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://github.com/9dogs/notion-anki-sync/tree/main/notion_sync_addon/schemas/config_schema.json",
+  "type": "object",
+  "title": "notion-anki-sync config schema",
+  "description": "JSON schema for configuration of notion-anki-sync add-on.",
+  "default": {},
+  "definitions": {
+    "page_spec": {
+      "type": "object",
+      "properties": {
+        "page_id": {
+          "type": "string",
+          "title": "Notion page id",
+          "description": "32 chars of Notion page id.",
+          "default": "",
+          "examples": [
+            "7253ea1a791547bda6b3604799f000d7"
+          ]
+        },
+        "recursive": {
+          "type": "boolean",
+          "title": "Recursive export",
+          "description": "Page should be exported with all its subpages.",
+          "default": false,
+          "examples": [
+            false
+          ]
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "debug": false,
+      "sync_every_minutes": 30,
+      "anki_target_deck": "Notion Sync",
+      "notion_token": "<your_notion_token_here>",
+      "notion_namespace": "<your_notion_username_here",
+      "notion_pages": [
+        {
+          "page_id": "<page_id1>",
+          "recursive": false
+        },
+        {
+          "page_id": "<page_id2>",
+          "recursive": true
+        }
+      ]
+    }
+  ],
+  "required": [
+    "sync_every_minutes",
+    "anki_target_deck",
+    "notion_token",
+    "notion_namespace",
+    "notion_pages"
+  ],
+  "properties": {
+    "debug": {
+      "$id": "#/properties/debug",
+      "type": "boolean",
+      "title": "Debug mode",
+      "description": "Enable debug logging. Log can be found unfer plugin directory.",
+      "default": false,
+      "examples": [
+        false
+      ]
+    },
+    "sync_every_minutes": {
+      "$id": "#/properties/sync_every_minutes",
+      "type": "integer",
+      "title": "Synchronization interval in minutes",
+      "description": "Synchronization interval in minutes. Set to 0 to disable autosync",
+      "default": 30,
+      "examples": [
+        30
+      ]
+    },
+    "anki_target_deck": {
+      "$id": "#/properties/anki_target_deck",
+      "type": "string",
+      "title": "Anki target deck",
+      "description": "The deck loaded notes will be added to.",
+      "default": "Notion Sync",
+      "examples": [
+        "Notion Sync"
+      ]
+    },
+    "notion_token": {
+      "$id": "#/properties/notion_token",
+      "type": "string",
+      "title": "Notion token v2",
+      "description": "Token for Notion API.",
+      "default": "",
+      "examples": [
+        "<your_notion_token_here>"
+      ]
+    },
+    "notion_namespace": {
+      "$id": "#/properties/notion_namespace",
+      "type": "string",
+      "title": "Notion namespace",
+      "description": "Notion namespace (your username) to form source URLs.",
+      "default": "",
+      "examples": [
+        "<your_notion_username_here"
+      ]
+    },
+    "notion_pages": {
+      "$id": "#/properties/notion_pages",
+      "type": "array",
+      "title": "Notion pages to export",
+      "description": "List of Notion pages to export notes from.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "page_id": "<page_id1>",
+            "recursive": false
+          },
+          {
+            "page_id": "<page_id2>",
+            "recursive": true
+          }
+        ]
+      ],
+      "items": {
+        "$ref": "#/definitions/page_spec"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -63,11 +63,14 @@ class NotionClient:
         attempts_count = 0
         data = None
         while attempts_count < self.NOTION_MAX_RETRIES:
-            resp = requests.post(
-                self.NOTION_ENQUEUE_TASK_ENDPOINT,
-                json=payload,
-                cookies=self.cookies,
-            )
+            try:
+                resp = requests.post(
+                    self.NOTION_ENQUEUE_TASK_ENDPOINT,
+                    json=payload,
+                    cookies=self.cookies,
+                )
+            except requests.exceptions.RequestException as exc:
+                raise NotionClientException('Request error') from exc
             if resp.status_code == 401:
                 self.logger.error('Invalid token')
                 raise NotionClientException('Invalid token')
@@ -102,11 +105,14 @@ class NotionClient:
         """
         attempts_count = 0
         while attempts_count < self.NOTION_MAX_RETRIES:
-            resp = requests.post(
-                self.NOTION_GET_TASK_ENDPOINT,
-                json={'taskIds': [task_id]},
-                cookies=self.cookies,
-            )
+            try:
+                resp = requests.post(
+                    self.NOTION_GET_TASK_ENDPOINT,
+                    json={'taskIds': [task_id]},
+                    cookies=self.cookies,
+                )
+            except requests.exceptions.RequestException as exc:
+                raise NotionClientException('Request error') from exc
             data = resp.json()
             self.logger.debug('Got response for task %s: %s', task_id, data)
             if 'results' in data:

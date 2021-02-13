@@ -1,4 +1,5 @@
 """Notion Sync plugin."""
+import json
 import zipfile
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -7,10 +8,16 @@ from typing import List, Set
 from aqt import mw
 from aqt.hooks_gen import main_window_did_init
 from aqt.utils import showCritical, showInfo, showWarning
+from jsonschema import ValidationError, validate
 from PyQt5.QtCore import QObject, QRunnable, QThreadPool, QTimer, pyqtSignal
 from PyQt5.QtWidgets import QAction
 
-from .helpers import enable_logging_to_file, get_logger, normalize_block_id
+from .helpers import (
+    BASE_DIR,
+    enable_logging_to_file,
+    get_logger,
+    normalize_block_id,
+)
 from .notes_manager import NotesManager
 from .notion_client import NotionClient, NotionClientException
 from .parser import AnkiNote, extract_notes_data
@@ -31,11 +38,13 @@ class NotionSyncPlugin(QObject):
     def __init__(self):
         """Init plugin."""
         super().__init__()
-        # Testing environment
+        # While testing `mw` is None
         if not mw:
             return
         # Load config
         self.config = mw.addonManager.getConfig(__name__)
+        # Validate config
+        self._validate_config()
         # Create a logger
         self.debug = 'debug' in self.config and self.config['debug']
         if self.debug:
@@ -49,7 +58,7 @@ class NotionSyncPlugin(QObject):
         self.thread_pool = QThreadPool()
         self._note_ids: Set[int] = set()
         self._alive_workers: int = 0
-        self._worker_error: bool = False
+        self._worker_errors: List[str] = []
         # Add action to Anki menu
         self.add_action()
         # Add callback to seed the collection then it's ready
@@ -57,14 +66,26 @@ class NotionSyncPlugin(QObject):
         # Create and run timer
         self._is_auto_sync = True
         self.timer = QTimer()
-        timeout_milliseconds = (
+        sync_interval_milliseconds = (
             self.config.get('sync_every_minutes', self.DEFAULT_SYNC_INTERVAL)
             * 60  # seconds
             * 1000  # milliseconds
         )
-        self.timer.setInterval(timeout_milliseconds)
-        self.timer.timeout.connect(self.auto_sync)
-        self.timer.start()
+        if sync_interval_milliseconds:
+            self.timer.setInterval(sync_interval_milliseconds)
+            self.timer.timeout.connect(self.auto_sync)
+            self.timer.start()
+
+    def _validate_config(self):
+        """Validate configuration."""
+        with open(
+            BASE_DIR / 'schemas/config_schema.json', encoding='utf8'
+        ) as s:
+            schema = json.load(s)
+        try:
+            validate(self.config, schema)
+        except ValidationError as exc:
+            showCritical(str(exc), title='Notion loader config error')
 
     def add_action(self):
         """Add "Load from Notion" action to Tools menu."""
@@ -88,7 +109,7 @@ class NotionSyncPlugin(QObject):
         self.logger.info('Collection initialized')
         self.auto_sync()
 
-    def add_notes(self, notes: List[AnkiNote]) -> None:
+    def handle_worker_result(self, notes: List[AnkiNote]) -> None:
         """Add notes to collection.
 
         :param notes: notes
@@ -97,30 +118,33 @@ class NotionSyncPlugin(QObject):
             id_ = self.notes_manager.upsert_note(note)
             self._note_ids.add(id_)
 
-    def remove_obsolete_notes(self) -> None:
+    def handle_sync_finished(self) -> None:
         """Remove obsolete notes after all workers are finished."""
         self._alive_workers -= 1
         if self._alive_workers:
             return
-        if not self._worker_error:
+        # Show errors if manual sync
+        if self._worker_errors:
+            if not self._is_auto_sync:
+                error_msg = '\n'.join(self._worker_errors)
+                showCritical(error_msg, title='Loading from Notion failed')
+        # If no errors - clear obsolete notes and refresh Anki window
+        else:
             self.notes_manager.remove_all_notes_excluding(self._note_ids)
             self._note_ids.clear()
-        self.collection.save()
-        mw.maybeReset()  # type: ignore[union-attr]
-        mw.deckBrowser.refresh()  # type: ignore[union-attr]
+            self.collection.save(trx=False)
+            mw.maybeReset()  # type: ignore[union-attr]
+            mw.deckBrowser.refresh()  # type: ignore[union-attr]
+            if not self._is_auto_sync:
+                showInfo('Successfully loaded', title='Loading from Notion')
         self.logger.info('Sync finished')
-        if not self._is_auto_sync:
-            showInfo('Successfully loaded', title='Loading from Notion')
 
     def handle_worker_error(self, error_message) -> None:
         """Handle worker error.
 
         :param error_message: error message
         """
-        self._worker_error = True
-        # Show error if not auto sync
-        if not self._is_auto_sync:
-            showCritical(error_message, title='Error loading from Notion')
+        self._worker_errors.append(error_message)
 
     def auto_sync(self):
         """Perform synchronization in background."""
@@ -145,7 +169,7 @@ class NotionSyncPlugin(QObject):
     def _sync(self):
         """Start sync."""
         self.logger.info('Sync triggered')
-        self._worker_error = False
+        self._worker_errors = []
         if not self.collection or not self.notes_manager:
             self.logger.warning('Collection is not initialized yet')
             return
@@ -164,9 +188,9 @@ class NotionSyncPlugin(QObject):
                 notion_namespace=self.config.get('notion_namespace', ''),
                 debug=self.debug,
             )
-            worker.signals.result.connect(self.add_notes)
+            worker.signals.result.connect(self.handle_worker_result)
             worker.signals.error.connect(self.handle_worker_error)
-            worker.signals.finished.connect(self.remove_obsolete_notes)
+            worker.signals.finished.connect(self.handle_sync_finished)
             # Start worker
             self.thread_pool.start(worker)
             self._alive_workers += 1
