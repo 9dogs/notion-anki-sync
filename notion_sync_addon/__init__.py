@@ -3,11 +3,11 @@ import json
 import zipfile
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from typing import List, Set
+from typing import Any, Dict, List, Set, cast
 
 from aqt import mw
 from aqt.hooks_gen import main_window_did_init
-from aqt.utils import showCritical, showInfo, showWarning
+from aqt.utils import showCritical, showInfo
 from jsonschema import ValidationError, validate
 from PyQt5.QtCore import QObject, QRunnable, QThreadPool, QTimer, pyqtSignal
 from PyQt5.QtWidgets import QAction
@@ -42,9 +42,10 @@ class NotionSyncPlugin(QObject):
         if not mw:
             return
         # Load config
-        self.config = mw.addonManager.getConfig(__name__)
+        config = mw.addonManager.getConfig(__name__)
+        mw.addonManager.setConfigUpdatedAction(__name__, self.reload_config)
         # Validate config
-        self._validate_config()
+        self.config = self.get_valid_config(config)
         # Create a logger
         self.debug = 'debug' in self.config and self.config['debug']
         if self.debug:
@@ -76,16 +77,47 @@ class NotionSyncPlugin(QObject):
             self.timer.timeout.connect(self.auto_sync)
             self.timer.start()
 
-    def _validate_config(self):
-        """Validate configuration."""
+    def _validate_config(self, config: Dict[str, Any]):
+        """Validate config.
+
+        :param config: config
+        """
+        # Load schema and validate configuration
         with open(
             BASE_DIR / 'schemas/config_schema.json', encoding='utf8'
         ) as s:
             schema = json.load(s)
+        validate(config, schema)
+
+    def get_valid_config(self, config: Dict[str, Any]) -> Dict[str, Any]:
+        """Get valid configuration.
+
+        :param config: configuration
+        :returns: either configuration provided (if it's valid) or default
+            config
+        """
         try:
-            validate(self.config, schema)
+            self._validate_config(config)
         except ValidationError as exc:
-            showCritical(str(exc), title='Notion loader config error')
+            showCritical(str(exc), title='Notion loader config load error')
+            assert mw  # mypy
+            default_config = mw.addonManager.addonConfigDefaults(str(BASE_DIR))
+            return cast(Dict[str, Any], default_config)
+        else:
+            return config
+
+    def reload_config(self, new_config: Dict[str, Any]) -> None:
+        """Reload configuration.
+
+        :param new_config: new configuration
+        """
+        try:
+            self._validate_config(new_config)
+        except ValidationError as exc:
+            self.logger.error('Config update error', exc_info=exc)
+            showCritical(str(exc), title='Notion loader config update error')
+        else:
+            self.config = new_config
 
     def add_action(self):
         """Add "Load from Notion" action to Tools menu."""
@@ -174,11 +206,6 @@ class NotionSyncPlugin(QObject):
             self.logger.warning('Collection is not initialized yet')
             return
         for page_spec in self.config.get('notion_pages', []):
-            if 'notion_token' not in self.config:
-                showWarning(
-                    'Please provide "notion_token" in plugin config',
-                    title='Notion Sync plugin error',
-                )
             page_id, recursive = page_spec['page_id'], page_spec['recursive']
             page_id = normalize_block_id(page_id)
             worker = NotesExtractorWorker(
