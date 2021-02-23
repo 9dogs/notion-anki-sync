@@ -341,7 +341,8 @@ def extract_notes_data(
             html=str(note_node), base_dir=source.parent, debug=debug
         )
         if note:
-            note.source = f'https://notion.so/{notion_namespace}/{article_id}'
+            notion_url = f'https://notion.so/{notion_namespace}/{article_id}'
+            note.source = f'<a href="{notion_url}">{notion_url}</a>'
             notes.append(note)
     return notes
 
