@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import time
+from json import JSONDecodeError
 from pathlib import Path
 from typing import Dict, Optional
 
@@ -83,8 +84,12 @@ class NotionClient:
                 )
                 time.sleep(self.NOTION_RETRY_TIME)
             else:
-                data = resp.json()
-                break
+                try:
+                    data = resp.json()
+                except JSONDecodeError as exc:
+                    self.logger.error('Cannot decode JSON', exc_info=exc)
+                else:
+                    break
         if not data:
             self.logger.error('Cannot submit export task')
             raise NotionClientException('Cannot submit export task')
@@ -113,23 +118,29 @@ class NotionClient:
                 )
             except requests.exceptions.RequestException as exc:
                 raise NotionClientException('Request error') from exc
-            data = resp.json()
-            self.logger.debug('Got response for task %s: %s', task_id, data)
-            if 'results' in data:
-                results = data['results'][0]
-                if 'error' in results:
-                    raise NotionClientException(results['error'])
-                if 'status' in results:
-                    status = results['status']
-                    type_ = status['type']
-                    if type_ == 'complete':
-                        return status['exportURL']
+            try:
+                data = resp.json()
+            except JSONDecodeError as exc:
+                self.logger.error('Cannot decode JSON', exc_info=exc)
+            else:
+                self.logger.debug(
+                    'Got response for task %s: %s', task_id, data
+                )
+                if 'results' in data:
+                    results = data['results'][0]
+                    if 'error' in results:
+                        raise NotionClientException(results['error'])
+                    if 'status' in results:
+                        status = results['status']
+                        type_ = status['type']
+                        if type_ == 'complete':
+                            return status['exportURL']
+                self.logger.debug(
+                    'Task not ready, retrying in %s (%s)',
+                    self.NOTION_RETRY_TIME,
+                    f'{attempts_count} of {self.NOTION_MAX_RETRIES}',
+                )
             attempts_count += 1
-            self.logger.debug(
-                'Task not ready, retrying in %s (%s)',
-                self.NOTION_RETRY_TIME,
-                f'{attempts_count} of {self.NOTION_MAX_RETRIES}',
-            )
             time.sleep(self.NOTION_RETRY_TIME)
         self.logger.error('Cannot get task result')
         raise NotionClientException('Cannot get task result')
