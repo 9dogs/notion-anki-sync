@@ -84,6 +84,7 @@ class NoteDataExtractor(HTMLParser):
         'figure',
         'a',
         'img',
+        'figcaption',
     }
     #: Do not save these attributes
     SKIP_ATTRIBUTES = {'id'}
