@@ -1,6 +1,6 @@
 """Parser to extract Anki note data from HTML."""
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
@@ -34,7 +34,7 @@ class AnkiNote:
     #: Back side (can be empty for cloze note)
     back: Optional[str] = None
     #: Tags
-    tags: Optional[List[str]] = None
+    tags: List[str] = field(default_factory=list)
     #: Link to Notion page
     source: Optional[str] = None
     #: Note images
@@ -330,7 +330,7 @@ def extract_notes_data(
     :param source: HTML path
     :param notion_namespace: Notion namespace (to form `source` fields)
     :param debug: debug mode
-    :return: notes
+    :returns: notes
     """
     notes = []
     html_doc = source.read_text(encoding='utf8')
