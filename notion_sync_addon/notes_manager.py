@@ -211,7 +211,7 @@ class NotesManager:
             )
         else:
             # Update tags
-            if existing_note.tags != note.tags:
+            if set(existing_note.tags) != set(note.tags):
                 updated_data.append(
                     {'tags_old': existing_note.tags, 'tags_new': note.tags}
                 )
