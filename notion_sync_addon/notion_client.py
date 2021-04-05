@@ -11,6 +11,14 @@ import requests
 from .helpers import get_logger
 
 
+#: Connection exceptions
+CONNECTION_EXCEPTIONS = (
+    requests.exceptions.RequestException,
+    ConnectionResetError,
+    ConnectionAbortedError,
+)
+
+
 class NotionClientException(Exception):
     """Notion client exception."""
 
@@ -70,7 +78,7 @@ class NotionClient:
                     json=payload,
                     cookies=self.cookies,
                 )
-            except requests.exceptions.RequestException as exc:
+            except CONNECTION_EXCEPTIONS as exc:
                 raise NotionClientException('Request error') from exc
             if resp.status_code == 401:
                 self.logger.error('Invalid token')
@@ -116,7 +124,7 @@ class NotionClient:
                     json={'taskIds': [task_id]},
                     cookies=self.cookies,
                 )
-            except requests.exceptions.RequestException as exc:
+            except CONNECTION_EXCEPTIONS as exc:
                 raise NotionClientException('Request error') from exc
             try:
                 data = resp.json()

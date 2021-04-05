@@ -131,7 +131,7 @@ class NotesManager:
         front = self._escape_query(note.front)
         query = f'deck:"{self.deck_name}" front:"{front}"'
         self.logger.debug('Searching with a query: %s', query)
-        note_ids = self.collection.find_notes(query=query)
+        note_ids = self.collection.find_notes(query)
         self.logger.debug('Result: %s', note_ids)
         return note_ids[0] if note_ids else None
 
