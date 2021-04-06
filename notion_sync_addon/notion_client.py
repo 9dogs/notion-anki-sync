@@ -10,7 +10,6 @@ import requests
 
 from .helpers import get_logger
 
-
 #: Connection exceptions
 CONNECTION_EXCEPTIONS = (
     requests.exceptions.RequestException,
