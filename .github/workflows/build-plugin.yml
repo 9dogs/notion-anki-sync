@@ -24,5 +24,6 @@ jobs:
         RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
       uses: ncipollo/release-action@v1
       with:
+        allowUpdates: true
         artifacts: 'notion-sync-${RELEASE_VERSION}.ankiaddon'
         token: ${{ secrets.GITHUB_TOKEN }}
