@@ -1,0 +1,24 @@
+name: Build Plugin
+
+on: [push, release]
+
+jobs:
+  build-plugin:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set env
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - name: Build plugin
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'notion-sync-${RELEASE_VERSION}.ankiaddon'
+        directory: 'notion_sync_addon'
+        exclusions: '*pycache*'
+    - name: Upload plugin
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: 'notion-sync-${RELEASE_VERSION}.ankiaddon'
+        token: ${{ secrets.GITHUB_TOKEN }}
