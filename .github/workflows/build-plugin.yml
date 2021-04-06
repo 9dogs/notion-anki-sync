@@ -16,7 +16,7 @@ jobs:
     - name: Build plugin
       uses: thedoctor0/zip-release@master
       with:
-        filename: ${{ github.workspace }}/notion-sync-${{ env.RELEASE_VERSION }}.ankiaddon
+        filename: notion-sync-${{ env.RELEASE_VERSION }}.ankiaddon
         directory: 'notion_sync_addon'
         exclusions: '*pycache*'
     - name: Upload plugin
