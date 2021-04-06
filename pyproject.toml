@@ -13,7 +13,7 @@ known_first_party = "notion_anki_sync,tests"
 
 [tool.poetry]
 name = "notion-anki-sync"
-version = "0.1.0"
+version = "0.9.5"
 description = ""
 repository = "https://github.com/9dogs/notion-anki-sync"
 homepage = "https://github.com/9dogs/notion-anki-sync"
