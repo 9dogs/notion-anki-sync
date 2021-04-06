@@ -17,11 +17,11 @@ jobs:
       uses: thedoctor0/zip-release@master
       with:
         filename: notion-sync-${{ env.RELEASE_VERSION }}.ankiaddon
-        directory: 'notion_sync_addon'
+        directory: notion_sync_addon
         exclusions: '*pycache*'
     - name: Upload plugin
       uses: ncipollo/release-action@v1
       with:
         allowUpdates: true
-        artifacts: ${{ github.workspace }}/notion-sync-${{ env.RELEASE_VERSION }}.ankiaddon
+        artifacts: notion_sync_addon/notion-sync-${{ env.RELEASE_VERSION }}.ankiaddon
         token: ${{ secrets.GITHUB_TOKEN }}
