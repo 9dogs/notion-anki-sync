@@ -1,7 +1,7 @@
 # Anki💗Notion addon
 
-It's an [Anki](https://apps.ankiweb.net/) addon which loads toggle lists from [Notion](https://notion.so) as notes to a specified
-deck.
+It's an [Anki](https://apps.ankiweb.net/) addon that loads toggle lists from [Notion](https://notion.so) as notes to
+a specified deck.
 
 [![Supported versions](https://img.shields.io/badge/python-3.8%20%7C%203.9-blue)](https://github.com/9dogs/notion-anki-sync)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -17,6 +17,10 @@ deck.
 
 Clozes can be added via `code` blocks in toggle titles. Backside will be
 ignored (apart from tags).
+
+Synchronization can work in the background or can be triggered manually from the `Notion` submenu in the `Tools`
+section. Note that background sync **does not remove** any notes; if you want to remove the obsolete notes, then
+trigger `Load and remove obsolete` from the submenu.
 
 ## Requirements
 
@@ -53,6 +57,27 @@ Edit plugin config file from Anki: `Tools ➡ Add-ons ➡ NotionAnki ➡ Config`
   ]
 }
 ```
+
+## Known issues & limitations
+
+Behind the scenes, the addon initiates Notion pages export to HTML, then parses the HTML into notes. Since non-public
+Notion API is used, the addon may break without a warning.
+
+- As for now, LaTeX and plain text cannot be used in the same cloze: Notion puts them in separate `code` tags which
+  leads to the creation of two cloze blocks.
+
+- Some toggle blocks are empty on export which leads to empty Anki notes. The issue is on the Notion side (and they're
+  aware of it).
+
+## Configuration parameters
+
+- `debug`: `bool [default: false]` — enable debug logging to file.
+- `sync_every_minutes`: `int [default: 30]` — auto sync interval in minutes. Set to 0 to disable auto sync.
+- `anki_target_deck`: `str [default: "Notion Sync"]` — the deck loaded notes will be added to.
+- `notion_token`: `str [default: None]` — Notion APIv2 token.
+- `notion_namespace`: `str [default: None]` — Notion namespace (your username) to form source URLs.
+- `notion_pages`: `array [default: [] ]` — List of Notion pages to export notes from.
+
 
 ## Inspiration
 

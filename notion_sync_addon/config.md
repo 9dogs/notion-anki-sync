@@ -1,11 +1,11 @@
 # Configuration
 
-- `debug: bool [default: false]` - enable debug logging to file
-- `sync_every_minutes: int, default [30]` - auto sync interval in minutes. Set to 0 to disable
-- `anki_target_deck: str [default: "Notion Sync"]` - the deck loaded notes will be added to
-- `notion_token: str [default: None]` - Notion APIv2 token (see below)
-- `notion_namespace: str [default: None]` - Notion namespace (your username) to form source URLs
-- `notion_pages: array [default: [] ]` - List of Notion pages to export notes from (see below)
+- `debug: bool [default: false]` — enable debug logging to file.
+- `sync_every_minutes: int [default: 30]` — auto sync interval in minutes. Set to 0 to disable auto sync.
+- `anki_target_deck: str [default: "Notion Sync"]` — the deck loaded notes will be added to.
+- `notion_token: str [default: None]` — Notion APIv2 token (see below).
+- `notion_namespace: str [default: None]` — Notion namespace (your username) to form source URLs.
+- `notion_pages: array [default: [] ]` — List of Notion pages to export notes from (see below).
 
 ## Notion token
 
@@ -14,7 +14,7 @@ then press `Ctrl+Shift+I` to open Developer Tools, go to the "Application" tab
 and find `token_v2` under Cookie on the left.
 
 ## Notion pages
-`notion_pages` should look like that:
+The `notion_pages` section should look like that:
 ```json
 ...
 "notion_pages": [
