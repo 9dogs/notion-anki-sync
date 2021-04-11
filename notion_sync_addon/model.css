@@ -744,6 +744,10 @@ blockquote {
     border: none;
 }
 
+.empty_block {
+    color: #FF6F00;
+}
+
 .cloze {
     font-weight: 600;
     color: rgb(45, 170, 219);

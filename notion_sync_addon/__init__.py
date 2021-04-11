@@ -64,7 +64,7 @@ class NotionSyncPlugin(QObject):
         self._sync_errors: List[str] = []
         # Sync stats
         self._processed = self._created = self._updated = self._deleted = 0
-        self.existing_note_ids: Set[int]
+        self.existing_note_ids: Set[int] = set()
         self._remove_obsolete_on_sync = False
         # Add action to Anki menu
         self.add_actions()
@@ -152,6 +152,7 @@ class NotionSyncPlugin(QObject):
             debug=self.debug,
         )
         self.logger.info('Collection initialized')
+        self.existing_note_ids = self.notes_manager.existing_note_ids
         self.auto_sync()
 
     def handle_worker_result(self, notes: List[AnkiNote]) -> None:

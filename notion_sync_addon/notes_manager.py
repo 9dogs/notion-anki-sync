@@ -220,30 +220,29 @@ class NotesManager:
             updated_data += self._fill_fields(existing_note, note, model)
             # Upload note media
             media_manager = self.collection.media
-            if note.images:
-                for image in note.images:
-                    # Skip if file already exists
-                    if media_manager.have(image.filename):
-                        continue
-                    maybe_new_filename = media_manager.write_data(
-                        image.filename, image.data
+            for image in note.images:
+                # Skip if file already exists
+                if media_manager.have(image.filename):
+                    continue
+                maybe_new_filename = media_manager.write_data(
+                    image.filename, image.data
+                )
+                self.logger.info('Image stored: %s', image.filename)
+                if maybe_new_filename:
+                    self.logger.debug(
+                        'Renaming image %s -> %s',
+                        image.filename,
+                        maybe_new_filename,
                     )
-                    self.logger.info('Image stored: %s', image.filename)
-                    if maybe_new_filename:
-                        self.logger.debug(
-                            'Renaming image %s -> %s',
-                            image.filename,
-                            maybe_new_filename,
-                        )
-                        existing_note['Back'] = existing_note['Back'].replace(
-                            image.filename, maybe_new_filename
-                        )
-                        updated_data.append(
-                            {
-                                'filename_old': image.filename,
-                                'filename_new': maybe_new_filename,
-                            }
-                        )
+                    existing_note['Back'] = existing_note['Back'].replace(
+                        image.filename, maybe_new_filename
+                    )
+                    updated_data.append(
+                        {
+                            'filename_old': image.filename,
+                            'filename_new': maybe_new_filename,
+                        }
+                    )
             if updated_data:
                 existing_note.flush()
                 self.logger.info(

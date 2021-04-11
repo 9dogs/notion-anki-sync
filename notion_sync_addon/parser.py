@@ -38,7 +38,7 @@ class AnkiNote:
     #: Link to Notion page
     source: Optional[str] = None
     #: Note images
-    images: Optional[List[AnkiImage]] = None
+    images: List[AnkiImage] = field(default_factory=list)
 
 
 class NoteDataExtractor(HTMLParser):
@@ -98,6 +98,12 @@ class NoteDataExtractor(HTMLParser):
     ANKI_INLINE_LATEX_TAGS = ('\\(', '\\)')
     #: Empty paragraphs regex
     EMPTY_P_RE = re.compile(r'<p [^>]*></p>')
+    #: Cloze regex
+    CLOZE_RE = re.compile(r'{{c\d+::.*?}}')
+    #: Warning text then Notion block was not exported properly and is empty
+    EMPTY_BLOCK_WARNING = (
+        '<p class="empty_block">Block was empty on export</p>'
+    )
 
     def __init__(self, base_dir: Path, debug: bool = False) -> None:
         """Init extractor.
@@ -319,6 +325,14 @@ class NoteDataExtractor(HTMLParser):
         parser = cls(base_dir, debug)
         parser.feed(html)
         note = parser.get_data()
+        # Check corresponding block was exported properly: if the backside of a
+        # note is empty but the front side does not contain a cloze then Notion
+        # failed to export that block
+        if note and not note.back and not cls.CLOZE_RE.search(note.front):
+            parser.logger.warning(
+                'Empty backside but no cloze: %s', note.front
+            )
+            note.back = cls.EMPTY_BLOCK_WARNING
         return note
 
 
