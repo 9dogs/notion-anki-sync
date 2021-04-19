@@ -13,7 +13,7 @@ known_first_party = "notion_anki_sync,tests"
 
 [tool.poetry]
 name = "notion-anki-sync"
-version = "0.9.6"
+version = "0.9.7"
 description = "Anki addon that loads toggle lists from Notion as notes to a specified deck."
 repository = "https://github.com/9dogs/notion-anki-sync"
 homepage = "https://github.com/9dogs/notion-anki-sync"
