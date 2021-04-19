@@ -37,7 +37,7 @@ address bar. 32 chars of gibberish after a page title is the page id:
 `https://www.notion.so/notion_user/My-Learning-Book-8a775ee482ab43732abc9319add819c5`
 ➡ `8a775ee482ab43732abc9319add819c5`
 
-Edit plugin config file from Anki: `Tools ➡ Add-ons ➡ NotionAnki ➡ Config`
+Edit plugin config file from Anki: `Tools ➡ Add-ons ➡ Notion Toggles Loader ➡ Config`
 ```json
 {
   "debug": false,
@@ -81,4 +81,4 @@ Notion API is used, the addon may break without a warning.
 
 ## Inspiration
 
-This project is inspired by a great [notion2anki](https://github.com/alemayhu/notion2anki).
+This project is inspired by a great [Notion to Anki](https://github.com/alemayhu/Notion-to-Anki).
