@@ -1,4 +1,4 @@
-FROM python:3.9.2-buster
+FROM python:3.9.4-buster
 
 LABEL maintainer="Mikhail.Knyazev@phystech.edu"
 LABEL description="Sync Notion toggle lists to Anki cards."
