@@ -67,6 +67,7 @@ class NotionSyncPlugin(QObject):
         self.existing_note_ids: Set[int] = set()
         self._remove_obsolete_on_sync = False
         # Add action to Anki menu
+        self.notion_menu = None
         self.add_actions()
         # Add callback to seed the collection then it's ready
         main_window_did_init.append(self.seed_collection)
@@ -128,7 +129,7 @@ class NotionSyncPlugin(QObject):
     def add_actions(self):
         """Add Notion menu entry with actions to Tools menu."""
         assert mw  # mypy
-        notion_menu = mw.form.menuTools.addMenu('Notion')
+        self.notion_menu = mw.form.menuTools.addMenu('Notion')
         load_action = QAction('Load notes', mw)
         load_action_and_remove_obsolete = QAction(
             'Load notes and remove obsolete', mw
@@ -137,7 +138,9 @@ class NotionSyncPlugin(QObject):
         load_action_and_remove_obsolete.triggered.connect(
             self.sync_and_remove_obsolete
         )
-        notion_menu.addActions((load_action, load_action_and_remove_obsolete))
+        self.notion_menu.addActions(
+            (load_action, load_action_and_remove_obsolete)
+        )
 
     def seed_collection(self):
         """Init collection and note manager after Anki loaded."""
@@ -197,6 +200,7 @@ class NotionSyncPlugin(QObject):
         self._alive_workers -= 1
         if self._alive_workers:
             return
+        self.notion_menu.setTitle('Notion')
         # Show errors if manual sync
         if self._sync_errors:
             if not self._is_auto_sync:
@@ -297,6 +301,7 @@ class NotionSyncPlugin(QObject):
         if not self.collection or not self.notes_manager:
             self.logger.warning('Collection is not initialized yet')
             return
+        self.notion_menu.setTitle('Notion (syncing...)')
         for page_spec in self.config.get('notion_pages', []):
             page_id, recursive = page_spec['page_id'], page_spec['recursive']
             page_id = normalize_block_id(page_id)
