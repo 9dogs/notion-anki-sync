@@ -8,6 +8,9 @@ a specified deck.
 [![Codestyle: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ## How it works
+
+Short demo and configuration how-to: [YouTube link](https://www.youtube.com/watch?v=5juto4BQSYc)
+
 ![TLDR](tldr.png)
 
 - You provide a set of Notion page ids to export
