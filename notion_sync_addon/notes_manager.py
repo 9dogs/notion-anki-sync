@@ -4,7 +4,6 @@ from typing import Dict, List, Optional, Set
 
 from anki.models import ModelsDictProxy
 from anki.notes import Note
-from aqt import mw
 
 from .helpers import get_logger
 from .parser import AnkiNote
@@ -117,8 +116,7 @@ class NotesManager:
 
     def get_deck(self) -> int:
         """Get or create target deck."""
-        assert mw  # mypy
-        deck_id = mw.col.decks.id(self.deck_name, create=True)
+        deck_id = self.collection.decks.id(self.deck_name, create=True)
         assert deck_id  # mypy
         return deck_id
 

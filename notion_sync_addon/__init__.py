@@ -56,6 +56,7 @@ class NotionSyncPlugin(QObject):
         self.logger.info('Config loaded: %s', self.config)
         # Anki collection and note manager
         self.collection: Optional[Collection] = None
+        self._collection_seeded = False
         self.notes_manager: Optional[NotesManager] = None
         # Workers scaffolding
         self.thread_pool = QThreadPool()
@@ -71,6 +72,8 @@ class NotionSyncPlugin(QObject):
         self.add_actions()
         # Add callback to seed the collection then it's ready
         main_window_did_init.append(self.seed_collection)
+        # Perform auto sync after main window initialization
+        main_window_did_init.append(self.auto_sync)
         # Create and run timer
         self._is_auto_sync = True
         self.timer = QTimer()
@@ -147,6 +150,7 @@ class NotionSyncPlugin(QObject):
         self.collection = mw.col
         if not self.collection:
             self.logger.error('Collection is empty')
+            return
         self.notes_manager = NotesManager(
             collection=self.collection,
             deck_name=self.config.get(
@@ -156,7 +160,7 @@ class NotionSyncPlugin(QObject):
         )
         self.logger.info('Collection initialized')
         self.existing_note_ids = self.notes_manager.existing_note_ids
-        self.auto_sync()
+        self._collection_seeded = True
 
     def handle_worker_result(self, notes: List[AnkiNote]) -> None:
         """Add notes to collection.
@@ -301,6 +305,9 @@ class NotionSyncPlugin(QObject):
         if not self.collection or not self.notes_manager:
             self.logger.warning('Collection is not initialized yet')
             return
+        # If collection is not seeded - seed it
+        if not self._collection_seeded:
+            self.seed_collection()
         self.notion_menu.setTitle('Notion (syncing...)')
         for page_spec in self.config.get('notion_pages', []):
             page_id, recursive = page_spec['page_id'], page_spec['recursive']
