@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Dict, Optional
 
 import requests
+from requests.exceptions import ChunkedEncodingError
 
 from .helpers import get_logger
 
@@ -15,6 +16,7 @@ CONNECTION_EXCEPTIONS = (
     requests.exceptions.RequestException,
     ConnectionResetError,
     ConnectionAbortedError,
+    ChunkedEncodingError,
 )
 
 
