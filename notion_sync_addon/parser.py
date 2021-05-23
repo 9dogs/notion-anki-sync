@@ -66,6 +66,8 @@ class NoteDataExtractor(HTMLParser):
         'h1',
         'h2',
         'h3',
+        'h4',
+        'h5',
         'p',
         'strong',
         'summary',
@@ -85,6 +87,14 @@ class NoteDataExtractor(HTMLParser):
         'a',
         'img',
         'figcaption',
+        'svg',
+        'path',
+        'table',
+        'thead',
+        'tr',
+        'th',
+        'tbody',
+        'td',
     }
     #: Do not save these attributes
     SKIP_ATTRIBUTES = {'id'}
