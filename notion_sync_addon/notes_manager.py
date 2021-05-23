@@ -2,11 +2,16 @@
 from pathlib import Path
 from typing import Dict, List, Optional, Set
 
-from anki.models import ModelsDictProxy
+from anki.consts import MODEL_CLOZE
+from anki.models import ModelManager, ModelsDictProxy
 from anki.notes import Note
 
 from .helpers import get_logger
 from .parser import AnkiNote
+
+
+class NoteManagerException(Exception):
+    """Note manager exception."""
 
 
 class NotesManager:
@@ -70,7 +75,7 @@ class NotesManager:
 
     def create_models(self) -> None:
         """Create Question-Answer and Cloze models."""
-        model_manager = self.collection.models
+        model_manager: ModelManager = self.collection.models
         # Create new model if not exists
         model = model_manager.byName(self.MODEL_NAME)
         if not model:
@@ -96,7 +101,16 @@ class NotesManager:
         # Copy cloze model if not exists
         cloze_model = model_manager.byName(self.CLOZE_MODEL_NAME)
         if not cloze_model:
-            std_cloze_model = model_manager.byName('Cloze')
+            for model in model_manager.all():
+                if model['type'] == MODEL_CLOZE:
+                    std_cloze_model = model
+                    break
+            else:
+                self.logger.error('Standard cloze model not found')
+                raise NoteManagerException(
+                    'Cannot find a cloze model. Please, add a cloze model '
+                    'named "{self.CLOZE_MODEL_NAME}" manually'
+                )
             cloze_model = model_manager.copy(std_cloze_model)
             cloze_model['name'] = self.CLOZE_MODEL_NAME
             # Ensure cloze model fields
