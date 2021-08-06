@@ -20,7 +20,7 @@ CONNECTION_EXCEPTIONS = (
 )
 
 
-class NotionClientException(Exception):
+class NotionClientError(Exception):
     """Notion client exception."""
 
 
@@ -55,6 +55,10 @@ class NotionClient:
         :param page_id: page id
         :param recursive: use recursive export
         :returns: task id
+        :raises NotionClientError: if
+            - cannot connect to Notion servers
+            - invalid token (401 error)
+            - cannot submit export task
         """
         payload = {
             'task': {
@@ -80,10 +84,10 @@ class NotionClient:
                     cookies=self.cookies,
                 )
             except CONNECTION_EXCEPTIONS as exc:
-                raise NotionClientException('Request error') from exc
+                raise NotionClientError('Request error') from exc
             if resp.status_code == 401:
                 self.logger.error('Invalid token')
-                raise NotionClientException('Invalid token')
+                raise NotionClientError('Invalid token')
             elif resp.status_code >= 500:
                 attempts_count += 1
                 self.logger.error(
@@ -101,7 +105,7 @@ class NotionClient:
                     break
         if not data:
             self.logger.error('Cannot submit export task')
-            raise NotionClientException('Cannot submit export task')
+            raise NotionClientError('Cannot submit export task')
         task_id = data['taskId']
         self.logger.info(
             'Export task posted: page_id=%s, recursive=%s, task_id=%s',
@@ -116,6 +120,10 @@ class NotionClient:
 
         :param task_id: task id
         :returns: task result
+        :raises NotionClientError: if
+            - cannot connect to Notion servers
+            - Notion API returned an error
+            - max retries exceeded for getting task result
         """
         attempts_count = 0
         while attempts_count < self.NOTION_MAX_RETRIES:
@@ -126,7 +134,7 @@ class NotionClient:
                     cookies=self.cookies,
                 )
             except CONNECTION_EXCEPTIONS as exc:
-                raise NotionClientException('Request error') from exc
+                raise NotionClientError('Request error') from exc
             try:
                 data = resp.json()
             except JSONDecodeError as exc:
@@ -138,7 +146,7 @@ class NotionClient:
                 if 'results' in data:
                     results = data['results'][0]
                     if 'error' in results:
-                        raise NotionClientException(results['error'])
+                        raise NotionClientError(results['error'])
                     if 'status' in results:
                         status = results['status']
                         type_ = status['type']
@@ -152,7 +160,7 @@ class NotionClient:
             attempts_count += 1
             time.sleep(self.NOTION_RETRY_TIME)
         self.logger.error('Cannot get task result')
-        raise NotionClientException('Cannot get task result')
+        raise NotionClientError('Cannot get task result')
 
     def export_page(
         self, page_id: str, destination: Path, recursive: bool = False

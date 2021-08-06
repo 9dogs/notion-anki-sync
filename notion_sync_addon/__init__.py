@@ -21,7 +21,7 @@ from .helpers import (
     normalize_block_id,
 )
 from .notes_manager import NotesManager
-from .notion_client import NotionClient, NotionClientException
+from .notion_client import NotionClient, NotionClientError
 from .parser import AnkiNote, extract_notes_data
 
 
@@ -398,7 +398,7 @@ class NotesExtractorWorker(QRunnable):
                         debug=self.debug,
                     )
                 self.logger.info('Notes extracted: count=%s', len(notes))
-        except NotionClientException as exc:
+        except NotionClientError as exc:
             self.logger.error('Error extracting notes', exc_info=exc)
             error_msg = f'Cannot export {self.page_id}:\n{exc}'
             self.signals.error.emit(error_msg)

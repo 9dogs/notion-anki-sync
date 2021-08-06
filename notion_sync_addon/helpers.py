@@ -14,7 +14,9 @@ BLOCK_ID_RE = re.compile(
 def enable_logging_to_file() -> None:
     """Enable logging to file."""
     root_logger = logging.getLogger('notion_sync')
-    handler = logging.FileHandler(BASE_DIR / 'log.txt', mode='w')
+    handler = logging.FileHandler(
+        BASE_DIR / 'log.txt', mode='w', encoding='utf8'
+    )
     formatter = logging.Formatter(
         fmt=(
             '%(asctime)s - %(name)s - %(filename)s:%(lineno)d - '

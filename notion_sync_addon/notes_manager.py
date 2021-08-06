@@ -47,11 +47,14 @@ class NotesManager:
         '<div class="backlink">{{Source}}</div>'
     )
 
-    def __init__(self, collection, deck_name: str, debug: bool = False):
+    def __init__(
+        self, collection, deck_name: str, debug: bool = False
+    ) -> None:
         """Init syncer.
 
         :param collection: Anki collection
         :param deck_name: name of the target deck
+        :param debug: debug mode
         """
         self.logger = get_logger(self.__class__.__name__, debug)
         self.collection = collection
@@ -61,7 +64,10 @@ class NotesManager:
 
     @property
     def existing_note_ids(self) -> Set[int]:
-        """Existing note ids in the deck."""
+        """Existing note ids in the deck.
+
+        :returns: existing note ids
+        """
         return set(self.collection.find_notes(f'deck:"{self.deck_name}"'))
 
     def _escape_query(self, query: str) -> str:
@@ -74,7 +80,10 @@ class NotesManager:
         return escaped_query
 
     def create_models(self) -> None:
-        """Create Question-Answer and Cloze models."""
+        """Create Question-Answer and Cloze models.
+
+        :raises NoteManagerException: if cannot find cloze model to copy
+        """
         model_manager: ModelManager = self.collection.models
         # Create new model if not exists
         model = model_manager.byName(self.MODEL_NAME)
@@ -109,7 +118,7 @@ class NotesManager:
                 self.logger.error('Standard cloze model not found')
                 raise NoteManagerException(
                     'Cannot find a cloze model. Please, add a cloze model '
-                    'named "{self.CLOZE_MODEL_NAME}" manually'
+                    f'named "{self.CLOZE_MODEL_NAME}" manually'
                 )
             cloze_model = model_manager.copy(std_cloze_model)
             cloze_model['name'] = self.CLOZE_MODEL_NAME
@@ -129,7 +138,10 @@ class NotesManager:
         self.logger.info('Cloze model updated')
 
     def get_deck(self) -> int:
-        """Get or create target deck."""
+        """Get or create target deck.
+
+        :returns: working deck
+        """
         deck_id = self.collection.decks.id(self.deck_name, create=True)
         assert deck_id  # mypy
         return deck_id
@@ -154,6 +166,7 @@ class NotesManager:
 
         :param target: target Anki note
         :param source: source Anki note model
+        :param model: model
         :returns: updated data
         """
         updated_data = []

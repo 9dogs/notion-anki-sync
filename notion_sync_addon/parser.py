@@ -119,6 +119,7 @@ class NoteDataExtractor(HTMLParser):
         """Init extractor.
 
         :param base_dir: base dir of a file being parsed
+        :param debug: debug mode
         """
         super().__init__(convert_charrefs=True)
         self.logger = get_logger(self.__class__.__name__, debug)
