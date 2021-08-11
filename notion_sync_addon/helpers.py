@@ -1,5 +1,6 @@
 """Helper functions."""
 import logging
+import os
 import re
 from pathlib import Path
 
@@ -9,6 +10,22 @@ BASE_DIR = Path(__file__).parent
 BLOCK_ID_RE = re.compile(
     r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
 )
+
+
+def safe_path(original_path: Path) -> Path:
+    """Get WinAPI path compatible with long paths if on Windows.
+
+    :param original_path: original path
+    :returns: WinAPI path on Windows or original path otherwise
+    """
+    if os.name != 'nt':
+        return original_path
+    path = str(original_path.absolute())
+    if path.startswith('\\\\'):
+        path = f'\\\\?\\UNC\\{path[2:]}'
+    else:
+        path = f'\\\\?\\{path}'
+    return Path(path)
 
 
 def enable_logging_to_file() -> None:

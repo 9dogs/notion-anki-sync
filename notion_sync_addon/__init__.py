@@ -2,6 +2,7 @@
 import json
 import zipfile
 from pathlib import Path
+from shutil import rmtree
 from tempfile import TemporaryDirectory
 from traceback import format_exc
 from typing import Any, Dict, List, Optional, Set, cast
@@ -19,6 +20,7 @@ from .helpers import (
     enable_logging_to_file,
     get_logger,
     normalize_block_id,
+    safe_path,
 )
 from .notes_manager import NotesManager
 from .notion_client import NotionClient, NotionClientError
@@ -376,7 +378,7 @@ class NotesExtractorWorker(QRunnable):
         try:
             with TemporaryDirectory() as tmp_dir:
                 # Export given Notion page as HTML
-                tmp_path = Path(tmp_dir)
+                tmp_path = safe_path(Path(tmp_dir))
                 export_path = tmp_path / f'{self.page_id}.zip'
                 client = NotionClient(self.notion_token, self.debug)
                 client.export_page(
@@ -393,7 +395,7 @@ class NotesExtractorWorker(QRunnable):
                 notes = []
                 for html_path in tmp_path.rglob('*.html'):
                     notes += extract_notes_data(
-                        source=html_path,
+                        source=Path(html_path),
                         notion_namespace=self.notion_namespace,
                         debug=self.debug,
                     )
@@ -402,6 +404,10 @@ class NotesExtractorWorker(QRunnable):
             self.logger.error('Error extracting notes', exc_info=exc)
             error_msg = f'Cannot export {self.page_id}:\n{exc}'
             self.signals.error.emit(error_msg)
+        except OSError as exc:  # Long path
+            self.logger.warning('Error deleting files', exc_info=exc)
+            # Delete manually
+            rmtree(tmp_path, ignore_errors=True)
         else:
             self.signals.result.emit(notes)
         finally:
