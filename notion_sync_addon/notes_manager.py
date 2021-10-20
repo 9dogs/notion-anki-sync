@@ -86,7 +86,7 @@ class NotesManager:
         """
         model_manager: ModelManager = self.collection.models
         # Create new model if not exists
-        model = model_manager.byName(self.MODEL_NAME)
+        model = model_manager.by_name(self.MODEL_NAME)
         if not model:
             model = model_manager.new(self.MODEL_NAME)
             # Add fields
@@ -108,7 +108,7 @@ class NotesManager:
         model_manager.save(model)
         self.logger.info('Model updated')
         # Copy cloze model if not exists
-        cloze_model = model_manager.byName(self.CLOZE_MODEL_NAME)
+        cloze_model = model_manager.by_name(self.CLOZE_MODEL_NAME)
         if not cloze_model:
             for model in model_manager.all():
                 if model['type'] == MODEL_CLOZE:

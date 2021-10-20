@@ -7,7 +7,7 @@ from tempfile import TemporaryDirectory
 from traceback import format_exc
 from typing import Any, Dict, List, Optional, Set, cast
 
-from anki import Collection
+from anki.collection import Collection
 from aqt import mw
 from aqt.hooks_gen import main_window_did_init
 from aqt.utils import showCritical, showInfo
