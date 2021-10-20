@@ -96,6 +96,9 @@ class NoteDataExtractor(HTMLParser):
         'tbody',
         'td',
     }
+    #: Ignore toggles starting with this symbol (White Exclamation Mark
+    #: Ornament)
+    IGNORE_MARK = '\u2755'
     #: Do not save these attributes
     SKIP_ATTRIBUTES = {'id'}
     #: Notion inline LaTeX class
@@ -344,6 +347,9 @@ class NoteDataExtractor(HTMLParser):
                 'Empty backside but no cloze: %s', note.front
             )
             note.back = cls.EMPTY_BLOCK_WARNING
+        # Skip if note starts with the ignore mark
+        if note and note.front.startswith(cls.IGNORE_MARK):
+            return None
         return note
 
 

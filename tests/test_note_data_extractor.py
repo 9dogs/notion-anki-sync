@@ -57,3 +57,12 @@ def test_parses_html_with_mark():
         '</figure>'
     )
     assert note.tags == ['statistics', 'theory']
+
+
+def test_ignores_toggle_starting_with_ignore_mark():
+    """Skip toggle if it starts with the ignore mark."""
+    html = (BASE_DIR / 'data/note_with_mark.html').read_text(encoding='utf8')
+    html = html.replace(
+        '<summary>', f'<summary>{NoteDataExtractor.IGNORE_MARK}'
+    )
+    assert not NoteDataExtractor.extract_note(html, BASE_DIR / 'data')
