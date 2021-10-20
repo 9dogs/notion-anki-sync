@@ -17,6 +17,7 @@ Short demo and configuration how-to: [YouTube link](https://www.youtube.com/watc
 - Every "toggle list" block from Notion will be converted to an Anki note
 - Title of the toggle block will become the front side and its content — the backside
 - The line starting with `#tags` will be parsed as tags
+- Ignore toggles by putting symbol ❕ in front of a toggle title (type ":!" in Notion and select the white one)
 
 Clozes can be added via `code` blocks in toggle titles. Backside will be
 ignored (apart from tags).
