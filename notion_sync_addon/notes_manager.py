@@ -33,7 +33,7 @@ class NotesManager:
     #: Note back side template
     BACK_TMPL: str = (
         '<div class="front-on-back">{{Front}}</div>'
-        '<hr id="back">'
+        '<hr id="answer">'
         '<div class="back">{{Back}}</div>'
         '<hr id="source">'
         '<div class="backlink">{{Source}}</div>'
@@ -120,6 +120,7 @@ class NotesManager:
                     'Cannot find a cloze model. Please, add a cloze model '
                     f'named "{self.CLOZE_MODEL_NAME}" manually'
                 )
+            self.logger.info(f'Copying {std_cloze_model}')
             cloze_model = model_manager.copy(std_cloze_model)
             cloze_model['name'] = self.CLOZE_MODEL_NAME
             # Ensure cloze model fields
