@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Optional, Set, cast
 
 from anki.collection import Collection
 from aqt import mw
-from aqt.hooks_gen import profile_did_open
+from aqt.hooks_gen import main_window_did_init
 from aqt.utils import showCritical, showInfo
 from jsonschema import ValidationError, validate
 from PyQt5.QtCore import QObject, QRunnable, QThreadPool, QTimer, pyqtSignal
@@ -73,9 +73,9 @@ class NotionSyncPlugin(QObject):
         self.notion_menu = None
         self.add_actions()
         # Add callback to seed the collection then it's ready
-        profile_did_open.append(self.seed_collection)
+        main_window_did_init.append(self.seed_collection)
         # Perform auto sync after main window initialization
-        profile_did_open.append(self.auto_sync)
+        main_window_did_init.append(self.auto_sync)
         # Create and run timer
         self._is_auto_sync = True
         self.timer = QTimer()
