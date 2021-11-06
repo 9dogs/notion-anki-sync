@@ -33,7 +33,7 @@ class NotesManager:
     #: Note back side template
     BACK_TMPL: str = (
         '<div class="front-on-back">{{Front}}</div>'
-        '<hr id="back">'
+        '<hr id="answer">'
         '<div class="back">{{Back}}</div>'
         '<hr id="source">'
         '<div class="backlink">{{Source}}</div>'
