@@ -304,12 +304,13 @@ class NotionSyncPlugin(QObject):
 
     def _sync(self) -> None:
         """Start sync."""
-        if not self.collection or not self.notes_manager:
-            self.logger.warning('Collection is not initialized yet')
-            return
-        # If collection is not seeded - seed it
         if not self._collection_seeded:
+            self.logger.warning(
+                'Collection is not seeded yet, trying to seed now'
+            )
             self.seed_collection()
+            if not self._collection_seeded:
+                return
         self.notion_menu.setTitle('Notion (syncing...)')
         for page_spec in self.config.get('notion_pages', []):
             page_id, recursive = page_spec['page_id'], page_spec['recursive']
