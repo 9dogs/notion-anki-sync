@@ -120,6 +120,7 @@ class NotesManager:
                     'Cannot find a cloze model. Please, add a cloze model '
                     f'named "{self.CLOZE_MODEL_NAME}" manually'
                 )
+            self.logger.info(f'Copying {std_cloze_model}')
             cloze_model = model_manager.copy(std_cloze_model)
             cloze_model['name'] = self.CLOZE_MODEL_NAME
             # Ensure cloze model fields
@@ -127,7 +128,6 @@ class NotesManager:
                 model_manager.new_field('Front'),
                 model_manager.new_field('Source'),
             ]
-            self.logger.info('Cloze model created')
         # Update cloze template
         cloze_template = cloze_model['tmpls'][0]
         cloze_template['qfmt'] = self.CLOZE_FRONT_TMPL
@@ -135,7 +135,9 @@ class NotesManager:
         # Style cloze model
         cloze_model['css'] = self.MODEL_CSS
         model_manager.save(cloze_model)
-        self.logger.info('Cloze model updated')
+        # Pop CSS property for logging
+        cloze_model.pop('css')
+        self.logger.info(f'Cloze model updated: {cloze_model}')
 
     def get_deck(self) -> int:
         """Get or create target deck.
