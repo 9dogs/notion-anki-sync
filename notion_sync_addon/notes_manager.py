@@ -194,9 +194,9 @@ class NotesManager:
         """
         # Pick right model
         if not note.back:
-            model = self.collection.models.byName(self.CLOZE_MODEL_NAME)
+            model = self.collection.models.by_name(self.CLOZE_MODEL_NAME)
         else:
-            model = self.collection.models.byName(self.MODEL_NAME)
+            model = self.collection.models.by_name(self.MODEL_NAME)
         # Create note and add it to the deck
         anki_note = Note(self.collection, model)
         deck_id = self.get_deck()
@@ -217,11 +217,11 @@ class NotesManager:
         updated_data = []
         # Pick right model
         if not note.back:
-            model = self.collection.models.byName(self.CLOZE_MODEL_NAME)
+            model = self.collection.models.by_name(self.CLOZE_MODEL_NAME)
         else:
-            model = self.collection.models.byName(self.MODEL_NAME)
+            model = self.collection.models.by_name(self.MODEL_NAME)
         # Get an existing note
-        existing_note = self.collection.getNote(note_id)
+        existing_note = self.collection.get_note(note_id)
         # Ensure note is of right model
         if existing_note.mid != model['id']:
             self.logger.warning(
