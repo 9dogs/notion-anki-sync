@@ -225,7 +225,7 @@ class NotionSyncPlugin(QObject):
                         mw,
                         'Confirm deletion',
                         msg,
-                        QMessageBox.Yes | QMessageBox.No,  # type: ignore
+                        QMessageBox.Yes | QMessageBox.No,
                     )
                     if do_delete == QMessageBox.Yes:
                         self.notes_manager.remove_notes(ids_to_remove)
