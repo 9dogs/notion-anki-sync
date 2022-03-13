@@ -6,7 +6,7 @@ from anki.consts import MODEL_CLOZE
 from anki.models import ModelManager, ModelsDictProxy
 from anki.notes import Note
 
-from .helpers import get_logger
+from .helpers import get_logger, safe_str
 from .parser import AnkiNote
 
 
@@ -156,7 +156,7 @@ class NotesManager:
         """
         front = self._escape_query(note.front)
         query = f'deck:"{self.deck_name}" front:"{front}"'
-        self.logger.debug('Searching with a query: %s', query)
+        self.logger.debug('Searching with a query: %s', safe_str(query))
         note_ids = self.collection.find_notes(query)
         self.logger.debug('Result: %s', note_ids)
         return note_ids[0] if note_ids else None
@@ -204,7 +204,9 @@ class NotesManager:
         self._fill_fields(anki_note, note, model)
         note_id = anki_note.id
         anki_note.flush()
-        self.logger.info('Note created: id=%s, front=%s', note_id, note.front)
+        self.logger.info(
+            'Note created: id=%s, front=%s', note_id, safe_str(note.front)
+        )
         return note_id
 
     def update_note(self, note_id: int, note: AnkiNote) -> bool:

@@ -21,6 +21,7 @@ from .helpers import (
     get_logger,
     normalize_block_id,
     safe_path,
+    safe_str,
 )
 from .notes_manager import NotesManager
 from .notion_client import NotionClient, NotionClientError
@@ -174,7 +175,7 @@ class NotionSyncPlugin(QObject):
             for note in notes:
                 if not note.front:
                     self.logger.warning(
-                        'Note front is empty. Back: %s', note.back
+                        'Note front is empty. Back: %s', safe_str(note.back)
                     )
                     continue
                 self._processed += 1

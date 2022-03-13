@@ -2,6 +2,7 @@
 import logging
 import os
 import re
+import sys
 from pathlib import Path
 
 #: Plugin base dir
@@ -74,3 +75,13 @@ def normalize_block_id(block_id: str) -> str:
             f'{block_id[16:20]}-{block_id[20:]}'
         )
     return block_id
+
+
+def safe_str(string: str) -> str:
+    """Get safe string for logging with system encoding.
+
+    :param string: string to be sanitized
+    :returns: sanitized string
+    """
+    encoding = sys.getdefaultencoding()
+    return string.encode(encoding, errors='backslashreplace').decode(encoding)
