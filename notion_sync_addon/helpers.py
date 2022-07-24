@@ -4,6 +4,7 @@ import os
 import re
 import sys
 from pathlib import Path
+from typing import Optional
 
 #: Plugin base dir
 BASE_DIR = Path(__file__).parent
@@ -77,11 +78,13 @@ def normalize_block_id(block_id: str) -> str:
     return block_id
 
 
-def safe_str(string: str) -> str:
+def safe_str(string: Optional[str]) -> str:
     """Get safe string for logging with system encoding.
 
     :param string: string to be sanitized
     :returns: sanitized string
     """
+    if not string:
+        return ''
     encoding = sys.getdefaultencoding()
     return string.encode(encoding, errors='backslashreplace').decode(encoding)

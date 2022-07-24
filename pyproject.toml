@@ -23,15 +23,15 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-aqt = "^2.1.40"
+aqt = "^2.1.54"
 
 [tool.poetry.dev-dependencies]
-black = "^21.9b0"
+black = "^22.6"
 isort = "^5.7.0"
-mypy = "^0.930"
+mypy = "^0.971"
 flake8 = "^4.0.0"
 pydocstyle = "^6.1.1"
-pytest = "^6.2.2"
+pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
 PyQt5-stubs = "^5.14.2"
 darglint = "^1.8.0"
