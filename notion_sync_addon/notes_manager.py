@@ -164,7 +164,7 @@ class NotesManager:
     def _fill_fields(
         self, target: Note, source: AnkiNote, model: ModelsDictProxy
     ) -> List[Dict[str, str]]:
-        """Fill note fields from Anki model instance.
+        """Fill Anki note fields from the `AnkiNote` instance.
 
         :param target: target Anki note
         :param source: source Anki note model
@@ -190,17 +190,37 @@ class NotesManager:
         """Create new note.
 
         :param note: note
-        :returns: id of a note created
+        :returns: id of the note created
         """
-        # Pick right model
+        # Pick the model
         if not note.back:
             model = self.collection.models.by_name(self.CLOZE_MODEL_NAME)
         else:
             model = self.collection.models.by_name(self.MODEL_NAME)
-        # Create note and add it to the deck
+        # Create a note and add it to the deck
         anki_note = Note(self.collection, model)
         deck_id = self.get_deck()
         self.collection.add_note(anki_note, deck_id)
+        # Upload note media
+        media_manager = self.collection.media
+        for image in note.images:
+            # Skip if file already exists
+            if media_manager.have(image.filename):
+                continue
+            maybe_new_filename = media_manager.write_data(
+                image.filename, image.data
+            )
+            self.logger.info('Image stored: %s', image.filename)
+            if maybe_new_filename:
+                self.logger.debug(
+                    'Renaming image %s -> %s',
+                    image.filename,
+                    maybe_new_filename,
+                )
+                if note.back:
+                    note.back = note.back.replace(
+                        image.filename, maybe_new_filename
+                    )
         self._fill_fields(anki_note, note, model)
         note_id = anki_note.id
         anki_note.flush()
