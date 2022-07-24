@@ -36,6 +36,9 @@ pytest-cov = "^3.0.0"
 PyQt5-stubs = "^5.14.2"
 darglint = "^1.8.0"
 types-requests = "^2.25.11"
+PyQt5 = "^5.15.7"
+PyQt5-sip = "^12.11.0"
+PyQtWebEngine = "^5.15.6"
 
 [tool.mypy]
 sqlite_cache = true
