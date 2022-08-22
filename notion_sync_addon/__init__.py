@@ -268,6 +268,7 @@ class NotionSyncPlugin(QObject):
         assert mw  # mypy
         self.config = mw.addonManager.getConfig(__name__)
         self._is_auto_sync = True
+        self.logger.info('_is_auto_sync = True')
         self._sync()
 
     def sync(self) -> None:
@@ -305,6 +306,7 @@ class NotionSyncPlugin(QObject):
 
     def _sync(self) -> None:
         """Start sync."""
+
         if not self._collection_seeded:
             self.logger.warning(
                 'Collection is not seeded yet, trying to seed now'
@@ -312,8 +314,13 @@ class NotionSyncPlugin(QObject):
             self.seed_collection()
             if not self._collection_seeded:
                 return
-        self.notion_menu.setTitle('Notion (syncing...)')
-        for page_spec in self.config.get('notion_pages', []):
+            
+        pages = self.config.get('notion_pages', [])
+        if len(pages) == 0:
+            return
+                
+        self.notion_menu.setTitle('Notion (syncing...)')        
+        for page_spec in pages:
             page_id, recursive = page_spec['page_id'], page_spec['recursive']
             page_id = normalize_block_id(page_id)
             worker = NotesExtractorWorker(
@@ -321,6 +328,7 @@ class NotionSyncPlugin(QObject):
                 page_id=page_id,
                 recursive=recursive,
                 notion_namespace=self.config.get('notion_namespace', ''),
+                enable_cloze=self.config.get('enable_cloze', True),
                 debug=self.debug,
             )
             worker.signals.result.connect(self.handle_worker_result)
@@ -351,6 +359,7 @@ class NotesExtractorWorker(QRunnable):
         page_id: str,
         recursive: bool,
         notion_namespace: str,
+        enable_cloze: bool = True,
         debug: bool = False,
     ):
         """Init notes extractor.
@@ -369,6 +378,7 @@ class NotesExtractorWorker(QRunnable):
         self.page_id = page_id
         self.recursive = recursive
         self.notion_namespace = notion_namespace
+        self.enable_cloze = enable_cloze
 
     def run(self) -> None:
         """Extract note data from given Notion page.
@@ -400,6 +410,7 @@ class NotesExtractorWorker(QRunnable):
                         source=Path(html_path),
                         notion_namespace=self.notion_namespace,
                         debug=self.debug,
+                        enable_cloze=self.enable_cloze,
                     )
                 self.logger.info('Notes extracted: count=%s', len(notes))
         except NotionClientError as exc:

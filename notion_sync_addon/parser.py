@@ -2,6 +2,7 @@
 import re
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
+import html
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 from urllib.parse import unquote
@@ -118,7 +119,7 @@ class NoteDataExtractor(HTMLParser):
         '<p class="empty_block">Block was empty on export</p>'
     )
 
-    def __init__(self, base_dir: Path, debug: bool = False) -> None:
+    def __init__(self, base_dir: Path, enable_cloze: bool = True, debug: bool = False) -> None:
         """Init extractor.
 
         :param base_dir: base dir of a file being parsed
@@ -142,6 +143,7 @@ class NoteDataExtractor(HTMLParser):
         # Anki LaTeX tags - either inline or block
         self._latex_tags: Optional[Tuple[str, str]] = None
         self._clozes_count: int = 0
+        self.enable_cloze = enable_cloze
 
     def _get_attr_by_name(
         self, name: str, attrs: Iterable[Tuple[str, Optional[str]]]
@@ -271,12 +273,13 @@ class NoteDataExtractor(HTMLParser):
         # <summary> marks the end of a front side
         if tag == 'summary':
             # Check for clozes
-            for i, tag_or_data in enumerate(self._buffer):
-                if tag_or_data == '<code>':
-                    self._clozes_count += 1
-                    self._buffer[i] = f'{{{{c{self._clozes_count}::'
-                elif tag_or_data == '</code>':
-                    self._buffer[i] = '}}'
+            if self.enable_cloze:
+                for i, tag_or_data in enumerate(self._buffer):
+                    if tag_or_data == '<code>':
+                        self._clozes_count += 1
+                        self._buffer[i] = f'{{{{c{self._clozes_count}::'
+                    elif tag_or_data == '</code>':
+                        self._buffer[i] = '}}'
             self.note_data['front'] = ''.join(self._buffer)
             self._buffer.clear()
             return
@@ -326,7 +329,7 @@ class NoteDataExtractor(HTMLParser):
 
     @classmethod
     def extract_note(
-        cls, html: str, base_dir: Path, debug: bool = False
+        cls, html: str, base_dir: Path, debug: bool = False, enable_cloze = True
     ) -> Optional[AnkiNote]:
         """Extract Note from HTML fragment.
 
@@ -336,7 +339,7 @@ class NoteDataExtractor(HTMLParser):
         :param debug: debug mode
         :returns: note object
         """
-        parser = cls(base_dir, debug)
+        parser = cls(base_dir=base_dir, enable_cloze=enable_cloze, debug=debug)
         parser.feed(html)
         note = parser.get_data()
         # Check corresponding block was exported properly: if the backside of a
@@ -354,7 +357,7 @@ class NoteDataExtractor(HTMLParser):
 
 
 def extract_notes_data(
-    source: Path, notion_namespace: str, debug: bool = False
+    source: Path, notion_namespace: str, debug: bool = False, enable_cloze: bool = True
 ) -> List[AnkiNote]:
     """Extract notes data from HTML source.
 
@@ -370,7 +373,7 @@ def extract_notes_data(
     article_id = article['id'].replace('-', '')
     for note_node in soup.find_all('ul', 'toggle'):
         note = NoteDataExtractor.extract_note(
-            html=str(note_node), base_dir=source.parent, debug=debug
+            html=str(note_node), base_dir=source.parent, debug=debug, enable_cloze=enable_cloze
         )
         if note:
             notion_url = f'https://notion.so/{notion_namespace}/{article_id}'

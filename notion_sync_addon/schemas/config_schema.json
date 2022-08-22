@@ -67,6 +67,16 @@
         false
       ]
     },
+    "enable_cloze": {
+      "$id": "#/properties/enable_cloze",
+      "type": "boolean",
+      "title": "enable cloze mode",
+      "description": "Enable cloze (created by code tag).",
+      "default": true,
+      "examples": [
+        true
+      ]
+    },
     "sync_every_minutes": {
       "$id": "#/properties/sync_every_minutes",
       "type": "integer",
