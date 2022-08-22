@@ -1,0 +1,1523 @@
+2022-08-23 01:40:17,017 - notion_sync.NotionSyncPlugin - __init__.py:59 - INFO - Config loaded: {'debug': True, 'sync_every_minutes': 30, 'anki_target_deck': 'Notion Sync', 'notion_token': 'cc18b446f0a21982b98f5d051f80316f4d586fb909a9b08f766911673ccaaf5bc1c220c73809f3df73f54b6c5a18f82025213f9d5b24e753c09ee7016d8fe3257b119df4114d8cf992c052dad464', 'notion_namespace': 'pluveto', 'notion_pages': [{'page_id': 'c56010147eac4a36a83ea18ea268ef29', 'recursive': False}], 'enable_cloze': False}
+2022-08-23 01:40:21,607 - notion_sync.NotesManager - notes_manager.py:109 - INFO - Model updated
+2022-08-23 01:40:21,614 - notion_sync.NotesManager - notes_manager.py:140 - INFO - Cloze model updated: {'id': 1661185205562, 'name': 'notion-anki-sync-cloze', 'type': 1, 'mod': 1661190021, 'usn': -1, 'sortf': 0, 'did': None, 'tmpls': [{'name': 'Cloze', 'ord': 0, 'qfmt': '<div class="front">{{cloze:Front}}</div>', 'afmt': '<div class="front">{{cloze:Front}}</div><hr id="source"><div class="backlink">{{Source}}</div>', 'bqfmt': '', 'bafmt': '', 'did': None, 'bfont': '', 'bsize': 0}], 'flds': [{'name': 'Front', 'ord': 0, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}, {'name': 'Source', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}], 'latexPre': '\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n', 'latexPost': '\\end{document}', 'latexsvg': False, 'req': [[0, 'any', [0]]]}
+2022-08-23 01:40:21,614 - notion_sync.NotionSyncPlugin - __init__.py:164 - INFO - Collection initialized
+2022-08-23 01:40:21,616 - notion_sync.NotionSyncPlugin - __init__.py:266 - INFO - Auto sync started
+2022-08-23 01:40:21,617 - notion_sync.NotionSyncPlugin - __init__.py:271 - INFO - _is_auto_sync = True
+2022-08-23 01:40:21,617 - notion_sync.worker_c5601014-7eac-4a36-a83e-a18ea268ef29 - __init__.py:389 - INFO - Worker started
+2022-08-23 01:40:22,100 - notion_sync.NotionClient - notion_client.py:110 - INFO - Export task posted: page_id=c5601014-7eac-4a36-a83e-a18ea268ef29, recursive=False, task_id=f0b899a9-981f-414c-8ac3-8a20e052f26b
+2022-08-23 01:40:22,619 - notion_sync.NotionClient - notion_client.py:143 - DEBUG - Got response for task f0b899a9-981f-414c-8ac3-8a20e052f26b: {'results': [{'id': 'f0b899a9-981f-414c-8ac3-8a20e052f26b', 'eventName': 'exportBlock', 'request': {'blockId': 'c5601014-7eac-4a36-a83e-a18ea268ef29', 'recursive': False, 'exportOptions': {'exportType': 'html', 'timeZone': 'Europe/Moscow', 'locale': 'en'}}, 'actor': {'table': 'notion_user', 'id': '76e95683-ab59-4dc2-955b-e40fe3a2322e'}, 'state': 'in_progress', 'rootRequest': {'eventName': 'exportBlock', 'requestId': 'f0b899a9-981f-414c-8ac3-8a20e052f26b'}, 'headers': {'ip': '103.142.140.29'}}]}
+2022-08-23 01:40:22,620 - notion_sync.NotionClient - notion_client.py:155 - DEBUG - Task not ready, retrying in 1 (0 of 600)
+2022-08-23 01:40:24,148 - notion_sync.NotionClient - notion_client.py:143 - DEBUG - Got response for task f0b899a9-981f-414c-8ac3-8a20e052f26b: {'results': [{'id': 'f0b899a9-981f-414c-8ac3-8a20e052f26b', 'eventName': 'exportBlock', 'request': {'blockId': 'c5601014-7eac-4a36-a83e-a18ea268ef29', 'recursive': False, 'exportOptions': {'exportType': 'html', 'timeZone': 'Europe/Moscow', 'locale': 'en'}}, 'actor': {'table': 'notion_user', 'id': '76e95683-ab59-4dc2-955b-e40fe3a2322e'}, 'state': 'in_progress', 'rootRequest': {'eventName': 'exportBlock', 'requestId': 'f0b899a9-981f-414c-8ac3-8a20e052f26b'}, 'headers': {'ip': '103.142.140.29'}}]}
+2022-08-23 01:40:24,149 - notion_sync.NotionClient - notion_client.py:155 - DEBUG - Task not ready, retrying in 1 (1 of 600)
+2022-08-23 01:40:25,630 - notion_sync.NotionClient - notion_client.py:143 - DEBUG - Got response for task f0b899a9-981f-414c-8ac3-8a20e052f26b: {'results': [{'id': 'f0b899a9-981f-414c-8ac3-8a20e052f26b', 'eventName': 'exportBlock', 'request': {'blockId': 'c5601014-7eac-4a36-a83e-a18ea268ef29', 'recursive': False, 'exportOptions': {'exportType': 'html', 'timeZone': 'Europe/Moscow', 'locale': 'en'}}, 'actor': {'table': 'notion_user', 'id': '76e95683-ab59-4dc2-955b-e40fe3a2322e'}, 'state': 'in_progress', 'rootRequest': {'eventName': 'exportBlock', 'requestId': 'f0b899a9-981f-414c-8ac3-8a20e052f26b'}, 'headers': {'ip': '103.142.140.29'}, 'status': {'type': 'progress', 'pagesExported': 1}}]}
+2022-08-23 01:40:25,631 - notion_sync.NotionClient - notion_client.py:155 - DEBUG - Task not ready, retrying in 1 (2 of 600)
+2022-08-23 01:40:27,134 - notion_sync.NotionClient - notion_client.py:143 - DEBUG - Got response for task f0b899a9-981f-414c-8ac3-8a20e052f26b: {'results': [{'id': 'f0b899a9-981f-414c-8ac3-8a20e052f26b', 'eventName': 'exportBlock', 'request': {'blockId': 'c5601014-7eac-4a36-a83e-a18ea268ef29', 'recursive': False, 'exportOptions': {'exportType': 'html', 'timeZone': 'Europe/Moscow', 'locale': 'en'}}, 'actor': {'table': 'notion_user', 'id': '76e95683-ab59-4dc2-955b-e40fe3a2322e'}, 'state': 'success', 'rootRequest': {'eventName': 'exportBlock', 'requestId': 'f0b899a9-981f-414c-8ac3-8a20e052f26b'}, 'headers': {'ip': '103.142.140.29'}, 'status': {'type': 'complete', 'pagesExported': 2, 'exportURL': 'https://s3.us-west-2.amazonaws.com/temporary.notion-static.com/Export-089d82f5-d2d7-42d6-bb7b-54369028e625.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220822%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220822T174025Z&X-Amz-Expires=604800&X-Amz-Signature=89c3734a58ed80566a5089199855ce56c5dd1c0e42497ff653c18bf2612d48cf&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22Export-089d82f5-d2d7-42d6-bb7b-54369028e625.zip%22&x-id=GetObject'}}]}
+2022-08-23 01:40:27,134 - notion_sync.NotionClient - notion_client.py:180 - INFO - Export complete, downloading file on URL: https://s3.us-west-2.amazonaws.com/temporary.notion-static.com/Export-089d82f5-d2d7-42d6-bb7b-54369028e625.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220822%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220822T174025Z&X-Amz-Expires=604800&X-Amz-Signature=89c3734a58ed80566a5089199855ce56c5dd1c0e42497ff653c18bf2612d48cf&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22Export-089d82f5-d2d7-42d6-bb7b-54369028e625.zip%22&x-id=GetObject
+2022-08-23 01:40:29,157 - notion_sync.worker_c5601014-7eac-4a36-a83e-a18ea268ef29 - __init__.py:401 - INFO - Exported file downloaded: path=/tmp/tmpimmkbef8/c5601014-7eac-4a36-a83e-a18ea268ef29.zip
+2022-08-23 01:40:29,266 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 初始化列表
+2022-08-23 01:40:29,270 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: <em>unordered_xxx 使用链地址哈希</em>
+2022-08-23 01:40:29,277 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 纯虚函数和普通的虚函数有什么区别
+2022-08-23 01:40:29,284 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 如何释放二维数组
+2022-08-23 01:40:29,284 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 对变量执行 delete [] 会怎么样
+2022-08-23 01:40:29,285 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 对数组执行 delete 会怎么样
+2022-08-23 01:40:29,286 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: shared_ptr 是线程安全的吗
+2022-08-23 01:40:29,292 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 如何实现读写锁
+2022-08-23 01:40:29,292 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 类模板和函数模板的使用
+2022-08-23 01:40:29,293 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::next std::advance std::prev std::distance
+2022-08-23 01:40:29,293 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 模板的原理，和宏的区别
+2022-08-23 01:40:29,293 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 模板偏特化
+2022-08-23 01:40:29,293 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 模板元编程
+2022-08-23 01:40:29,293 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: STL 六大模块
+2022-08-23 01:40:29,293 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 常用 STL 的基本操作、原理、复杂度
+vector, list, queue, deque, map, set, unordered_map, iterator, sort, find, lambda
+2022-08-23 01:40:29,296 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: map/unordered_map, set/unordered_set 对比和原理
+2022-08-23 01:40:29,297 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 常用的输入输出方式
+2022-08-23 01:40:29,297 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 如何调试 C++ 程序
+2022-08-23 01:40:29,297 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 源文件、头文件的作用，应该包含哪些内容
+2022-08-23 01:40:29,298 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: O1~O3 优化的区别
+2022-08-23 01:40:29,306 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 并发编程
+2022-08-23 01:40:29,306 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 网络编程
+2022-08-23 01:40:29,306 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 锁
+2022-08-23 01:40:29,306 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: RAII
+2022-08-23 01:40:29,306 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 三五法则
+2022-08-23 01:40:29,306 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: JSON 格式化原理
+2022-08-23 01:40:29,307 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 编译链接过程
+2022-08-23 01:40:29,307 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 如何调试多线程程序
+2022-08-23 01:40:29,307 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 返回值为 const int& 和 const int* 的区别
+2022-08-23 01:40:29,307 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 函数后面 const 是什么意思
+2022-08-23 01:40:29,309 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 如何实现可变参数
+2022-08-23 01:40:29,309 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 移动和右值的区别
+2022-08-23 01:40:29,310 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::unique_ptr::release()
+2022-08-23 01:40:29,310 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::enable_shared_from_this
+2022-08-23 01:40:29,310 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: dynamic_cast
+2022-08-23 01:40:29,311 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::dynamic_pointer_cast
+2022-08-23 01:40:29,311 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::shared_ptr<void>
+2022-08-23 01:40:29,311 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::any
+2022-08-23 01:40:29,311 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 什么是位置无关代码
+2022-08-23 01:40:29,316 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: ptrace 及其实现原理
+2022-08-23 01:40:29,316 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: Raft, Paxos, 分布式锁
+2022-08-23 01:40:29,316 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 搞懂虚函数
+2022-08-23 01:40:29,317 - notion_sync.worker_c5601014-7eac-4a36-a83e-a18ea268ef29 - __init__.py:415 - INFO - Notes extracted: count=200
+2022-08-23 01:40:29,318 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么获取随机数"
+2022-08-23 01:40:29,321 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,323 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029322, front=怎么获取随机数
+2022-08-23 01:40:29,323 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"成员变量可以是引用吗？"
+2022-08-23 01:40:29,325 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,325 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029325, front=成员变量可以是引用吗？
+2022-08-23 01:40:29,325 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"int a = {0} 能清零吗？int a = {} 呢？"
+2022-08-23 01:40:29,328 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,328 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029328, front=int a = {0} 能清零吗？int a = {} 呢？
+2022-08-23 01:40:29,328 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\"><code>s.erase(s.lower_bound(value));</code></p></details></li></ul></details></li></ul><ul class=\"toggle\"><li><em>unordered_xxx 使用链地址哈希</em>"
+2022-08-23 01:40:29,330 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,331 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029331, front=<p class=""><code>s.erase(s.lower_bound(value));</code></p></details></li></ul></details></li></ul><ul class="toggle"><li><em>unordered_xxx 使用链地址哈希</em>
+2022-08-23 01:40:29,331 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\">连续内存</p></details></li></ul><ul class=\"toggle\"><li>交换两个值"
+2022-08-23 01:40:29,333 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,334 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029333, front=<p class="">连续内存</p></details></li></ul><ul class="toggle"><li>交换两个值
+2022-08-23 01:40:29,334 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"原理"
+2022-08-23 01:40:29,336 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,336 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029336, front=原理
+2022-08-23 01:40:29,337 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"交换两个值"
+2022-08-23 01:40:29,339 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,339 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029339, front=交换两个值
+2022-08-23 01:40:29,339 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code code-wrap\"><code>class Foo
+{
+
+};
+
+class Compare
+{
+public:
+    bool operator() (Foo, Foo)
+    {
+        return true;
+    }
+};
+
+int main()
+{
+    std::priority_queue<Foo, std::vector<Foo>, Compare> pq;
+    return 0;
+}
+
+
+struct Status {
+        int val;
+        ListNode *ptr;
+        bool operator < (const Status &rhs) const {
+            return val > rhs.val;
+        }
+    };
+
+    priority_queue <Status> q;</code></pre></details></li></ul><ul class=\"toggle\"><li>能否用 while (q.top()) 作为条件？"
+2022-08-23 01:40:29,341 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,342 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029342, front=<pre class="code code-wrap"><code>class Foo
+{
+
+};
+
+class Compare
+{
+public:
+    bool operator() (Foo, Foo)
+    {
+        return true;
+    }
+};
+
+int main()
+{
+    std::priority_queue<Foo, std::vector<Foo>, Compare> pq;
+    return 0;
+}
+
+
+struct Status {
+        int val;
+        ListNode *ptr;
+        bool operator < (const Status &rhs) const {
+            return val > rhs.val;
+        }
+    };
+
+    priority_queue <Status> q;</code></pre></details></li></ul><ul class="toggle"><li>能否用 while (q.top()) 作为条件？
+2022-08-23 01:40:29,342 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"原理"
+2022-08-23 01:40:29,344 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661190029336]
+2022-08-23 01:40:29,345 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661190029336, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>连续内存</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>堆</p>'}]
+2022-08-23 01:40:29,345 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"priority queue emplace vs push"
+2022-08-23 01:40:29,347 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,348 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029347, front=priority queue emplace vs push
+2022-08-23 01:40:29,348 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"默认是大顶堆还是小顶堆？"
+2022-08-23 01:40:29,350 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,350 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029350, front=默认是大顶堆还是小顶堆？
+2022-08-23 01:40:29,350 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"头文件"
+2022-08-23 01:40:29,352 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,353 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029353, front=头文件
+2022-08-23 01:40:29,353 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"自定义比较器"
+2022-08-23 01:40:29,355 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,356 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029355, front=自定义比较器
+2022-08-23 01:40:29,356 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"能否用 while (q.top()) 作为条件？"
+2022-08-23 01:40:29,358 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,358 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029358, front=能否用 while (q.top()) 作为条件？
+2022-08-23 01:40:29,358 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"初始化列表"
+2022-08-23 01:40:29,361 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,361 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029361, front=初始化列表
+2022-08-23 01:40:29,361 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"栈"
+2022-08-23 01:40:29,363 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,364 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029364, front=栈
+2022-08-23 01:40:29,364 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\">deque</p><ul class=\"toggle\"><li>原理"
+2022-08-23 01:40:29,366 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,367 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029366, front=<p class="">deque</p><ul class="toggle"><li>原理
+2022-08-23 01:40:29,367 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"原理"
+2022-08-23 01:40:29,369 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661190029336]
+2022-08-23 01:40:29,369 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661190029336, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>堆</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>分段连续空间. 各段用 map 管理. 每段大小固定</p><p>删除头尾效率高 时间复杂度为O(1), 删除中间效率低</p>'}]
+2022-08-23 01:40:29,369 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"队列"
+2022-08-23 01:40:29,371 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,371 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029371, front=队列
+2022-08-23 01:40:29,371 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\">rbegin(), begin()</p><p class=\"\">或者用下面的方法反向构建集合，然后用 begin()</p><pre class=\"code\"><code>multiset<int, std::greater<int>> heights;</code></pre></details></li></ul><ul class=\"toggle\"><li>multiset 只删除一个"
+2022-08-23 01:40:29,373 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,373 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029373, front=<p class="">rbegin(), begin()</p><p class="">或者用下面的方法反向构建集合，然后用 begin()</p><pre class="code"><code>multiset<int, std::greater<int>> heights;</code></pre></details></li></ul><ul class="toggle"><li>multiset 只删除一个
+2022-08-23 01:40:29,373 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"set 的默认顺序"
+2022-08-23 01:40:29,375 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,375 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029375, front=set 的默认顺序
+2022-08-23 01:40:29,375 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"原理"
+2022-08-23 01:40:29,377 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661190029336]
+2022-08-23 01:40:29,378 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661190029336, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>分段连续空间. 各段用 map 管理. 每段大小固定</p><p>删除头尾效率高 时间复杂度为O(1), 删除中间效率低</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>红黑树</p>'}]
+2022-08-23 01:40:29,378 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何获取最大最小值"
+2022-08-23 01:40:29,379 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,380 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029380, front=如何获取最大最小值
+2022-08-23 01:40:29,380 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"multiset 只删除一个"
+2022-08-23 01:40:29,381 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,382 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029381, front=multiset 只删除一个
+2022-08-23 01:40:29,382 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<em>unordered_xxx 使用链地址哈希</em>"
+2022-08-23 01:40:29,383 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,383 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029383, front=<em>unordered_xxx 使用链地址哈希</em>
+2022-08-23 01:40:29,383 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"Class 和 Struct 区别"
+2022-08-23 01:40:29,384 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,384 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029384, front=Class 和 Struct 区别
+2022-08-23 01:40:29,384 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"emplace 和 emplace_back 区别"
+2022-08-23 01:40:29,386 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,386 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029386, front=emplace 和 emplace_back 区别
+2022-08-23 01:40:29,386 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"class，struct，union 的内存布局和对齐规则"
+2022-08-23 01:40:29,387 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,387 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029387, front=class，struct，union 的内存布局和对齐规则
+2022-08-23 01:40:29,387 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何阻止一个类在栈上创建？"
+2022-08-23 01:40:29,388 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,389 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029388, front=如何阻止一个类在栈上创建？
+2022-08-23 01:40:29,389 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何让一段程序在main函数之前执行？"
+2022-08-23 01:40:29,390 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,390 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029390, front=如何让一段程序在main函数之前执行？
+2022-08-23 01:40:29,390 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是多态？"
+2022-08-23 01:40:29,391 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,391 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029391, front=什么是多态？
+2022-08-23 01:40:29,391 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么叫做钻石问题（也可以叫菱形继承问题），怎么避免它？"
+2022-08-23 01:40:29,393 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,393 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029393, front=什么叫做钻石问题（也可以叫菱形继承问题），怎么避免它？
+2022-08-23 01:40:29,393 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"虚继承和普通继承的区别"
+2022-08-23 01:40:29,394 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,394 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029394, front=虚继承和普通继承的区别
+2022-08-23 01:40:29,394 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"虚函数表的原理（或者问多态的原理）"
+2022-08-23 01:40:29,395 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,396 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029396, front=虚函数表的原理（或者问多态的原理）
+2022-08-23 01:40:29,396 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"C 和 C++ 程序的地址空间有何不同？"
+2022-08-23 01:40:29,397 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,397 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029397, front=C 和 C++ 程序的地址空间有何不同？
+2022-08-23 01:40:29,397 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"虚函数表和虚函数位于内存的什么区？"
+2022-08-23 01:40:29,398 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,399 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029398, front=虚函数表和虚函数位于内存的什么区？
+2022-08-23 01:40:29,399 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"父子继承时候，它构造函数和析构函数的顺序？析构时候，如何让父子类里所有的析构都调用一遍？"
+2022-08-23 01:40:29,400 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,400 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029400, front=父子继承时候，它构造函数和析构函数的顺序？析构时候，如何让父子类里所有的析构都调用一遍？
+2022-08-23 01:40:29,400 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如果忘记把父类的析构函数限定 virtual 会怎么样？"
+2022-08-23 01:40:29,401 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,401 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029401, front=如果忘记把父类的析构函数限定 virtual 会怎么样？
+2022-08-23 01:40:29,401 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"成员函数可以 delete this 吗？"
+2022-08-23 01:40:29,403 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,403 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029403, front=成员函数可以 delete this 吗？
+2022-08-23 01:40:29,403 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\">会报错。不能使用不完整的类型。</p></details></li></ul><ul class=\"toggle\"><li>怎么改？"
+2022-08-23 01:40:29,404 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,404 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029404, front=<p class="">会报错。不能使用不完整的类型。</p></details></li></ul><ul class="toggle"><li>怎么改？
+2022-08-23 01:40:29,404 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:40:29,405 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,406 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029405, front=答案
+2022-08-23 01:40:29,406 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么改？"
+2022-08-23 01:40:29,407 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,407 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029407, front=怎么改？
+2022-08-23 01:40:29,407 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<ul class=\"bulleted-list\"><li style=\"list-style-type:disc\">如果子类没有 override 父类的虚函数，那么：<ol class=\"numbered-list\" start=\"1\" type=\"1\"><li>虚函数按照声明顺序存放于 vtable</li></ol><ol class=\"numbered-list\" start=\"2\" type=\"1\"><li>父类的虚函数位于子类虚函数的前面</li></ol></li></ul><ul class=\"bulleted-list\"><li style=\"list-style-type:disc\">如果子类 override 父类虚函数，那么：<ol class=\"numbered-list\" start=\"1\" type=\"1\"><li>vtable 中，子类覆盖的虚函数地址，放在基类响应函数原来的位置（关键词：同位置，地址覆盖）</li></ol><ol class=\"numbered-list\" start=\"2\" type=\"1\"><li>子类没有覆盖的虚函数，地址依然是基类的</li></ol></li></ul></details></li></ul><ul class=\"toggle\"><li>多继承"
+2022-08-23 01:40:29,408 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,408 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029408, front=<ul class="bulleted-list"><li style="list-style-type:disc">如果子类没有 override 父类的虚函数，那么：<ol class="numbered-list" start="1" type="1"><li>虚函数按照声明顺序存放于 vtable</li></ol><ol class="numbered-list" start="2" type="1"><li>父类的虚函数位于子类虚函数的前面</li></ol></li></ul><ul class="bulleted-list"><li style="list-style-type:disc">如果子类 override 父类虚函数，那么：<ol class="numbered-list" start="1" type="1"><li>vtable 中，子类覆盖的虚函数地址，放在基类响应函数原来的位置（关键词：同位置，地址覆盖）</li></ol><ol class="numbered-list" start="2" type="1"><li>子类没有覆盖的虚函数，地址依然是基类的</li></ol></li></ul></details></li></ul><ul class="toggle"><li>多继承
+2022-08-23 01:40:29,409 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何探究的？"
+2022-08-23 01:40:29,410 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,410 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029410, front=如何探究的？
+2022-08-23 01:40:29,410 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"单继承"
+2022-08-23 01:40:29,411 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,411 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029411, front=单继承
+2022-08-23 01:40:29,411 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"多继承"
+2022-08-23 01:40:29,413 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,413 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029413, front=多继承
+2022-08-23 01:40:29,413 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"C++ 有哪些 cast（转换方式）？有何区别？"
+2022-08-23 01:40:29,414 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,414 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029414, front=C++ 有哪些 cast（转换方式）？有何区别？
+2022-08-23 01:40:29,414 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是抽象类？和其他语言的接口有何区别？"
+2022-08-23 01:40:29,415 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,416 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029415, front=什么是抽象类？和其他语言的接口有何区别？
+2022-08-23 01:40:29,416 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是内存屏障和编译器屏障？inline 函数能代替编译屏障吗？"
+2022-08-23 01:40:29,417 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,417 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029417, front=什么是内存屏障和编译器屏障？inline 函数能代替编译屏障吗？
+2022-08-23 01:40:29,417 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"虚析构函数是什么？"
+2022-08-23 01:40:29,418 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,418 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029418, front=虚析构函数是什么？
+2022-08-23 01:40:29,419 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"纯虚函数和普通的虚函数有什么区别"
+2022-08-23 01:40:29,420 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,420 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029420, front=纯虚函数和普通的虚函数有什么区别
+2022-08-23 01:40:29,420 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"静态联编和动态联编是什么？"
+2022-08-23 01:40:29,421 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,421 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029421, front=静态联编和动态联编是什么？
+2022-08-23 01:40:29,421 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"C++ 继承时如何做访问控制？<strong>（注意对比类和结构体）</strong>"
+2022-08-23 01:40:29,423 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,423 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029423, front=C++ 继承时如何做访问控制？<strong>（注意对比类和结构体）</strong>
+2022-08-23 01:40:29,423 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"友元类、友元函数是什么？"
+2022-08-23 01:40:29,424 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,424 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029424, front=友元类、友元函数是什么？
+2022-08-23 01:40:29,424 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是内部类（嵌套类）？"
+2022-08-23 01:40:29,426 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,426 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029426, front=什么是内部类（嵌套类）？
+2022-08-23 01:40:29,426 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"函数重写和重载的区别"
+2022-08-23 01:40:29,427 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,427 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029427, front=函数重写和重载的区别
+2022-08-23 01:40:29,427 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"协变和逆变"
+2022-08-23 01:40:29,429 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,429 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029429, front=协变和逆变
+2022-08-23 01:40:29,429 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"运算符重载"
+2022-08-23 01:40:29,430 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,430 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029430, front=运算符重载
+2022-08-23 01:40:29,430 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"拷贝构造函数，赋值操作符的原理"
+2022-08-23 01:40:29,432 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,432 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029432, front=拷贝构造函数，赋值操作符的原理
+2022-08-23 01:40:29,432 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"const 的作用"
+2022-08-23 01:40:29,433 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,433 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029433, front=const 的作用
+2022-08-23 01:40:29,433 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"const 在不同位置的含义 <code>const char * a</code>,<code> const char const * a</code>, <code>char * const a</code>, <code>char const * a</code>"
+2022-08-23 01:40:29,434 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,435 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029434, front=const 在不同位置的含义 <code>const char * a</code>,<code> const char const * a</code>, <code>char * const a</code>, <code>char const * a</code>
+2022-08-23 01:40:29,435 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"constexpr、const 的区别？"
+2022-08-23 01:40:29,436 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,436 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029436, front=constexpr、const 的区别？
+2022-08-23 01:40:29,436 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"noexcept 的作用？"
+2022-08-23 01:40:29,437 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,437 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029437, front=noexcept 的作用？
+2022-08-23 01:40:29,438 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"string + 发生了什么"
+2022-08-23 01:40:29,439 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,439 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029439, front=string + 发生了什么
+2022-08-23 01:40:29,439 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<strong>使用 {} 和 () 调用构造函数的区别</strong>"
+2022-08-23 01:40:29,440 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,440 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029440, front=<strong>使用 {} 和 () 调用构造函数的区别</strong>
+2022-08-23 01:40:29,440 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"const、static 的原理"
+2022-08-23 01:40:29,442 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,442 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029442, front=const、static 的原理
+2022-08-23 01:40:29,442 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"内联函数"
+2022-08-23 01:40:29,443 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,443 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029443, front=内联函数
+2022-08-23 01:40:29,443 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"仿函数"
+2022-08-23 01:40:29,445 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,445 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029445, front=仿函数
+2022-08-23 01:40:29,445 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"typeid 和 typeof 的区别"
+2022-08-23 01:40:29,446 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,446 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029446, front=typeid 和 typeof 的区别
+2022-08-23 01:40:29,446 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"指针、引用的区别"
+2022-08-23 01:40:29,447 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,448 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029448, front=指针、引用的区别
+2022-08-23 01:40:29,448 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"数组和指针的区别，sizeof 的作用和原理"
+2022-08-23 01:40:29,449 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,449 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029449, front=数组和指针的区别，sizeof 的作用和原理
+2022-08-23 01:40:29,449 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"typedef 和 define 哪种更好？"
+2022-08-23 01:40:29,450 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,451 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029450, front=typedef 和 define 哪种更好？
+2022-08-23 01:40:29,451 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"malloc/calloc/realloc的区别"
+2022-08-23 01:40:29,452 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,452 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029452, front=malloc/calloc/realloc的区别
+2022-08-23 01:40:29,452 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"malloc 和 free 的原理"
+2022-08-23 01:40:29,453 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,453 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029453, front=malloc 和 free 的原理
+2022-08-23 01:40:29,454 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"new、new[]，delete、delete[] 原理"
+2022-08-23 01:40:29,455 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,455 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029455, front=new、new[]，delete、delete[] 原理
+2022-08-23 01:40:29,455 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"new / delete 重载"
+2022-08-23 01:40:29,456 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,456 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029456, front=new / delete 重载
+2022-08-23 01:40:29,456 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何释放二维向量"
+2022-08-23 01:40:29,458 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,458 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029458, front=如何释放二维向量
+2022-08-23 01:40:29,458 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何释放二维数组"
+2022-08-23 01:40:29,459 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,460 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029459, front=如何释放二维数组
+2022-08-23 01:40:29,460 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"对变量执行 delete [] 会怎么样"
+2022-08-23 01:40:29,461 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,461 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029461, front=对变量执行 delete [] 会怎么样
+2022-08-23 01:40:29,461 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"对数组执行 delete 会怎么样"
+2022-08-23 01:40:29,462 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,462 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029462, front=对数组执行 delete 会怎么样
+2022-08-23 01:40:29,463 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"NULL 和 nullptr 的区别"
+2022-08-23 01:40:29,464 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,464 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029464, front=NULL 和 nullptr 的区别
+2022-08-23 01:40:29,464 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是智能指针？<code>std::shared_ptr</code>/<code>std::unique_ptr</code>/<code>std::weak_ptr</code> 等用法和实现思路"
+2022-08-23 01:40:29,465 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,465 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029465, front=什么是智能指针？<code>std::shared_ptr</code>/<code>std::unique_ptr</code>/<code>std::weak_ptr</code> 等用法和实现思路
+2022-08-23 01:40:29,465 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<strong><strong>智能指针如何选择</strong></strong>"
+2022-08-23 01:40:29,467 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,467 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029467, front=<strong><strong>智能指针如何选择</strong></strong>
+2022-08-23 01:40:29,467 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"shared_ptr 是线程安全的吗"
+2022-08-23 01:40:29,468 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,468 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029468, front=shared_ptr 是线程安全的吗
+2022-08-23 01:40:29,468 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是 double free 问题？"
+2022-08-23 01:40:29,469 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,470 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029470, front=什么是 double free 问题？
+2022-08-23 01:40:29,470 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"栈上对象是如何析构的？"
+2022-08-23 01:40:29,471 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,471 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029471, front=栈上对象是如何析构的？
+2022-08-23 01:40:29,471 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"栈上创建的对象万一是动态的怎么办？"
+2022-08-23 01:40:29,472 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,473 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029473, front=栈上创建的对象万一是动态的怎么办？
+2022-08-23 01:40:29,473 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"返回一个栈上创建的对象会怎么样？"
+2022-08-23 01:40:29,474 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,474 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029474, front=返回一个栈上创建的对象会怎么样？
+2022-08-23 01:40:29,474 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"拷贝赋值和拷贝构造的区别？"
+2022-08-23 01:40:29,475 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,476 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029476, front=拷贝赋值和拷贝构造的区别？
+2022-08-23 01:40:29,476 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"左值和右值的概念，纯右值、将亡值，移动语义和完美转发，左值引用和右"
+2022-08-23 01:40:29,477 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,477 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029477, front=左值和右值的概念，纯右值、将亡值，移动语义和完美转发，左值引用和右
+2022-08-23 01:40:29,477 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么时候使用右值"
+2022-08-23 01:40:29,478 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,479 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029479, front=什么时候使用右值
+2022-08-23 01:40:29,479 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是引用折叠"
+2022-08-23 01:40:29,480 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,480 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029480, front=什么是引用折叠
+2022-08-23 01:40:29,480 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么时候需要完美转发"
+2022-08-23 01:40:29,481 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,482 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029482, front=什么时候需要完美转发
+2022-08-23 01:40:29,482 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是 test_and_set"
+2022-08-23 01:40:29,483 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,483 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029483, front=什么是 test_and_set
+2022-08-23 01:40:29,483 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"compare_exchange_strong 和 compare_exchange_weak 的区别"
+2022-08-23 01:40:29,484 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,485 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029485, front=compare_exchange_strong 和 compare_exchange_weak 的区别
+2022-08-23 01:40:29,485 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何 sleep"
+2022-08-23 01:40:29,486 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,486 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029486, front=如何 sleep
+2022-08-23 01:40:29,486 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"C++11 的 6 种 memory order 内存序"
+2022-08-23 01:40:29,487 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,488 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029487, front=C++11 的 6 种 memory order 内存序
+2022-08-23 01:40:29,488 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"lock_guard, unique_lock, shared_lock, adopt_lock"
+2022-08-23 01:40:29,489 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,489 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029489, front=lock_guard, unique_lock, shared_lock, adopt_lock
+2022-08-23 01:40:29,489 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"当你执行 <code>cond.wait(lk);</code> 时，发生了什么？"
+2022-08-23 01:40:29,490 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,491 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029491, front=当你执行 <code>cond.wait(lk);</code> 时，发生了什么？
+2022-08-23 01:40:29,491 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何实现互斥锁"
+2022-08-23 01:40:29,492 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,492 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029492, front=如何实现互斥锁
+2022-08-23 01:40:29,492 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何实现读写锁"
+2022-08-23 01:40:29,493 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,494 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029494, front=如何实现读写锁
+2022-08-23 01:40:29,494 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"类模板和函数模板的使用"
+2022-08-23 01:40:29,495 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,495 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029495, front=类模板和函数模板的使用
+2022-08-23 01:40:29,495 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"模板默认参数"
+2022-08-23 01:40:29,496 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,497 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029497, front=模板默认参数
+2022-08-23 01:40:29,497 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"必须是 class 或 classname 吗？"
+2022-08-23 01:40:29,498 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,498 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029498, front=必须是 class 或 classname 吗？
+2022-08-23 01:40:29,498 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"前自增和后自增如何重载"
+2022-08-23 01:40:29,499 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,500 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029500, front=前自增和后自增如何重载
+2022-08-23 01:40:29,500 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"假如 a 是 T 的左值引用，T 是 int&& 类型的，那么 a 实际上是什么"
+2022-08-23 01:40:29,501 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,501 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029501, front=假如 a 是 T 的左值引用，T 是 int&& 类型的，那么 a 实际上是什么
+2022-08-23 01:40:29,501 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::next std::advance std::prev std::distance"
+2022-08-23 01:40:29,502 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,503 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029503, front=std::next std::advance std::prev std::distance
+2022-08-23 01:40:29,503 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"模板的原理，和宏的区别"
+2022-08-23 01:40:29,504 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,504 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029504, front=模板的原理，和宏的区别
+2022-08-23 01:40:29,504 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"模板偏特化"
+2022-08-23 01:40:29,505 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,506 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029505, front=模板偏特化
+2022-08-23 01:40:29,506 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"模板元编程"
+2022-08-23 01:40:29,507 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,507 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029507, front=模板元编程
+2022-08-23 01:40:29,507 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"STL 六大模块"
+2022-08-23 01:40:29,508 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,509 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029509, front=STL 六大模块
+2022-08-23 01:40:29,509 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"常用 STL 的基本操作、原理、复杂度
+vector, list, queue, deque, map, set, unordered_map, iterator, sort, find, lambda"
+2022-08-23 01:40:29,510 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,510 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029510, front=常用 STL 的基本操作、原理、复杂度
+vector, list, queue, deque, map, set, unordered_map, iterator, sort, find, lambda
+2022-08-23 01:40:29,510 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"string 和 wstring"
+2022-08-23 01:40:29,511 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,512 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029512, front=string 和 wstring
+2022-08-23 01:40:29,512 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"push_back 和 emplace_back 的区别"
+2022-08-23 01:40:29,513 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,513 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029513, front=push_back 和 emplace_back 的区别
+2022-08-23 01:40:29,513 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"Lambda 是什么，怎么用？"
+2022-08-23 01:40:29,514 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,515 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029515, front=Lambda 是什么，怎么用？
+2022-08-23 01:40:29,515 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"Lambda 编译器是如何实现的？"
+2022-08-23 01:40:29,516 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,516 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029516, front=Lambda 编译器是如何实现的？
+2022-08-23 01:40:29,516 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"能否获取 lamdba 的函数指针"
+2022-08-23 01:40:29,518 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,518 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029518, front=能否获取 lamdba 的函数指针
+2022-08-23 01:40:29,518 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"lambda 能不能捕获右值"
+2022-08-23 01:40:29,519 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,519 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029519, front=lambda 能不能捕获右值
+2022-08-23 01:40:29,519 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"unique_ptr 的实现原理"
+2022-08-23 01:40:29,521 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,521 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029521, front=unique_ptr 的实现原理
+2022-08-23 01:40:29,521 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"map/unordered_map, set/unordered_set 对比和原理"
+2022-08-23 01:40:29,522 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,522 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029522, front=map/unordered_map, set/unordered_set 对比和原理
+2022-08-23 01:40:29,522 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::endl 和 \\n 的区别"
+2022-08-23 01:40:29,524 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,524 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029524, front=std::endl 和 \n 的区别
+2022-08-23 01:40:29,524 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"流式文件 IO"
+2022-08-23 01:40:29,525 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,525 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029525, front=流式文件 IO
+2022-08-23 01:40:29,525 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"常用的输入输出方式"
+2022-08-23 01:40:29,527 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,527 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029527, front=常用的输入输出方式
+2022-08-23 01:40:29,527 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何调试 C++ 程序"
+2022-08-23 01:40:29,528 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,528 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029528, front=如何调试 C++ 程序
+2022-08-23 01:40:29,529 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"源文件、头文件的作用，应该包含哪些内容"
+2022-08-23 01:40:29,530 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,530 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029530, front=源文件、头文件的作用，应该包含哪些内容
+2022-08-23 01:40:29,530 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"异常处理和原理"
+2022-08-23 01:40:29,531 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,532 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029531, front=异常处理和原理
+2022-08-23 01:40:29,532 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<code>A.c</code> 和<code>B.c</code>两个<code>c</code>文件中使用了两个相同名字的<code>static</code>变量,编译的时候会不会有问题?这两个<code>static</code>变量会保存到哪里（栈还是堆或者其他的）?"
+2022-08-23 01:40:29,533 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,533 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029533, front=<code>A.c</code> 和<code>B.c</code>两个<code>c</code>文件中使用了两个相同名字的<code>static</code>变量,编译的时候会不会有问题?这两个<code>static</code>变量会保存到哪里（栈还是堆或者其他的）?
+2022-08-23 01:40:29,533 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"extern 和 extern C 的作用"
+2022-08-23 01:40:29,534 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,535 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029534, front=extern 和 extern C 的作用
+2022-08-23 01:40:29,535 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"C++ 中有4 种存储周期：automatic static dynamic thread"
+2022-08-23 01:40:29,536 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,536 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029536, front=C++ 中有4 种存储周期：automatic static dynamic thread
+2022-08-23 01:40:29,536 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"O1~O3 优化的区别"
+2022-08-23 01:40:29,537 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,538 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029537, front=O1~O3 优化的区别
+2022-08-23 01:40:29,538 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code\"><code>cache_t cache(size, std::vector<int>(size, 0));</code></pre><p class=\"\">
+</p></details></li></ul><ul class=\"toggle\"><li>如何调试多线程程序？"
+2022-08-23 01:40:29,539 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,539 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029539, front=<pre class="code"><code>cache_t cache(size, std::vector<int>(size, 0));</code></pre><p class="">
+</p></details></li></ul><ul class="toggle"><li>如何调试多线程程序？
+2022-08-23 01:40:29,539 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"并发编程"
+2022-08-23 01:40:29,540 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,541 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029540, front=并发编程
+2022-08-23 01:40:29,541 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"网络编程"
+2022-08-23 01:40:29,542 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,542 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029542, front=网络编程
+2022-08-23 01:40:29,542 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"锁"
+2022-08-23 01:40:29,544 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,544 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029544, front=锁
+2022-08-23 01:40:29,544 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"RAII"
+2022-08-23 01:40:29,545 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,545 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029545, front=RAII
+2022-08-23 01:40:29,545 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"三五法则"
+2022-08-23 01:40:29,547 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,547 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029547, front=三五法则
+2022-08-23 01:40:29,547 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"JSON 格式化原理"
+2022-08-23 01:40:29,548 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,548 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029548, front=JSON 格式化原理
+2022-08-23 01:40:29,548 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"编译链接过程"
+2022-08-23 01:40:29,550 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,550 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029550, front=编译链接过程
+2022-08-23 01:40:29,550 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何调试多线程程序"
+2022-08-23 01:40:29,551 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,551 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029551, front=如何调试多线程程序
+2022-08-23 01:40:29,551 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"返回值为 const int& 和 const int* 的区别"
+2022-08-23 01:40:29,553 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,553 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029553, front=返回值为 const int& 和 const int* 的区别
+2022-08-23 01:40:29,553 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"函数后面 const 是什么意思"
+2022-08-23 01:40:29,554 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,554 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029554, front=函数后面 const 是什么意思
+2022-08-23 01:40:29,554 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<strong>GDB 断点的实现原理</strong>"
+2022-08-23 01:40:29,556 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,556 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029556, front=<strong>GDB 断点的实现原理</strong>
+2022-08-23 01:40:29,556 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"GDP 如何修改被调试程序的指令？"
+2022-08-23 01:40:29,557 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,558 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029557, front=GDP 如何修改被调试程序的指令？
+2022-08-23 01:40:29,558 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"cls_name c1(c2) 和 cls_name c1{c2} 的区别"
+2022-08-23 01:40:29,559 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,559 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029559, front=cls_name c1(c2) 和 cls_name c1{c2} 的区别
+2022-08-23 01:40:29,559 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"& 和 && 的区别"
+2022-08-23 01:40:29,560 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,561 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029560, front=& 和 && 的区别
+2022-08-23 01:40:29,561 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如果定义一个空类，会生成哪些函数？各有什么作用？"
+2022-08-23 01:40:29,562 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,562 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029562, front=如果定义一个空类，会生成哪些函数？各有什么作用？
+2022-08-23 01:40:29,562 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\">下面的代码问题在哪儿？</p><pre class=\"code code-wrap\"><code>struct Pig {
+    std::string m_name;
+    int m_weight;
+
+    Pig(int weight)
+        : m_name(\"一只重达\" + std::to_string(weight) + \"kg的猪\")
+        , m_weight(weight)
+    {}
+};</code></pre><ul class=\"toggle\"><li>答案"
+2022-08-23 01:40:29,563 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,564 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029564, front=<p class="">下面的代码问题在哪儿？</p><pre class="code code-wrap"><code>struct Pig {
+    std::string m_name;
+    int m_weight;
+
+    Pig(int weight)
+        : m_name("一只重达" + std::to_string(weight) + "kg的猪")
+        , m_weight(weight)
+    {}
+};</code></pre><ul class="toggle"><li>答案
+2022-08-23 01:40:29,564 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:40:29,565 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661190029405]
+2022-08-23 01:40:29,565 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661190029405, data=[{'tags_old': [], 'tags_new': ['include <iostream>', 'include <string>\n\nstruct Pig {\n    std::string m_name;\n    int m_weight;\n\n    explicit Pig(int weight)\n        : m_name("一只重达" + std::to_string(weight) + "kg的猪")\n        , m_weight(weight)\n    {}\n};\n\nint main() {\n    // Pig pig = 80;  // 编译错误\n    Pig pig(80);      // 编译通过\n\n    std::cout << "name: " << pig.m_name << std::endl;\n    std::cout << "weight: " << pig.m_weight << std::endl;\n\n    return 0;\n}']}, {"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>会报错。不能使用不完整的类型。</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>由于 <code>Pig</code> 的构造函数只有一个参数，这会导致使用 <code>Pig pig = 1;</code> 也能编译通过。</p><p>通过 <code>explicit</code> 修饰来阻止这种用法：</p><pre class="code code-wrap"><code></code></pre>'}]
+2022-08-23 01:40:29,565 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何避免用户使用 <code>=</code> 初始化？"
+2022-08-23 01:40:29,567 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,567 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029567, front=如何避免用户使用 <code>=</code> 初始化？
+2022-08-23 01:40:29,567 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何实现可变参数"
+2022-08-23 01:40:29,568 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,568 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029568, front=如何实现可变参数
+2022-08-23 01:40:29,569 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<code>std::swap</code>"
+2022-08-23 01:40:29,570 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,570 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029570, front=<code>std::swap</code>
+2022-08-23 01:40:29,570 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"移动和右值的区别"
+2022-08-23 01:40:29,571 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,572 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029571, front=移动和右值的区别
+2022-08-23 01:40:29,572 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"memmove、memcpy和memccpy的区别"
+2022-08-23 01:40:29,573 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,573 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029573, front=memmove、memcpy和memccpy的区别
+2022-08-23 01:40:29,573 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"new C 和 new C()"
+2022-08-23 01:40:29,574 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,575 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029575, front=new C 和 new C()
+2022-08-23 01:40:29,575 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"P-IMPL 模式"
+2022-08-23 01:40:29,576 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,576 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029576, front=P-IMPL 模式
+2022-08-23 01:40:29,576 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"拷贝如何作为虚函数"
+2022-08-23 01:40:29,578 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,578 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029578, front=拷贝如何作为虚函数
+2022-08-23 01:40:29,578 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::unique_ptr::release()"
+2022-08-23 01:40:29,579 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,579 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029579, front=std::unique_ptr::release()
+2022-08-23 01:40:29,579 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::enable_shared_from_this"
+2022-08-23 01:40:29,581 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,581 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029581, front=std::enable_shared_from_this
+2022-08-23 01:40:29,581 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"dynamic_cast"
+2022-08-23 01:40:29,582 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,583 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029582, front=dynamic_cast
+2022-08-23 01:40:29,583 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::dynamic_pointer_cast"
+2022-08-23 01:40:29,584 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,584 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029584, front=std::dynamic_pointer_cast
+2022-08-23 01:40:29,584 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::shared_ptr<void>"
+2022-08-23 01:40:29,585 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,586 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029585, front=std::shared_ptr<void>
+2022-08-23 01:40:29,586 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::any"
+2022-08-23 01:40:29,587 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,587 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029587, front=std::any
+2022-08-23 01:40:29,587 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何一次性锁多个 mutex"
+2022-08-23 01:40:29,588 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,589 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029589, front=如何一次性锁多个 mutex
+2022-08-23 01:40:29,589 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是位置无关代码"
+2022-08-23 01:40:29,590 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,590 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029590, front=什么是位置无关代码
+2022-08-23 01:40:29,590 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"大根堆和小根堆"
+2022-08-23 01:40:29,592 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,592 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029592, front=大根堆和小根堆
+2022-08-23 01:40:29,592 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"输入迭代器和输出迭代器"
+2022-08-23 01:40:29,593 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,593 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029593, front=输入迭代器和输出迭代器
+2022-08-23 01:40:29,593 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么反转字符串"
+2022-08-23 01:40:29,595 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,595 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029595, front=怎么反转字符串
+2022-08-23 01:40:29,595 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"advance & next 区别"
+2022-08-23 01:40:29,596 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,597 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029596, front=advance & next 区别
+2022-08-23 01:40:29,597 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"variant union 区别"
+2022-08-23 01:40:29,598 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,598 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029598, front=variant union 区别
+2022-08-23 01:40:29,598 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"basic_string string string_view"
+2022-08-23 01:40:29,600 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,600 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029600, front=basic_string string string_view
+2022-08-23 01:40:29,600 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"while (!ifstream.eof()) 会生效吗？"
+2022-08-23 01:40:29,601 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,601 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029601, front=while (!ifstream.eof()) 会生效吗？
+2022-08-23 01:40:29,601 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<a href=\"https://stephlin.github.io/post/cpp/cpp-traits/\"><strong>C++ Traits</strong></a>"
+2022-08-23 01:40:29,603 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,603 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029603, front=<a href="https://stephlin.github.io/post/cpp/cpp-traits/"><strong>C++ Traits</strong></a>
+2022-08-23 01:40:29,603 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"make_tuple vs new tuple"
+2022-08-23 01:40:29,604 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,605 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029604, front=make_tuple vs new tuple
+2022-08-23 01:40:29,605 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"union"
+2022-08-23 01:40:29,606 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,606 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029606, front=union
+2022-08-23 01:40:29,606 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<strong><strong>trivial destructor和non-trivial destructor</strong></strong>"
+2022-08-23 01:40:29,607 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,608 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029608, front=<strong><strong>trivial destructor和non-trivial destructor</strong></strong>
+2022-08-23 01:40:29,608 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"cls ins 和 cls ins(); 的区别"
+2022-08-23 01:40:29,609 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,609 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029609, front=cls ins 和 cls ins(); 的区别
+2022-08-23 01:40:29,609 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"error: expected class-name before ‘{’ token"
+2022-08-23 01:40:29,611 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,611 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029611, front=error: expected class-name before ‘{’ token
+2022-08-23 01:40:29,611 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code\"><code>struct stmt {
+  std::unique_ptr<expr_t> expr;
+  stmt(std::unique_ptr<expr_t> expr) : expr(expr) {}
+};</code></pre><ul class=\"toggle\"><li>答案"
+2022-08-23 01:40:29,612 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,612 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029612, front=<pre class="code"><code>struct stmt {
+  std::unique_ptr<expr_t> expr;
+  stmt(std::unique_ptr<expr_t> expr) : expr(expr) {}
+};</code></pre><ul class="toggle"><li>答案
+2022-08-23 01:40:29,612 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:40:29,614 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661190029405]
+2022-08-23 01:40:29,614 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661190029405, data=[{'tags_old': ['+', ',', '//', '0;}', '80;', ':', '<<', '<iostream>', '<string>struct', '=', 'blank', 'explicit', 'include', 'int', 'kg的猪)', 'm_name(一只重达', 'm_name;', 'm_weight(weight)', 'm_weight;', 'main()', 'name:', 'Pig', 'pig(80);', 'Pig(int', 'pig.m_name', 'pig.m_weight', 'return', 'std::cout', 'std::endl;', 'std::string', 'std::to_string(weight)', 'weight)', 'weight:', '{', '{}};int', '编译通过', '编译错误'], 'tags_new': []}, {"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>由于 <code>Pig</code> 的构造函数只有一个参数，这会导致使用 <code>Pig pig = 1;</code> 也能编译通过。</p><p>通过 <code>explicit</code> 修饰来阻止这种用法：</p><pre class="code code-wrap"><code></code></pre>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>不能使用 <code>expr(expr)</code> 因为这是试图共享 expr 的内部指针，而 unique_ptr 是独享的。应该改成 <code>expr(std::move(expr))</code></p>'}]
+2022-08-23 01:40:29,614 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code\"><code>std::vector<int &> hello;</code></pre><ul class=\"toggle\"><li>答案"
+2022-08-23 01:40:29,616 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,616 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029616, front=<pre class="code"><code>std::vector<int &> hello;</code></pre><ul class="toggle"><li>答案
+2022-08-23 01:40:29,616 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:40:29,617 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661190029405]
+2022-08-23 01:40:29,617 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661190029405, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>不能使用 <code>expr(expr)</code> 因为这是试图共享 expr 的内部指针，而 unique_ptr 是独享的。应该改成 <code>expr(std::move(expr))</code></p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>引用不能放到容器里。</p><p>容器（如向量）的组件类型必须是<a href="https://en.cppreference.com/w/cpp/named_req/CopyAssignable"><em>可分配的</em></a>。引用是不可分配的（在声明引用时只能初始化它们一次，并且以后不能使它们引用其他内容）。其他不可分配的类型也不允许作为容器的组件，例如 <code>vector<const int></code>  是不允许的。</p><p>解决方法，用 <code>reference_wrapper </code>这种包装器</p>'}]
+2022-08-23 01:40:29,618 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code\"><code>string * stringarray = new string[100];
+delete stringarray;</code></pre><ul class=\"toggle\"><li>答案"
+2022-08-23 01:40:29,619 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,619 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029619, front=<pre class="code"><code>string * stringarray = new string[100];
+delete stringarray;</code></pre><ul class="toggle"><li>答案
+2022-08-23 01:40:29,619 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:40:29,621 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661190029405]
+2022-08-23 01:40:29,621 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661190029405, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>引用不能放到容器里。</p><p>容器（如向量）的组件类型必须是<a href="https://en.cppreference.com/w/cpp/named_req/CopyAssignable"><em>可分配的</em></a>。引用是不可分配的（在声明引用时只能初始化它们一次，并且以后不能使它们引用其他内容）。其他不可分配的类型也不允许作为容器的组件，例如 <code>vector<const int></code>  是不允许的。</p><p>解决方法，用 <code>reference_wrapper </code>这种包装器</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>只删了第一个，后面 99 个没删</p>'}]
+2022-08-23 01:40:29,621 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"将栈上的引用用于构造对象是否有隐患？"
+2022-08-23 01:40:29,622 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,622 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029622, front=将栈上的引用用于构造对象是否有隐患？
+2022-08-23 01:40:29,622 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何转移 unique_ptr 的所有权"
+2022-08-23 01:40:29,624 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,624 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029624, front=如何转移 unique_ptr 的所有权
+2022-08-23 01:40:29,624 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<strong><strong>C语言参数压栈顺序？</strong></strong>"
+2022-08-23 01:40:29,625 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,626 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029626, front=<strong><strong>C语言参数压栈顺序？</strong></strong>
+2022-08-23 01:40:29,626 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"虚函数中途失效"
+2022-08-23 01:40:29,627 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,627 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029627, front=虚函数中途失效
+2022-08-23 01:40:29,627 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么拿到vector最后一项的引用？"
+2022-08-23 01:40:29,629 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,629 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029629, front=怎么拿到vector最后一项的引用？
+2022-08-23 01:40:29,629 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么初始化二维数组为 <code>0 </code>？"
+2022-08-23 01:40:29,630 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,631 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029631, front=怎么初始化二维数组为 <code>0 </code>？
+2022-08-23 01:40:29,631 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何调试多线程程序？"
+2022-08-23 01:40:29,632 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,632 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029632, front=如何调试多线程程序？
+2022-08-23 01:40:29,632 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"ptrace 及其实现原理"
+2022-08-23 01:40:29,634 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,634 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029634, front=ptrace 及其实现原理
+2022-08-23 01:40:29,634 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么检查内存泄漏？"
+2022-08-23 01:40:29,635 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,636 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029635, front=怎么检查内存泄漏？
+2022-08-23 01:40:29,636 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么关闭优化"
+2022-08-23 01:40:29,637 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,637 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029637, front=怎么关闭优化
+2022-08-23 01:40:29,637 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"Raft, Paxos, 分布式锁"
+2022-08-23 01:40:29,638 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,639 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029639, front=Raft, Paxos, 分布式锁
+2022-08-23 01:40:29,639 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"搞懂虚函数"
+2022-08-23 01:40:29,640 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,640 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029640, front=搞懂虚函数
+2022-08-23 01:40:29,640 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"fwrite, write, direct io"
+2022-08-23 01:40:29,642 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,642 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029642, front=fwrite, write, direct io
+2022-08-23 01:40:29,642 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"string length() size() 区别"
+2022-08-23 01:40:29,643 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,643 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029643, front=string length() size() 区别
+2022-08-23 01:40:29,643 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code\"><code>class Solution {
+ public:
+  vector<int>& candidates;
+  int target;
+  vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    this->candidates = candidates;
+    this->target = target;
+  }
+};</code></pre><ul class=\"toggle\"><li>答案"
+2022-08-23 01:40:29,645 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,645 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029645, front=<pre class="code"><code>class Solution {
+ public:
+  vector<int>& candidates;
+  int target;
+  vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    this->candidates = candidates;
+    this->target = target;
+  }
+};</code></pre><ul class="toggle"><li>答案
+2022-08-23 01:40:29,645 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:40:29,646 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661190029405]
+2022-08-23 01:40:29,647 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661190029405, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>只删了第一个，后面 99 个没删</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>默认构造函数会被 delete 掉。</p>'}]
+2022-08-23 01:40:29,647 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何让一段程序在main函数之前执行"
+2022-08-23 01:40:29,648 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:40:29,648 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661190029648, front=如何让一段程序在main函数之前执行
+2022-08-23 01:40:29,662 - notion_sync.NotionSyncPlugin - __init__.py:248 - INFO - Sync finished, processed=200, created=192, updated=8, deleted=0
+2022-08-23 01:59:31,853 - notion_sync.NotionSyncPlugin - __init__.py:276 - INFO - Sync started
+2022-08-23 01:59:31,854 - notion_sync.worker_c5601014-7eac-4a36-a83e-a18ea268ef29 - __init__.py:389 - INFO - Worker started
+2022-08-23 01:59:32,339 - notion_sync.NotionClient - notion_client.py:110 - INFO - Export task posted: page_id=c5601014-7eac-4a36-a83e-a18ea268ef29, recursive=False, task_id=ec1440ed-0974-4eda-9840-6fee03862011
+2022-08-23 01:59:32,845 - notion_sync.NotionClient - notion_client.py:143 - DEBUG - Got response for task ec1440ed-0974-4eda-9840-6fee03862011: {'results': [{'id': 'ec1440ed-0974-4eda-9840-6fee03862011', 'eventName': 'exportBlock', 'request': {'blockId': 'c5601014-7eac-4a36-a83e-a18ea268ef29', 'recursive': False, 'exportOptions': {'exportType': 'html', 'timeZone': 'Europe/Moscow', 'locale': 'en'}}, 'actor': {'table': 'notion_user', 'id': '76e95683-ab59-4dc2-955b-e40fe3a2322e'}, 'state': 'in_progress', 'rootRequest': {'eventName': 'exportBlock', 'requestId': 'ec1440ed-0974-4eda-9840-6fee03862011'}, 'headers': {'ip': '103.142.140.29'}}]}
+2022-08-23 01:59:32,845 - notion_sync.NotionClient - notion_client.py:155 - DEBUG - Task not ready, retrying in 1 (0 of 600)
+2022-08-23 01:59:34,388 - notion_sync.NotionClient - notion_client.py:143 - DEBUG - Got response for task ec1440ed-0974-4eda-9840-6fee03862011: {'results': [{'id': 'ec1440ed-0974-4eda-9840-6fee03862011', 'eventName': 'exportBlock', 'request': {'blockId': 'c5601014-7eac-4a36-a83e-a18ea268ef29', 'recursive': False, 'exportOptions': {'exportType': 'html', 'timeZone': 'Europe/Moscow', 'locale': 'en'}}, 'actor': {'table': 'notion_user', 'id': '76e95683-ab59-4dc2-955b-e40fe3a2322e'}, 'state': 'in_progress', 'rootRequest': {'eventName': 'exportBlock', 'requestId': 'ec1440ed-0974-4eda-9840-6fee03862011'}, 'headers': {'ip': '103.142.140.29'}}]}
+2022-08-23 01:59:34,388 - notion_sync.NotionClient - notion_client.py:155 - DEBUG - Task not ready, retrying in 1 (1 of 600)
+2022-08-23 01:59:35,923 - notion_sync.NotionClient - notion_client.py:143 - DEBUG - Got response for task ec1440ed-0974-4eda-9840-6fee03862011: {'results': [{'id': 'ec1440ed-0974-4eda-9840-6fee03862011', 'eventName': 'exportBlock', 'request': {'blockId': 'c5601014-7eac-4a36-a83e-a18ea268ef29', 'recursive': False, 'exportOptions': {'exportType': 'html', 'timeZone': 'Europe/Moscow', 'locale': 'en'}}, 'actor': {'table': 'notion_user', 'id': '76e95683-ab59-4dc2-955b-e40fe3a2322e'}, 'state': 'in_progress', 'rootRequest': {'eventName': 'exportBlock', 'requestId': 'ec1440ed-0974-4eda-9840-6fee03862011'}, 'headers': {'ip': '103.142.140.29'}, 'status': {'type': 'progress', 'pagesExported': 1}}]}
+2022-08-23 01:59:35,923 - notion_sync.NotionClient - notion_client.py:155 - DEBUG - Task not ready, retrying in 1 (2 of 600)
+2022-08-23 01:59:37,461 - notion_sync.NotionClient - notion_client.py:143 - DEBUG - Got response for task ec1440ed-0974-4eda-9840-6fee03862011: {'results': [{'id': 'ec1440ed-0974-4eda-9840-6fee03862011', 'eventName': 'exportBlock', 'request': {'blockId': 'c5601014-7eac-4a36-a83e-a18ea268ef29', 'recursive': False, 'exportOptions': {'exportType': 'html', 'timeZone': 'Europe/Moscow', 'locale': 'en'}}, 'actor': {'table': 'notion_user', 'id': '76e95683-ab59-4dc2-955b-e40fe3a2322e'}, 'state': 'success', 'rootRequest': {'eventName': 'exportBlock', 'requestId': 'ec1440ed-0974-4eda-9840-6fee03862011'}, 'headers': {'ip': '103.142.140.29'}, 'status': {'type': 'complete', 'pagesExported': 2, 'exportURL': 'https://s3.us-west-2.amazonaws.com/temporary.notion-static.com/Export-21fc7747-4cde-45ca-8b8b-be1a5a99bf8e.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220822%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220822T175936Z&X-Amz-Expires=604800&X-Amz-Signature=2d31a00fe76d8b0d4818d9eabb65c095824699805ef831f0ef2e47d12d29881b&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22Export-21fc7747-4cde-45ca-8b8b-be1a5a99bf8e.zip%22&x-id=GetObject'}}]}
+2022-08-23 01:59:37,461 - notion_sync.NotionClient - notion_client.py:180 - INFO - Export complete, downloading file on URL: https://s3.us-west-2.amazonaws.com/temporary.notion-static.com/Export-21fc7747-4cde-45ca-8b8b-be1a5a99bf8e.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220822%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220822T175936Z&X-Amz-Expires=604800&X-Amz-Signature=2d31a00fe76d8b0d4818d9eabb65c095824699805ef831f0ef2e47d12d29881b&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22Export-21fc7747-4cde-45ca-8b8b-be1a5a99bf8e.zip%22&x-id=GetObject
+2022-08-23 01:59:39,530 - notion_sync.worker_c5601014-7eac-4a36-a83e-a18ea268ef29 - __init__.py:401 - INFO - Exported file downloaded: path=/tmp/tmpdqx9nfhr/c5601014-7eac-4a36-a83e-a18ea268ef29.zip
+2022-08-23 01:59:39,590 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 初始化列表
+2022-08-23 01:59:39,594 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: <em>unordered_xxx 使用链地址哈希</em>
+2022-08-23 01:59:39,601 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 纯虚函数和普通的虚函数有什么区别
+2022-08-23 01:59:39,609 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 如何释放二维数组
+2022-08-23 01:59:39,609 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 对变量执行 delete [] 会怎么样
+2022-08-23 01:59:39,609 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 对数组执行 delete 会怎么样
+2022-08-23 01:59:39,610 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: shared_ptr 是线程安全的吗
+2022-08-23 01:59:39,617 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 如何实现读写锁
+2022-08-23 01:59:39,617 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 类模板和函数模板的使用
+2022-08-23 01:59:39,617 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::next std::advance std::prev std::distance
+2022-08-23 01:59:39,617 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 模板的原理，和宏的区别
+2022-08-23 01:59:39,618 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 模板偏特化
+2022-08-23 01:59:39,618 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 模板元编程
+2022-08-23 01:59:39,618 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: STL 六大模块
+2022-08-23 01:59:39,618 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 常用 STL 的基本操作、原理、复杂度
+vector, list, queue, deque, map, set, unordered_map, iterator, sort, find, lambda
+2022-08-23 01:59:39,621 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: map/unordered_map, set/unordered_set 对比和原理
+2022-08-23 01:59:39,622 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 常用的输入输出方式
+2022-08-23 01:59:39,622 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 如何调试 C++ 程序
+2022-08-23 01:59:39,622 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 源文件、头文件的作用，应该包含哪些内容
+2022-08-23 01:59:39,623 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: O1~O3 优化的区别
+2022-08-23 01:59:39,631 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 并发编程
+2022-08-23 01:59:39,631 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 网络编程
+2022-08-23 01:59:39,631 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 锁
+2022-08-23 01:59:39,631 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: RAII
+2022-08-23 01:59:39,631 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 三五法则
+2022-08-23 01:59:39,632 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: JSON 格式化原理
+2022-08-23 01:59:39,632 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 编译链接过程
+2022-08-23 01:59:39,632 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 如何调试多线程程序
+2022-08-23 01:59:39,632 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 返回值为 const int& 和 const int* 的区别
+2022-08-23 01:59:39,632 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 函数后面 const 是什么意思
+2022-08-23 01:59:39,634 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 如何实现可变参数
+2022-08-23 01:59:39,634 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 移动和右值的区别
+2022-08-23 01:59:39,635 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::unique_ptr::release()
+2022-08-23 01:59:39,636 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::enable_shared_from_this
+2022-08-23 01:59:39,636 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: dynamic_cast
+2022-08-23 01:59:39,636 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::dynamic_pointer_cast
+2022-08-23 01:59:39,636 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::shared_ptr<void>
+2022-08-23 01:59:39,636 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: std::any
+2022-08-23 01:59:39,637 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 什么是位置无关代码
+2022-08-23 01:59:39,641 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: ptrace 及其实现原理
+2022-08-23 01:59:39,642 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: Raft, Paxos, 分布式锁
+2022-08-23 01:59:39,642 - notion_sync.NoteDataExtractor - parser.py:349 - WARNING - Empty backside but no cloze: 搞懂虚函数
+2022-08-23 01:59:39,643 - notion_sync.worker_c5601014-7eac-4a36-a83e-a18ea268ef29 - __init__.py:415 - INFO - Notes extracted: count=200
+2022-08-23 01:59:39,643 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么获取随机数"
+2022-08-23 01:59:39,646 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,647 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179647, front=怎么获取随机数
+2022-08-23 01:59:39,647 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"成员变量可以是引用吗？"
+2022-08-23 01:59:39,650 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,650 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179650, front=成员变量可以是引用吗？
+2022-08-23 01:59:39,650 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"int a = {0} 能清零吗？int a = {} 呢？"
+2022-08-23 01:59:39,652 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,653 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179653, front=int a = {0} 能清零吗？int a = {} 呢？
+2022-08-23 01:59:39,653 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\"><code>s.erase(s.lower_bound(value));</code></p></details></li></ul></details></li></ul><ul class=\"toggle\"><li><em>unordered_xxx 使用链地址哈希</em>"
+2022-08-23 01:59:39,655 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,655 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179655, front=<p class=""><code>s.erase(s.lower_bound(value));</code></p></details></li></ul></details></li></ul><ul class="toggle"><li><em>unordered_xxx 使用链地址哈希</em>
+2022-08-23 01:59:39,656 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\">连续内存</p></details></li></ul><ul class=\"toggle\"><li>交换两个值"
+2022-08-23 01:59:39,658 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,658 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179658, front=<p class="">连续内存</p></details></li></ul><ul class="toggle"><li>交换两个值
+2022-08-23 01:59:39,658 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"原理"
+2022-08-23 01:59:39,660 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,661 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179661, front=原理
+2022-08-23 01:59:39,661 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"交换两个值"
+2022-08-23 01:59:39,663 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,664 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179664, front=交换两个值
+2022-08-23 01:59:39,664 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code code-wrap\"><code>class Foo
+{
+
+};
+
+class Compare
+{
+public:
+    bool operator() (Foo, Foo)
+    {
+        return true;
+    }
+};
+
+int main()
+{
+    std::priority_queue<Foo, std::vector<Foo>, Compare> pq;
+    return 0;
+}
+
+
+struct Status {
+        int val;
+        ListNode *ptr;
+        bool operator < (const Status &rhs) const {
+            return val > rhs.val;
+        }
+    };
+
+    priority_queue <Status> q;</code></pre></details></li></ul><ul class=\"toggle\"><li>能否用 while (q.top()) 作为条件？"
+2022-08-23 01:59:39,666 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,667 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179666, front=<pre class="code code-wrap"><code>class Foo
+{
+
+};
+
+class Compare
+{
+public:
+    bool operator() (Foo, Foo)
+    {
+        return true;
+    }
+};
+
+int main()
+{
+    std::priority_queue<Foo, std::vector<Foo>, Compare> pq;
+    return 0;
+}
+
+
+struct Status {
+        int val;
+        ListNode *ptr;
+        bool operator < (const Status &rhs) const {
+            return val > rhs.val;
+        }
+    };
+
+    priority_queue <Status> q;</code></pre></details></li></ul><ul class="toggle"><li>能否用 while (q.top()) 作为条件？
+2022-08-23 01:59:39,667 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"原理"
+2022-08-23 01:59:39,669 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661191179661]
+2022-08-23 01:59:39,669 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661191179661, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>连续内存</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>堆</p>'}]
+2022-08-23 01:59:39,669 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"priority queue emplace vs push"
+2022-08-23 01:59:39,671 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,672 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179672, front=priority queue emplace vs push
+2022-08-23 01:59:39,672 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"默认是大顶堆还是小顶堆？"
+2022-08-23 01:59:39,674 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,675 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179674, front=默认是大顶堆还是小顶堆？
+2022-08-23 01:59:39,675 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"头文件"
+2022-08-23 01:59:39,677 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,677 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179677, front=头文件
+2022-08-23 01:59:39,677 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"自定义比较器"
+2022-08-23 01:59:39,679 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,680 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179680, front=自定义比较器
+2022-08-23 01:59:39,680 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"能否用 while (q.top()) 作为条件？"
+2022-08-23 01:59:39,682 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,683 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179682, front=能否用 while (q.top()) 作为条件？
+2022-08-23 01:59:39,683 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"初始化列表"
+2022-08-23 01:59:39,685 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,685 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179685, front=初始化列表
+2022-08-23 01:59:39,685 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"栈"
+2022-08-23 01:59:39,687 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,688 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179688, front=栈
+2022-08-23 01:59:39,688 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\">deque</p><ul class=\"toggle\"><li>原理"
+2022-08-23 01:59:39,690 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,690 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179690, front=<p class="">deque</p><ul class="toggle"><li>原理
+2022-08-23 01:59:39,691 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"原理"
+2022-08-23 01:59:39,692 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661191179661]
+2022-08-23 01:59:39,693 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661191179661, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>堆</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>分段连续空间. 各段用 map 管理. 每段大小固定</p><p>删除头尾效率高 时间复杂度为O(1), 删除中间效率低</p>'}]
+2022-08-23 01:59:39,693 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"队列"
+2022-08-23 01:59:39,694 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,695 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179694, front=队列
+2022-08-23 01:59:39,695 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\">rbegin(), begin()</p><p class=\"\">或者用下面的方法反向构建集合，然后用 begin()</p><pre class=\"code\"><code>multiset<int, std::greater<int>> heights;</code></pre></details></li></ul><ul class=\"toggle\"><li>multiset 只删除一个"
+2022-08-23 01:59:39,696 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,697 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179696, front=<p class="">rbegin(), begin()</p><p class="">或者用下面的方法反向构建集合，然后用 begin()</p><pre class="code"><code>multiset<int, std::greater<int>> heights;</code></pre></details></li></ul><ul class="toggle"><li>multiset 只删除一个
+2022-08-23 01:59:39,697 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"set 的默认顺序"
+2022-08-23 01:59:39,698 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,699 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179699, front=set 的默认顺序
+2022-08-23 01:59:39,699 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"原理"
+2022-08-23 01:59:39,701 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661191179661]
+2022-08-23 01:59:39,701 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661191179661, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>分段连续空间. 各段用 map 管理. 每段大小固定</p><p>删除头尾效率高 时间复杂度为O(1), 删除中间效率低</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>红黑树</p>'}]
+2022-08-23 01:59:39,701 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何获取最大最小值"
+2022-08-23 01:59:39,703 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,703 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179703, front=如何获取最大最小值
+2022-08-23 01:59:39,703 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"multiset 只删除一个"
+2022-08-23 01:59:39,705 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,705 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179705, front=multiset 只删除一个
+2022-08-23 01:59:39,705 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<em>unordered_xxx 使用链地址哈希</em>"
+2022-08-23 01:59:39,707 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,707 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179707, front=<em>unordered_xxx 使用链地址哈希</em>
+2022-08-23 01:59:39,707 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"Class 和 Struct 区别"
+2022-08-23 01:59:39,708 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,708 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179708, front=Class 和 Struct 区别
+2022-08-23 01:59:39,708 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"emplace 和 emplace_back 区别"
+2022-08-23 01:59:39,710 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,710 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179710, front=emplace 和 emplace_back 区别
+2022-08-23 01:59:39,710 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"class，struct，union 的内存布局和对齐规则"
+2022-08-23 01:59:39,711 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,711 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179711, front=class，struct，union 的内存布局和对齐规则
+2022-08-23 01:59:39,711 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何阻止一个类在栈上创建？"
+2022-08-23 01:59:39,713 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,713 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179713, front=如何阻止一个类在栈上创建？
+2022-08-23 01:59:39,713 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何让一段程序在main函数之前执行？"
+2022-08-23 01:59:39,714 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,714 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179714, front=如何让一段程序在main函数之前执行？
+2022-08-23 01:59:39,714 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是多态？"
+2022-08-23 01:59:39,715 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,716 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179716, front=什么是多态？
+2022-08-23 01:59:39,716 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么叫做钻石问题（也可以叫菱形继承问题），怎么避免它？"
+2022-08-23 01:59:39,717 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,717 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179717, front=什么叫做钻石问题（也可以叫菱形继承问题），怎么避免它？
+2022-08-23 01:59:39,717 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"虚继承和普通继承的区别"
+2022-08-23 01:59:39,718 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,719 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179718, front=虚继承和普通继承的区别
+2022-08-23 01:59:39,719 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"虚函数表的原理（或者问多态的原理）"
+2022-08-23 01:59:39,720 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,720 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179720, front=虚函数表的原理（或者问多态的原理）
+2022-08-23 01:59:39,720 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"C 和 C++ 程序的地址空间有何不同？"
+2022-08-23 01:59:39,721 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,721 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179721, front=C 和 C++ 程序的地址空间有何不同？
+2022-08-23 01:59:39,721 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"虚函数表和虚函数位于内存的什么区？"
+2022-08-23 01:59:39,722 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,723 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179723, front=虚函数表和虚函数位于内存的什么区？
+2022-08-23 01:59:39,723 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"父子继承时候，它构造函数和析构函数的顺序？析构时候，如何让父子类里所有的析构都调用一遍？"
+2022-08-23 01:59:39,724 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,724 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179724, front=父子继承时候，它构造函数和析构函数的顺序？析构时候，如何让父子类里所有的析构都调用一遍？
+2022-08-23 01:59:39,724 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如果忘记把父类的析构函数限定 virtual 会怎么样？"
+2022-08-23 01:59:39,725 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,726 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179725, front=如果忘记把父类的析构函数限定 virtual 会怎么样？
+2022-08-23 01:59:39,726 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"成员函数可以 delete this 吗？"
+2022-08-23 01:59:39,727 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,727 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179727, front=成员函数可以 delete this 吗？
+2022-08-23 01:59:39,727 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\">会报错。不能使用不完整的类型。</p></details></li></ul><ul class=\"toggle\"><li>怎么改？"
+2022-08-23 01:59:39,728 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,728 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179728, front=<p class="">会报错。不能使用不完整的类型。</p></details></li></ul><ul class="toggle"><li>怎么改？
+2022-08-23 01:59:39,728 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:59:39,730 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,730 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179730, front=答案
+2022-08-23 01:59:39,730 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么改？"
+2022-08-23 01:59:39,731 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,731 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179731, front=怎么改？
+2022-08-23 01:59:39,731 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<ul class=\"bulleted-list\"><li style=\"list-style-type:disc\">如果子类没有 override 父类的虚函数，那么：<ol class=\"numbered-list\" start=\"1\" type=\"1\"><li>虚函数按照声明顺序存放于 vtable</li></ol><ol class=\"numbered-list\" start=\"2\" type=\"1\"><li>父类的虚函数位于子类虚函数的前面</li></ol></li></ul><ul class=\"bulleted-list\"><li style=\"list-style-type:disc\">如果子类 override 父类虚函数，那么：<ol class=\"numbered-list\" start=\"1\" type=\"1\"><li>vtable 中，子类覆盖的虚函数地址，放在基类响应函数原来的位置（关键词：同位置，地址覆盖）</li></ol><ol class=\"numbered-list\" start=\"2\" type=\"1\"><li>子类没有覆盖的虚函数，地址依然是基类的</li></ol></li></ul></details></li></ul><ul class=\"toggle\"><li>多继承"
+2022-08-23 01:59:39,732 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,733 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179733, front=<ul class="bulleted-list"><li style="list-style-type:disc">如果子类没有 override 父类的虚函数，那么：<ol class="numbered-list" start="1" type="1"><li>虚函数按照声明顺序存放于 vtable</li></ol><ol class="numbered-list" start="2" type="1"><li>父类的虚函数位于子类虚函数的前面</li></ol></li></ul><ul class="bulleted-list"><li style="list-style-type:disc">如果子类 override 父类虚函数，那么：<ol class="numbered-list" start="1" type="1"><li>vtable 中，子类覆盖的虚函数地址，放在基类响应函数原来的位置（关键词：同位置，地址覆盖）</li></ol><ol class="numbered-list" start="2" type="1"><li>子类没有覆盖的虚函数，地址依然是基类的</li></ol></li></ul></details></li></ul><ul class="toggle"><li>多继承
+2022-08-23 01:59:39,733 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何探究的？"
+2022-08-23 01:59:39,734 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,734 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179734, front=如何探究的？
+2022-08-23 01:59:39,734 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"单继承"
+2022-08-23 01:59:39,735 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,736 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179735, front=单继承
+2022-08-23 01:59:39,736 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"多继承"
+2022-08-23 01:59:39,737 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,737 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179737, front=多继承
+2022-08-23 01:59:39,737 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"C++ 有哪些 cast（转换方式）？有何区别？"
+2022-08-23 01:59:39,738 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,738 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179738, front=C++ 有哪些 cast（转换方式）？有何区别？
+2022-08-23 01:59:39,738 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是抽象类？和其他语言的接口有何区别？"
+2022-08-23 01:59:39,740 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,740 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179740, front=什么是抽象类？和其他语言的接口有何区别？
+2022-08-23 01:59:39,740 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是内存屏障和编译器屏障？inline 函数能代替编译屏障吗？"
+2022-08-23 01:59:39,741 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,741 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179741, front=什么是内存屏障和编译器屏障？inline 函数能代替编译屏障吗？
+2022-08-23 01:59:39,742 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"虚析构函数是什么？"
+2022-08-23 01:59:39,743 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,743 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179743, front=虚析构函数是什么？
+2022-08-23 01:59:39,743 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"纯虚函数和普通的虚函数有什么区别"
+2022-08-23 01:59:39,744 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,744 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179744, front=纯虚函数和普通的虚函数有什么区别
+2022-08-23 01:59:39,745 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"静态联编和动态联编是什么？"
+2022-08-23 01:59:39,746 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,746 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179746, front=静态联编和动态联编是什么？
+2022-08-23 01:59:39,746 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"C++ 继承时如何做访问控制？<strong>（注意对比类和结构体）</strong>"
+2022-08-23 01:59:39,747 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,747 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179747, front=C++ 继承时如何做访问控制？<strong>（注意对比类和结构体）</strong>
+2022-08-23 01:59:39,747 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"友元类、友元函数是什么？"
+2022-08-23 01:59:39,748 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,749 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179749, front=友元类、友元函数是什么？
+2022-08-23 01:59:39,749 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是内部类（嵌套类）？"
+2022-08-23 01:59:39,750 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,750 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179750, front=什么是内部类（嵌套类）？
+2022-08-23 01:59:39,750 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"函数重写和重载的区别"
+2022-08-23 01:59:39,751 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,752 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179751, front=函数重写和重载的区别
+2022-08-23 01:59:39,752 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"协变和逆变"
+2022-08-23 01:59:39,753 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,753 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179753, front=协变和逆变
+2022-08-23 01:59:39,753 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"运算符重载"
+2022-08-23 01:59:39,754 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,754 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179754, front=运算符重载
+2022-08-23 01:59:39,754 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"拷贝构造函数，赋值操作符的原理"
+2022-08-23 01:59:39,755 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,756 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179756, front=拷贝构造函数，赋值操作符的原理
+2022-08-23 01:59:39,756 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"const 的作用"
+2022-08-23 01:59:39,757 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,757 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179757, front=const 的作用
+2022-08-23 01:59:39,757 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"const 在不同位置的含义 <code>const char * a</code>,<code> const char const * a</code>, <code>char * const a</code>, <code>char const * a</code>"
+2022-08-23 01:59:39,758 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,759 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179758, front=const 在不同位置的含义 <code>const char * a</code>,<code> const char const * a</code>, <code>char * const a</code>, <code>char const * a</code>
+2022-08-23 01:59:39,759 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"constexpr、const 的区别？"
+2022-08-23 01:59:39,760 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,760 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179760, front=constexpr、const 的区别？
+2022-08-23 01:59:39,760 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"noexcept 的作用？"
+2022-08-23 01:59:39,761 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,762 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179761, front=noexcept 的作用？
+2022-08-23 01:59:39,762 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"string + 发生了什么"
+2022-08-23 01:59:39,763 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,763 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179763, front=string + 发生了什么
+2022-08-23 01:59:39,763 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<strong>使用 {} 和 () 调用构造函数的区别</strong>"
+2022-08-23 01:59:39,764 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,764 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179764, front=<strong>使用 {} 和 () 调用构造函数的区别</strong>
+2022-08-23 01:59:39,765 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"const、static 的原理"
+2022-08-23 01:59:39,766 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,766 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179766, front=const、static 的原理
+2022-08-23 01:59:39,766 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"内联函数"
+2022-08-23 01:59:39,767 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,767 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179767, front=内联函数
+2022-08-23 01:59:39,767 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"仿函数"
+2022-08-23 01:59:39,768 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,769 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179769, front=仿函数
+2022-08-23 01:59:39,769 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"typeid 和 typeof 的区别"
+2022-08-23 01:59:39,770 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,770 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179770, front=typeid 和 typeof 的区别
+2022-08-23 01:59:39,770 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"指针、引用的区别"
+2022-08-23 01:59:39,771 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,772 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179771, front=指针、引用的区别
+2022-08-23 01:59:39,772 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"数组和指针的区别，sizeof 的作用和原理"
+2022-08-23 01:59:39,773 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,773 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179773, front=数组和指针的区别，sizeof 的作用和原理
+2022-08-23 01:59:39,773 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"typedef 和 define 哪种更好？"
+2022-08-23 01:59:39,774 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,775 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179774, front=typedef 和 define 哪种更好？
+2022-08-23 01:59:39,775 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"malloc/calloc/realloc的区别"
+2022-08-23 01:59:39,776 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,776 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179776, front=malloc/calloc/realloc的区别
+2022-08-23 01:59:39,776 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"malloc 和 free 的原理"
+2022-08-23 01:59:39,777 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,778 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179777, front=malloc 和 free 的原理
+2022-08-23 01:59:39,778 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"new、new[]，delete、delete[] 原理"
+2022-08-23 01:59:39,779 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,779 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179779, front=new、new[]，delete、delete[] 原理
+2022-08-23 01:59:39,779 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"new / delete 重载"
+2022-08-23 01:59:39,780 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,781 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179780, front=new / delete 重载
+2022-08-23 01:59:39,781 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何释放二维向量"
+2022-08-23 01:59:39,782 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,782 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179782, front=如何释放二维向量
+2022-08-23 01:59:39,782 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何释放二维数组"
+2022-08-23 01:59:39,783 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,783 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179783, front=如何释放二维数组
+2022-08-23 01:59:39,783 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"对变量执行 delete [] 会怎么样"
+2022-08-23 01:59:39,784 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,785 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179785, front=对变量执行 delete [] 会怎么样
+2022-08-23 01:59:39,785 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"对数组执行 delete 会怎么样"
+2022-08-23 01:59:39,786 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,786 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179786, front=对数组执行 delete 会怎么样
+2022-08-23 01:59:39,786 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"NULL 和 nullptr 的区别"
+2022-08-23 01:59:39,787 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,788 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179787, front=NULL 和 nullptr 的区别
+2022-08-23 01:59:39,788 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是智能指针？<code>std::shared_ptr</code>/<code>std::unique_ptr</code>/<code>std::weak_ptr</code> 等用法和实现思路"
+2022-08-23 01:59:39,789 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,789 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179789, front=什么是智能指针？<code>std::shared_ptr</code>/<code>std::unique_ptr</code>/<code>std::weak_ptr</code> 等用法和实现思路
+2022-08-23 01:59:39,789 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<strong><strong>智能指针如何选择</strong></strong>"
+2022-08-23 01:59:39,790 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,790 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179790, front=<strong><strong>智能指针如何选择</strong></strong>
+2022-08-23 01:59:39,790 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"shared_ptr 是线程安全的吗"
+2022-08-23 01:59:39,792 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,792 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179792, front=shared_ptr 是线程安全的吗
+2022-08-23 01:59:39,792 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是 double free 问题？"
+2022-08-23 01:59:39,793 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,793 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179793, front=什么是 double free 问题？
+2022-08-23 01:59:39,793 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"栈上对象是如何析构的？"
+2022-08-23 01:59:39,795 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,795 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179795, front=栈上对象是如何析构的？
+2022-08-23 01:59:39,795 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"栈上创建的对象万一是动态的怎么办？"
+2022-08-23 01:59:39,796 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,796 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179796, front=栈上创建的对象万一是动态的怎么办？
+2022-08-23 01:59:39,796 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"返回一个栈上创建的对象会怎么样？"
+2022-08-23 01:59:39,797 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,798 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179798, front=返回一个栈上创建的对象会怎么样？
+2022-08-23 01:59:39,798 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"拷贝赋值和拷贝构造的区别？"
+2022-08-23 01:59:39,799 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,799 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179799, front=拷贝赋值和拷贝构造的区别？
+2022-08-23 01:59:39,799 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"左值和右值的概念，纯右值、将亡值，移动语义和完美转发，左值引用和右"
+2022-08-23 01:59:39,800 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,801 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179800, front=左值和右值的概念，纯右值、将亡值，移动语义和完美转发，左值引用和右
+2022-08-23 01:59:39,801 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么时候使用右值"
+2022-08-23 01:59:39,802 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,802 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179802, front=什么时候使用右值
+2022-08-23 01:59:39,802 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是引用折叠"
+2022-08-23 01:59:39,803 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,804 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179803, front=什么是引用折叠
+2022-08-23 01:59:39,804 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么时候需要完美转发"
+2022-08-23 01:59:39,805 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,805 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179805, front=什么时候需要完美转发
+2022-08-23 01:59:39,805 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是 test_and_set"
+2022-08-23 01:59:39,806 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,806 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179806, front=什么是 test_and_set
+2022-08-23 01:59:39,807 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"compare_exchange_strong 和 compare_exchange_weak 的区别"
+2022-08-23 01:59:39,808 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,808 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179808, front=compare_exchange_strong 和 compare_exchange_weak 的区别
+2022-08-23 01:59:39,808 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何 sleep"
+2022-08-23 01:59:39,809 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,809 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179809, front=如何 sleep
+2022-08-23 01:59:39,809 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"C++11 的 6 种 memory order 内存序"
+2022-08-23 01:59:39,811 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,811 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179811, front=C++11 的 6 种 memory order 内存序
+2022-08-23 01:59:39,811 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"lock_guard, unique_lock, shared_lock, adopt_lock"
+2022-08-23 01:59:39,812 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,812 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179812, front=lock_guard, unique_lock, shared_lock, adopt_lock
+2022-08-23 01:59:39,812 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"当你执行 <code>cond.wait(lk);</code> 时，发生了什么？"
+2022-08-23 01:59:39,814 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,814 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179814, front=当你执行 <code>cond.wait(lk);</code> 时，发生了什么？
+2022-08-23 01:59:39,814 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何实现互斥锁"
+2022-08-23 01:59:39,815 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,815 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179815, front=如何实现互斥锁
+2022-08-23 01:59:39,815 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何实现读写锁"
+2022-08-23 01:59:39,816 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,817 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179817, front=如何实现读写锁
+2022-08-23 01:59:39,817 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"类模板和函数模板的使用"
+2022-08-23 01:59:39,818 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,818 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179818, front=类模板和函数模板的使用
+2022-08-23 01:59:39,818 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"模板默认参数"
+2022-08-23 01:59:39,819 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,820 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179819, front=模板默认参数
+2022-08-23 01:59:39,820 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"必须是 class 或 classname 吗？"
+2022-08-23 01:59:39,821 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,821 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179821, front=必须是 class 或 classname 吗？
+2022-08-23 01:59:39,821 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"前自增和后自增如何重载"
+2022-08-23 01:59:39,822 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,822 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179822, front=前自增和后自增如何重载
+2022-08-23 01:59:39,822 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"假如 a 是 T 的左值引用，T 是 int&& 类型的，那么 a 实际上是什么"
+2022-08-23 01:59:39,824 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,824 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179824, front=假如 a 是 T 的左值引用，T 是 int&& 类型的，那么 a 实际上是什么
+2022-08-23 01:59:39,824 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::next std::advance std::prev std::distance"
+2022-08-23 01:59:39,825 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,825 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179825, front=std::next std::advance std::prev std::distance
+2022-08-23 01:59:39,825 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"模板的原理，和宏的区别"
+2022-08-23 01:59:39,826 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,827 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179827, front=模板的原理，和宏的区别
+2022-08-23 01:59:39,827 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"模板偏特化"
+2022-08-23 01:59:39,828 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,828 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179828, front=模板偏特化
+2022-08-23 01:59:39,828 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"模板元编程"
+2022-08-23 01:59:39,830 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,830 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179830, front=模板元编程
+2022-08-23 01:59:39,830 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"STL 六大模块"
+2022-08-23 01:59:39,831 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,831 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179831, front=STL 六大模块
+2022-08-23 01:59:39,831 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"常用 STL 的基本操作、原理、复杂度
+vector, list, queue, deque, map, set, unordered_map, iterator, sort, find, lambda"
+2022-08-23 01:59:39,832 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,833 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179833, front=常用 STL 的基本操作、原理、复杂度
+vector, list, queue, deque, map, set, unordered_map, iterator, sort, find, lambda
+2022-08-23 01:59:39,833 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"string 和 wstring"
+2022-08-23 01:59:39,834 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,834 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179834, front=string 和 wstring
+2022-08-23 01:59:39,834 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"push_back 和 emplace_back 的区别"
+2022-08-23 01:59:39,835 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,836 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179835, front=push_back 和 emplace_back 的区别
+2022-08-23 01:59:39,836 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"Lambda 是什么，怎么用？"
+2022-08-23 01:59:39,837 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,837 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179837, front=Lambda 是什么，怎么用？
+2022-08-23 01:59:39,837 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"Lambda 编译器是如何实现的？"
+2022-08-23 01:59:39,838 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,839 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179838, front=Lambda 编译器是如何实现的？
+2022-08-23 01:59:39,839 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"能否获取 lamdba 的函数指针"
+2022-08-23 01:59:39,840 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,840 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179840, front=能否获取 lamdba 的函数指针
+2022-08-23 01:59:39,840 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"lambda 能不能捕获右值"
+2022-08-23 01:59:39,841 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,841 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179841, front=lambda 能不能捕获右值
+2022-08-23 01:59:39,841 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"unique_ptr 的实现原理"
+2022-08-23 01:59:39,843 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,843 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179843, front=unique_ptr 的实现原理
+2022-08-23 01:59:39,843 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"map/unordered_map, set/unordered_set 对比和原理"
+2022-08-23 01:59:39,844 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,844 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179844, front=map/unordered_map, set/unordered_set 对比和原理
+2022-08-23 01:59:39,844 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::endl 和 \\n 的区别"
+2022-08-23 01:59:39,846 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,846 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179846, front=std::endl 和 \n 的区别
+2022-08-23 01:59:39,846 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"流式文件 IO"
+2022-08-23 01:59:39,847 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,847 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179847, front=流式文件 IO
+2022-08-23 01:59:39,848 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"常用的输入输出方式"
+2022-08-23 01:59:39,849 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,849 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179849, front=常用的输入输出方式
+2022-08-23 01:59:39,849 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何调试 C++ 程序"
+2022-08-23 01:59:39,850 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,850 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179850, front=如何调试 C++ 程序
+2022-08-23 01:59:39,850 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"源文件、头文件的作用，应该包含哪些内容"
+2022-08-23 01:59:39,852 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,852 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179852, front=源文件、头文件的作用，应该包含哪些内容
+2022-08-23 01:59:39,852 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"异常处理和原理"
+2022-08-23 01:59:39,853 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,853 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179853, front=异常处理和原理
+2022-08-23 01:59:39,853 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<code>A.c</code> 和<code>B.c</code>两个<code>c</code>文件中使用了两个相同名字的<code>static</code>变量,编译的时候会不会有问题?这两个<code>static</code>变量会保存到哪里（栈还是堆或者其他的）?"
+2022-08-23 01:59:39,855 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,855 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179855, front=<code>A.c</code> 和<code>B.c</code>两个<code>c</code>文件中使用了两个相同名字的<code>static</code>变量,编译的时候会不会有问题?这两个<code>static</code>变量会保存到哪里（栈还是堆或者其他的）?
+2022-08-23 01:59:39,855 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"extern 和 extern C 的作用"
+2022-08-23 01:59:39,856 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,856 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179856, front=extern 和 extern C 的作用
+2022-08-23 01:59:39,856 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"C++ 中有4 种存储周期：automatic static dynamic thread"
+2022-08-23 01:59:39,858 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,858 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179858, front=C++ 中有4 种存储周期：automatic static dynamic thread
+2022-08-23 01:59:39,858 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"O1~O3 优化的区别"
+2022-08-23 01:59:39,859 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,859 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179859, front=O1~O3 优化的区别
+2022-08-23 01:59:39,859 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code\"><code>cache_t cache(size, std::vector<int>(size, 0));</code></pre><p class=\"\">
+</p></details></li></ul><ul class=\"toggle\"><li>如何调试多线程程序？"
+2022-08-23 01:59:39,861 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,861 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179861, front=<pre class="code"><code>cache_t cache(size, std::vector<int>(size, 0));</code></pre><p class="">
+</p></details></li></ul><ul class="toggle"><li>如何调试多线程程序？
+2022-08-23 01:59:39,861 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"并发编程"
+2022-08-23 01:59:39,862 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,863 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179862, front=并发编程
+2022-08-23 01:59:39,863 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"网络编程"
+2022-08-23 01:59:39,864 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,864 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179864, front=网络编程
+2022-08-23 01:59:39,864 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"锁"
+2022-08-23 01:59:39,865 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,866 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179865, front=锁
+2022-08-23 01:59:39,866 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"RAII"
+2022-08-23 01:59:39,867 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,867 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179867, front=RAII
+2022-08-23 01:59:39,867 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"三五法则"
+2022-08-23 01:59:39,868 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,869 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179868, front=三五法则
+2022-08-23 01:59:39,869 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"JSON 格式化原理"
+2022-08-23 01:59:39,870 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,870 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179870, front=JSON 格式化原理
+2022-08-23 01:59:39,870 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"编译链接过程"
+2022-08-23 01:59:39,871 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,872 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179871, front=编译链接过程
+2022-08-23 01:59:39,872 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何调试多线程程序"
+2022-08-23 01:59:39,873 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,873 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179873, front=如何调试多线程程序
+2022-08-23 01:59:39,873 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"返回值为 const int& 和 const int* 的区别"
+2022-08-23 01:59:39,874 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,875 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179874, front=返回值为 const int& 和 const int* 的区别
+2022-08-23 01:59:39,875 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"函数后面 const 是什么意思"
+2022-08-23 01:59:39,876 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,876 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179876, front=函数后面 const 是什么意思
+2022-08-23 01:59:39,876 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<strong>GDB 断点的实现原理</strong>"
+2022-08-23 01:59:39,877 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,878 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179877, front=<strong>GDB 断点的实现原理</strong>
+2022-08-23 01:59:39,878 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"GDP 如何修改被调试程序的指令？"
+2022-08-23 01:59:39,879 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,879 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179879, front=GDP 如何修改被调试程序的指令？
+2022-08-23 01:59:39,879 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"cls_name c1(c2) 和 cls_name c1{c2} 的区别"
+2022-08-23 01:59:39,880 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,881 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179880, front=cls_name c1(c2) 和 cls_name c1{c2} 的区别
+2022-08-23 01:59:39,881 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"& 和 && 的区别"
+2022-08-23 01:59:39,882 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,882 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179882, front=& 和 && 的区别
+2022-08-23 01:59:39,882 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如果定义一个空类，会生成哪些函数？各有什么作用？"
+2022-08-23 01:59:39,883 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,883 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179883, front=如果定义一个空类，会生成哪些函数？各有什么作用？
+2022-08-23 01:59:39,884 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<p class=\"\">下面的代码问题在哪儿？</p><pre class=\"code code-wrap\"><code>struct Pig {
+    std::string m_name;
+    int m_weight;
+
+    Pig(int weight)
+        : m_name(\"一只重达\" + std::to_string(weight) + \"kg的猪\")
+        , m_weight(weight)
+    {}
+};</code></pre><ul class=\"toggle\"><li>答案"
+2022-08-23 01:59:39,885 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,885 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179885, front=<p class="">下面的代码问题在哪儿？</p><pre class="code code-wrap"><code>struct Pig {
+    std::string m_name;
+    int m_weight;
+
+    Pig(int weight)
+        : m_name("一只重达" + std::to_string(weight) + "kg的猪")
+        , m_weight(weight)
+    {}
+};</code></pre><ul class="toggle"><li>答案
+2022-08-23 01:59:39,885 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:59:39,886 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661191179730]
+2022-08-23 01:59:39,887 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661191179730, data=[{'tags_old': [], 'tags_new': ['include <iostream>', 'include <string>\n\nstruct Pig {\n    std::string m_name;\n    int m_weight;\n\n    explicit Pig(int weight)\n        : m_name("一只重达" + std::to_string(weight) + "kg的猪")\n        , m_weight(weight)\n    {}\n};\n\nint main() {\n    // Pig pig = 80;  // 编译错误\n    Pig pig(80);      // 编译通过\n\n    std::cout << "name: " << pig.m_name << std::endl;\n    std::cout << "weight: " << pig.m_weight << std::endl;\n\n    return 0;\n}']}, {"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>会报错。不能使用不完整的类型。</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>由于 <code>Pig</code> 的构造函数只有一个参数，这会导致使用 <code>Pig pig = 1;</code> 也能编译通过。</p><p>通过 <code>explicit</code> 修饰来阻止这种用法：</p><pre class="code code-wrap"><code></code></pre>'}]
+2022-08-23 01:59:39,887 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何避免用户使用 <code>=</code> 初始化？"
+2022-08-23 01:59:39,888 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,888 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179888, front=如何避免用户使用 <code>=</code> 初始化？
+2022-08-23 01:59:39,888 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何实现可变参数"
+2022-08-23 01:59:39,889 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,890 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179890, front=如何实现可变参数
+2022-08-23 01:59:39,890 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<code>std::swap</code>"
+2022-08-23 01:59:39,891 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,891 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179891, front=<code>std::swap</code>
+2022-08-23 01:59:39,891 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"移动和右值的区别"
+2022-08-23 01:59:39,892 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,893 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179893, front=移动和右值的区别
+2022-08-23 01:59:39,893 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"memmove、memcpy和memccpy的区别"
+2022-08-23 01:59:39,894 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,894 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179894, front=memmove、memcpy和memccpy的区别
+2022-08-23 01:59:39,894 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"new C 和 new C()"
+2022-08-23 01:59:39,896 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,896 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179896, front=new C 和 new C()
+2022-08-23 01:59:39,896 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"P-IMPL 模式"
+2022-08-23 01:59:39,897 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,897 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179897, front=P-IMPL 模式
+2022-08-23 01:59:39,897 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"拷贝如何作为虚函数"
+2022-08-23 01:59:39,899 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,899 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179899, front=拷贝如何作为虚函数
+2022-08-23 01:59:39,899 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::unique_ptr::release()"
+2022-08-23 01:59:39,900 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,900 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179900, front=std::unique_ptr::release()
+2022-08-23 01:59:39,900 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::enable_shared_from_this"
+2022-08-23 01:59:39,902 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,902 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179902, front=std::enable_shared_from_this
+2022-08-23 01:59:39,902 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"dynamic_cast"
+2022-08-23 01:59:39,903 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,903 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179903, front=dynamic_cast
+2022-08-23 01:59:39,903 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::dynamic_pointer_cast"
+2022-08-23 01:59:39,905 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,905 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179905, front=std::dynamic_pointer_cast
+2022-08-23 01:59:39,905 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::shared_ptr<void>"
+2022-08-23 01:59:39,906 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,906 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179906, front=std::shared_ptr<void>
+2022-08-23 01:59:39,906 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"std::any"
+2022-08-23 01:59:39,908 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,908 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179908, front=std::any
+2022-08-23 01:59:39,908 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何一次性锁多个 mutex"
+2022-08-23 01:59:39,909 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,909 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179909, front=如何一次性锁多个 mutex
+2022-08-23 01:59:39,909 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"什么是位置无关代码"
+2022-08-23 01:59:39,911 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,911 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179911, front=什么是位置无关代码
+2022-08-23 01:59:39,911 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"大根堆和小根堆"
+2022-08-23 01:59:39,912 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,912 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179912, front=大根堆和小根堆
+2022-08-23 01:59:39,912 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"输入迭代器和输出迭代器"
+2022-08-23 01:59:39,914 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,914 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179914, front=输入迭代器和输出迭代器
+2022-08-23 01:59:39,914 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么反转字符串"
+2022-08-23 01:59:39,915 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,915 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179915, front=怎么反转字符串
+2022-08-23 01:59:39,915 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"advance & next 区别"
+2022-08-23 01:59:39,917 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,917 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179917, front=advance & next 区别
+2022-08-23 01:59:39,917 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"variant union 区别"
+2022-08-23 01:59:39,918 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,918 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179918, front=variant union 区别
+2022-08-23 01:59:39,918 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"basic_string string string_view"
+2022-08-23 01:59:39,920 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,920 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179920, front=basic_string string string_view
+2022-08-23 01:59:39,920 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"while (!ifstream.eof()) 会生效吗？"
+2022-08-23 01:59:39,921 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,921 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179921, front=while (!ifstream.eof()) 会生效吗？
+2022-08-23 01:59:39,921 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<a href=\"https://stephlin.github.io/post/cpp/cpp-traits/\"><strong>C++ Traits</strong></a>"
+2022-08-23 01:59:39,923 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,923 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179923, front=<a href="https://stephlin.github.io/post/cpp/cpp-traits/"><strong>C++ Traits</strong></a>
+2022-08-23 01:59:39,923 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"make_tuple vs new tuple"
+2022-08-23 01:59:39,924 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,924 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179924, front=make_tuple vs new tuple
+2022-08-23 01:59:39,924 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"union"
+2022-08-23 01:59:39,926 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,926 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179926, front=union
+2022-08-23 01:59:39,926 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<strong><strong>trivial destructor和non-trivial destructor</strong></strong>"
+2022-08-23 01:59:39,927 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,927 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179927, front=<strong><strong>trivial destructor和non-trivial destructor</strong></strong>
+2022-08-23 01:59:39,928 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"cls ins 和 cls ins(); 的区别"
+2022-08-23 01:59:39,929 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,929 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179929, front=cls ins 和 cls ins(); 的区别
+2022-08-23 01:59:39,929 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"error: expected class-name before ‘{’ token"
+2022-08-23 01:59:39,930 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,931 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179930, front=error: expected class-name before ‘{’ token
+2022-08-23 01:59:39,931 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code\"><code>struct stmt {
+  std::unique_ptr<expr_t> expr;
+  stmt(std::unique_ptr<expr_t> expr) : expr(expr) {}
+};</code></pre><ul class=\"toggle\"><li>答案"
+2022-08-23 01:59:39,932 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,932 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179932, front=<pre class="code"><code>struct stmt {
+  std::unique_ptr<expr_t> expr;
+  stmt(std::unique_ptr<expr_t> expr) : expr(expr) {}
+};</code></pre><ul class="toggle"><li>答案
+2022-08-23 01:59:39,932 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:59:39,933 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661191179730]
+2022-08-23 01:59:39,934 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661191179730, data=[{'tags_old': ['+', ',', '//', '0;}', '80;', ':', '<<', '<iostream>', '<string>struct', '=', 'blank', 'explicit', 'include', 'int', 'kg的猪)', 'm_name(一只重达', 'm_name;', 'm_weight(weight)', 'm_weight;', 'main()', 'name:', 'Pig', 'pig(80);', 'Pig(int', 'pig.m_name', 'pig.m_weight', 'return', 'std::cout', 'std::endl;', 'std::string', 'std::to_string(weight)', 'weight)', 'weight:', '{', '{}};int', '编译通过', '编译错误'], 'tags_new': []}, {"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>由于 <code>Pig</code> 的构造函数只有一个参数，这会导致使用 <code>Pig pig = 1;</code> 也能编译通过。</p><p>通过 <code>explicit</code> 修饰来阻止这种用法：</p><pre class="code code-wrap"><code></code></pre>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>不能使用 <code>expr(expr)</code> 因为这是试图共享 expr 的内部指针，而 unique_ptr 是独享的。应该改成 <code>expr(std::move(expr))</code></p>'}]
+2022-08-23 01:59:39,934 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code\"><code>std::vector<int &> hello;</code></pre><ul class=\"toggle\"><li>答案"
+2022-08-23 01:59:39,935 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,935 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179935, front=<pre class="code"><code>std::vector<int &> hello;</code></pre><ul class="toggle"><li>答案
+2022-08-23 01:59:39,935 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:59:39,936 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661191179730]
+2022-08-23 01:59:39,937 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661191179730, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>不能使用 <code>expr(expr)</code> 因为这是试图共享 expr 的内部指针，而 unique_ptr 是独享的。应该改成 <code>expr(std::move(expr))</code></p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>引用不能放到容器里。</p><p>容器（如向量）的组件类型必须是<a href="https://en.cppreference.com/w/cpp/named_req/CopyAssignable"><em>可分配的</em></a>。引用是不可分配的（在声明引用时只能初始化它们一次，并且以后不能使它们引用其他内容）。其他不可分配的类型也不允许作为容器的组件，例如 <code>vector<const int></code>  是不允许的。</p><p>解决方法，用 <code>reference_wrapper </code>这种包装器</p>'}]
+2022-08-23 01:59:39,937 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code\"><code>string * stringarray = new string[100];
+delete stringarray;</code></pre><ul class=\"toggle\"><li>答案"
+2022-08-23 01:59:39,938 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,938 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179938, front=<pre class="code"><code>string * stringarray = new string[100];
+delete stringarray;</code></pre><ul class="toggle"><li>答案
+2022-08-23 01:59:39,938 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:59:39,939 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661191179730]
+2022-08-23 01:59:39,940 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661191179730, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>引用不能放到容器里。</p><p>容器（如向量）的组件类型必须是<a href="https://en.cppreference.com/w/cpp/named_req/CopyAssignable"><em>可分配的</em></a>。引用是不可分配的（在声明引用时只能初始化它们一次，并且以后不能使它们引用其他内容）。其他不可分配的类型也不允许作为容器的组件，例如 <code>vector<const int></code>  是不允许的。</p><p>解决方法，用 <code>reference_wrapper </code>这种包装器</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>只删了第一个，后面 99 个没删</p>'}]
+2022-08-23 01:59:39,940 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"将栈上的引用用于构造对象是否有隐患？"
+2022-08-23 01:59:39,941 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,941 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179941, front=将栈上的引用用于构造对象是否有隐患？
+2022-08-23 01:59:39,941 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何转移 unique_ptr 的所有权"
+2022-08-23 01:59:39,942 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,943 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179943, front=如何转移 unique_ptr 的所有权
+2022-08-23 01:59:39,943 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<strong><strong>C语言参数压栈顺序？</strong></strong>"
+2022-08-23 01:59:39,944 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,944 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179944, front=<strong><strong>C语言参数压栈顺序？</strong></strong>
+2022-08-23 01:59:39,944 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"虚函数中途失效"
+2022-08-23 01:59:39,946 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,946 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179946, front=虚函数中途失效
+2022-08-23 01:59:39,946 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么拿到vector最后一项的引用？"
+2022-08-23 01:59:39,947 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,948 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179948, front=怎么拿到vector最后一项的引用？
+2022-08-23 01:59:39,948 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么初始化二维数组为 <code>0 </code>？"
+2022-08-23 01:59:39,949 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,949 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179949, front=怎么初始化二维数组为 <code>0 </code>？
+2022-08-23 01:59:39,949 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何调试多线程程序？"
+2022-08-23 01:59:39,950 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,951 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179951, front=如何调试多线程程序？
+2022-08-23 01:59:39,951 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"ptrace 及其实现原理"
+2022-08-23 01:59:39,952 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,952 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179952, front=ptrace 及其实现原理
+2022-08-23 01:59:39,952 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么检查内存泄漏？"
+2022-08-23 01:59:39,954 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,954 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179954, front=怎么检查内存泄漏？
+2022-08-23 01:59:39,954 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"怎么关闭优化"
+2022-08-23 01:59:39,955 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,955 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179955, front=怎么关闭优化
+2022-08-23 01:59:39,955 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"Raft, Paxos, 分布式锁"
+2022-08-23 01:59:39,957 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,957 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179957, front=Raft, Paxos, 分布式锁
+2022-08-23 01:59:39,957 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"搞懂虚函数"
+2022-08-23 01:59:39,958 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,958 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179958, front=搞懂虚函数
+2022-08-23 01:59:39,958 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"fwrite, write, direct io"
+2022-08-23 01:59:39,960 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,960 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179960, front=fwrite, write, direct io
+2022-08-23 01:59:39,960 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"string length() size() 区别"
+2022-08-23 01:59:39,961 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,961 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179961, front=string length() size() 区别
+2022-08-23 01:59:39,961 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"<pre class=\"code\"><code>class Solution {
+ public:
+  vector<int>& candidates;
+  int target;
+  vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    this->candidates = candidates;
+    this->target = target;
+  }
+};</code></pre><ul class=\"toggle\"><li>答案"
+2022-08-23 01:59:39,963 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,963 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179963, front=<pre class="code"><code>class Solution {
+ public:
+  vector<int>& candidates;
+  int target;
+  vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    this->candidates = candidates;
+    this->target = target;
+  }
+};</code></pre><ul class="toggle"><li>答案
+2022-08-23 01:59:39,963 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"答案"
+2022-08-23 01:59:39,964 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: [1661191179730]
+2022-08-23 01:59:39,964 - notion_sync.NotesManager - notes_manager.py:297 - INFO - Note updated: note_id=1661191179730, data=[{"{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_old": '<p>只删了第一个，后面 99 个没删</p>', "{'name': 'Back', 'ord': 1, 'sticky': False, 'rtl': False, 'font': 'Arial', 'size': 20, 'description': ''}_new": '<p>默认构造函数会被 delete 掉。</p>'}]
+2022-08-23 01:59:39,965 - notion_sync.NotesManager - notes_manager.py:159 - DEBUG - Searching with a query: deck:"Notion Sync" front:"如何让一段程序在main函数之前执行"
+2022-08-23 01:59:39,966 - notion_sync.NotesManager - notes_manager.py:161 - DEBUG - Result: []
+2022-08-23 01:59:39,966 - notion_sync.NotesManager - notes_manager.py:227 - INFO - Note created: id=1661191179966, front=如何让一段程序在main函数之前执行
+2022-08-23 01:59:40,833 - notion_sync.NotionSyncPlugin - __init__.py:248 - INFO - Sync finished, processed=200, created=192, updated=8, deleted=0

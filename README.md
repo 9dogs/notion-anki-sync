@@ -46,6 +46,7 @@ Edit plugin config file from Anki: `Tools ➡ Add-ons ➡ Notion Toggles Loader 
 {
   "debug": false,
   "sync_every_minutes": 30,
+  "enable_cloze": true,
   "anki_target_deck": "Notion Sync",
   "notion_token": "<your_notion_token_here>",
   "notion_namespace": "<your_notion_username_here",
