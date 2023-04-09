@@ -46,6 +46,8 @@ class NotionClient:
         """
         self.logger = get_logger(self.__class__.__name__, debug)
         self.cookies: Dict[str, str] = {'token_v2': token}
+        self.session = requests.Session()
+        self.session.cookies.update(self.cookies)
 
     def enqueue_export_task(
         self, page_id: str, recursive: bool = False
@@ -78,10 +80,9 @@ class NotionClient:
         data = None
         while attempts_count < self.NOTION_MAX_RETRIES:
             try:
-                resp = requests.post(
+                resp = self.session.post(
                     self.NOTION_ENQUEUE_TASK_ENDPOINT,
                     json=payload,
-                    cookies=self.cookies,
                 )
             except CONNECTION_EXCEPTIONS as exc:
                 raise NotionClientError('Request error') from exc
@@ -128,10 +129,9 @@ class NotionClient:
         attempts_count = 0
         while attempts_count < self.NOTION_MAX_RETRIES:
             try:
-                resp = requests.post(
+                resp = self.session.post(
                     self.NOTION_GET_TASK_ENDPOINT,
                     json={'taskIds': [task_id]},
-                    cookies=self.cookies,
                 )
             except CONNECTION_EXCEPTIONS as exc:
                 raise NotionClientError('Request error') from exc
@@ -181,7 +181,7 @@ class NotionClient:
                     'Export complete, downloading file on URL: %s',
                     export_url,
                 )
-                with requests.get(export_url, stream=True) as r:
+                with self.session.get(export_url, stream=True) as r:
                     r.raise_for_status()
                     with open(destination, 'wb') as f:
                         for chunk in r.iter_content(chunk_size=8192):
