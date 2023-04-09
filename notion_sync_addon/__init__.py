@@ -330,7 +330,8 @@ class NotionSyncPlugin(QObject):
         assert self.notion_menu  # mypy
         self.notion_menu.setTitle('Notion (syncing...)')
         for page_spec in self.config.get('notion_pages', []):
-            page_id, recursive = page_spec['page_id'], page_spec['recursive']
+            page_id = page_spec['page_id']
+            recursive = page_spec.get('recursive', False)
             page_id = normalize_block_id(page_id)
             worker = NotesExtractorWorker(
                 notion_token=self.config['notion_token'],

@@ -4,5 +4,5 @@
   "anki_target_deck": "Notion Sync",
   "notion_token": "",
   "notion_namespace": "",
-  "notion_pages": []
+  "notion_pages": [{"page_id": "ID", "recursive": true}]
 }
