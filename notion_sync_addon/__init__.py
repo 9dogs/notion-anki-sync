@@ -9,11 +9,12 @@ from typing import Any, Dict, List, Optional, Set, cast
 
 from anki.collection import Collection
 from aqt import mw
-from aqt.hooks_gen import main_window_did_init
+from aqt.gui_hooks import main_window_did_init
 from aqt.utils import showCritical, showInfo
 from jsonschema import ValidationError, validate
-from PyQt5.QtCore import QObject, QRunnable, QThreadPool, QTimer, pyqtSignal
-from PyQt5.QtWidgets import QAction, QMessageBox
+from PyQt6.QtCore import QObject, QRunnable, QThreadPool, QTimer, pyqtSignal
+from PyQt6.QtGui import QAction
+from PyQt6.QtWidgets import QMenu, QMessageBox
 
 from .helpers import (
     BASE_DIR,
@@ -57,7 +58,7 @@ class NotionSyncPlugin(QObject):
             enable_logging_to_file()
         self.logger = get_logger(self.__class__.__name__, self.debug)
         self.logger.info('Config loaded: %s', self.config)
-        # Anki collection and note manager
+        # Anki's collection and note manager
         self.collection: Optional[Collection] = None
         self._collection_seeded = False
         self.notes_manager: Optional[NotesManager] = None
@@ -71,7 +72,7 @@ class NotionSyncPlugin(QObject):
         self.existing_note_ids: Set[int] = set()
         self._remove_obsolete_on_sync = False
         # Add action to Anki menu
-        self.notion_menu = None
+        self.notion_menu: Optional[QMenu] = None
         self.add_actions()
         # Add callback to seed the collection then it's ready
         main_window_did_init.append(self.seed_collection)
@@ -90,11 +91,14 @@ class NotionSyncPlugin(QObject):
             self.timer.timeout.connect(self.auto_sync)
             self.timer.start()
 
-    def _validate_config(self, config: Dict[str, Any]):
+    def _validate_config(self, config: Optional[Dict[str, Any]]):
         """Validate config.
 
         :param config: config
+        :raises ValidationError: if config is invalid
         """
+        if not config:
+            raise ValidationError('Config is empty')
         # Load schema and validate configuration
         with open(
             BASE_DIR / 'schemas/config_schema.json', encoding='utf8'
@@ -102,7 +106,9 @@ class NotionSyncPlugin(QObject):
             schema = json.load(s)
         validate(config, schema)
 
-    def get_valid_config(self, config: Dict[str, Any]) -> Dict[str, Any]:
+    def get_valid_config(
+        self, config: Optional[Dict[str, Any]]
+    ) -> Dict[str, Any]:
         """Get valid configuration.
 
         :param config: configuration
@@ -117,19 +123,24 @@ class NotionSyncPlugin(QObject):
             default_config = mw.addonManager.addonConfigDefaults(str(BASE_DIR))
             return cast(Dict[str, Any], default_config)
         else:
+            assert config  # mypy
             return config
 
-    def reload_config(self, new_config: Dict[str, Any]) -> None:
+    def reload_config(self, new_config: Optional[Dict[str, Any]]) -> None:
         """Reload configuration.
 
         :param new_config: new configuration
         """
+        if not new_config:
+            assert mw  # mypy
+            new_config = mw.addonManager.getConfig(__name__)
         try:
             self._validate_config(new_config)
         except ValidationError as exc:
             self.logger.error('Config update error', exc_info=exc)
             showCritical(str(exc), title='Notion loader config update error')
         else:
+            assert new_config  # mypy
             self.config = new_config
 
     def add_actions(self):
@@ -150,6 +161,7 @@ class NotionSyncPlugin(QObject):
 
     def seed_collection(self):
         """Init collection and note manager after Anki loaded."""
+        assert mw  # mypy
         self.collection = mw.col
         if not self.collection:
             self.logger.error('Collection is empty')
@@ -207,6 +219,7 @@ class NotionSyncPlugin(QObject):
         self._alive_workers -= 1
         if self._alive_workers:
             return
+        assert self.notion_menu  # mypy
         self.notion_menu.setTitle('Notion')
         # Show errors if manual sync
         if self._sync_errors:
@@ -222,13 +235,15 @@ class NotionSyncPlugin(QObject):
                         f'Will delete {len(ids_to_remove)} obsolete note(s), '
                         f'continue?'
                     )
+                    assert mw  # mypy
                     do_delete = QMessageBox.question(
                         mw,
                         'Confirm deletion',
                         msg,
-                        QMessageBox.Yes | QMessageBox.No,
+                        QMessageBox.StandardButton.Yes
+                        | QMessageBox.StandardButton.No,
                     )
-                    if do_delete == QMessageBox.Yes:
+                    if do_delete == QMessageBox.StandardButton.Yes.value:
                         self.notes_manager.remove_notes(ids_to_remove)
                         self._deleted += len(ids_to_remove)
             self.collection.save(trx=False)
@@ -266,7 +281,7 @@ class NotionSyncPlugin(QObject):
         self.logger.info('Auto sync started')
         # Reload config
         assert mw  # mypy
-        self.config = mw.addonManager.getConfig(__name__)
+        self.reload_config(None)
         self._is_auto_sync = True
         self._sync()
 
@@ -275,7 +290,7 @@ class NotionSyncPlugin(QObject):
         self.logger.info('Sync started')
         # Reload config
         assert mw  # mypy
-        self.config = mw.addonManager.getConfig(__name__)
+        self.reload_config(None)
         if not self._alive_workers:
             self._is_auto_sync = False
             self._sync()
@@ -312,6 +327,7 @@ class NotionSyncPlugin(QObject):
             self.seed_collection()
             if not self._collection_seeded:
                 return
+        assert self.notion_menu  # mypy
         self.notion_menu.setTitle('Notion (syncing...)')
         for page_spec in self.config.get('notion_pages', []):
             page_id, recursive = page_spec['page_id'], page_spec['recursive']
