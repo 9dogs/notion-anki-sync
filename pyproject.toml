@@ -9,7 +9,7 @@ license = "GPL-3.0-only"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.11"
 aqt = {extras = ["qt6"], version = "^2.1.61"}
 
 [tool.poetry.dev-dependencies]
