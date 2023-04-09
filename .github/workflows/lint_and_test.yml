@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: 3.9
     - name: Install dependencies
@@ -26,12 +26,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.9
+      - name: Install system dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y libglib2.0-dev libxkbfile1 libgl1-mesa-glx libegl1 libxkbcommon-dev qt6-base-dev libnss3 libasound2
       - name: Install dependencies
+        env:
+          DISABLE_QT5_COMPAT: 1
         run: |
           python -m pip install --upgrade poetry
           poetry install

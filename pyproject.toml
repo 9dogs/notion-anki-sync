@@ -1,3 +1,28 @@
+[tool.poetry]
+name = "notion-anki-sync"
+version = "0.9.13"
+description = "Anki addon that loads toggle lists from Notion as notes to a specified deck."
+repository = "https://github.com/9dogs/notion-anki-sync"
+homepage = "https://github.com/9dogs/notion-anki-sync"
+authors = ["Mikhail Knyazev <hellishbot@gmail.com>"]
+license = "GPL-3.0-only"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+aqt = {extras = ["qt6"], version = "^2.1.61"}
+
+[tool.poetry.dev-dependencies]
+black = "^23.3.0"
+isort = "^5.7.0"
+mypy = "^1.2.0"
+flake8 = "^6.0.0"
+pydocstyle = "^6.1.1"
+pytest = "^7.1.2"
+pytest-cov = "^4.0.0"
+darglint = "^1.8.0"
+types-requests = "^2.25.11"
+
 [tool.black]
 line-length = 79
 skip-string-normalization = true
@@ -11,38 +36,10 @@ use_parentheses = true
 default_section = "THIRDPARTY"
 known_first_party = "notion_anki_sync,tests"
 
-[tool.poetry]
-name = "notion-anki-sync"
-version = "0.9.13"
-description = "Anki addon that loads toggle lists from Notion as notes to a specified deck."
-repository = "https://github.com/9dogs/notion-anki-sync"
-homepage = "https://github.com/9dogs/notion-anki-sync"
-authors = ["Mikhail Knyazev <hellishbot@gmail.com>"]
-license = "GPL-3.0-only"
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.9"
-aqt = "^2.1.54"
-
-[tool.poetry.dev-dependencies]
-black = "^22.6"
-isort = "^5.7.0"
-mypy = "^0.971"
-flake8 = "^4.0.0"
-pydocstyle = "^6.1.1"
-pytest = "^7.1.2"
-pytest-cov = "^3.0.0"
-PyQt5-stubs = "^5.14.2"
-darglint = "^1.8.0"
-types-requests = "^2.25.11"
-PyQt5 = "^5.15.7"
-PyQt5-sip = "^12.11.0"
-PyQtWebEngine = "^5.15.6"
-
 [tool.mypy]
 sqlite_cache = true
 ignore_missing_imports = true
+check_untyped_defs = true
 show_error_codes = true
 warn_unused_configs = true
 warn_redundant_casts = true
