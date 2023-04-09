@@ -17,7 +17,7 @@ lint:
 	poetry run isort --check-only $(FILES)
 	poetry run flake8 $(FILES)
 	poetry run pydocstyle $(FILES)
-	poetry run mypy --show-error-codes --sqlite-cache $(FILES)
+	poetry run mypy $(FILES)
 
 TEST_OUTPUT ?= .
 test:
