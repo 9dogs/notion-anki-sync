@@ -66,7 +66,7 @@ class NotionClient:
             'task': {
                 'eventName': 'exportBlock',
                 'request': {
-                    'blockId': page_id,
+                    'block': {'id': page_id},
                     'recursive': recursive,
                     'exportOptions': {
                         'exportType': 'html',
@@ -107,6 +107,9 @@ class NotionClient:
         if not data:
             self.logger.error('Cannot submit export task')
             raise NotionClientError('Cannot submit export task')
+        if 'taskId' not in data:
+            self.logger.error('No task id in response: %s', data)
+            raise NotionClientError('No task id in response')
         task_id = data['taskId']
         self.logger.info(
             'Export task posted: page_id=%s, recursive=%s, task_id=%s',
